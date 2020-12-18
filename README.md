@@ -32,9 +32,9 @@
   * Study how to crawl tweets
 * Implementation
   * Classifiers
-    1. Naïve Bayes
-    2. MaxEnt
-    3. SVM 
+    1. Naïve Bayes & SVM
+    2. LDA & SVM
+    3. SVM & K-MEAN
     4. Deep learning(RNN, CNN)
   * Consider pre-processing with
     * Morphological analysis, emoticon, punctuation mark, etc.
