@@ -14,7 +14,7 @@
 
 ## Requirements
 * This program must be able to detect emotion from text.
-* The program will include 7 kinds of emotion - Love, joy, surprise, anger, sadness, fear and neutral.
+* The program will include 6 kinds of emotion - Love, joy, surprise, anger, sadness and fear.
 * A text must be classified by one kind of emotion(most likely emotion).
 
 ## Project Schedule
