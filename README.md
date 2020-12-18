@@ -1,5 +1,4 @@
 # Automatic-Audio-Book-Based-On-Emotion-Detection
-====================
 
 ## Introduction
 * Topic: To recognize emotion from text
