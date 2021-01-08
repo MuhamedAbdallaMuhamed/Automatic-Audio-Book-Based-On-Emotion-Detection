@@ -12,5 +12,3 @@ def update_user(user):
 
 add_user = build_add_user(insert_user=insert_user)
 update_user = build_update_user(update_user=update_user)
-
-
