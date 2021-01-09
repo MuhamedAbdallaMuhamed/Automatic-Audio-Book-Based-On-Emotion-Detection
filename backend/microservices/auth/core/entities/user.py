@@ -8,6 +8,17 @@ class User:
         self.__password = password
         self.__profile_picture_url = profile_picture_url
 
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'first_name': self.first_name,
+            'last_name': self.last_name,
+            'email': self.email,
+            'password': self.password,
+            'phone': self.phone,
+            'profile_picture_url': self.profile_picture_url,
+        }
+
     @property
     def id(self):
         return self.__id
