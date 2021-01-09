@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+<<<<<<< HEAD:backend/microservices/auth/.idea/misc.xml
   <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.8 (auth)" project-jdk-type="Python SDK" />
+=======
+  <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.8 (Automatic-Audio-Book-Based-On-Emotion-Detection)" project-jdk-type="Python SDK" />
+>>>>>>> bb6a9add7db823075c4abe50f1c5c7ea2c462b20:.idea/misc.xml
 </project>
