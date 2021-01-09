@@ -1,7 +1,8 @@
-from ..entities import make_user, User
+from ..entities import make_user
+
 
 def build_update_user(update_user):
-    def update_user(user):
+    def update_user(user) -> bool:
         user = make_user(id=user.id,
                          first_name=user.first_name,
                          last_name=user.last_name,
