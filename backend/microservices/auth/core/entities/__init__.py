@@ -1,5 +1,6 @@
 from .make_user import build_make_user
 from .user import User
+from .hash_password import hash_password
 
 
 def email_validator(email: str):
@@ -33,8 +34,15 @@ def phone_validator(phone_number: str):
     return carrier._is_mobile(number_type(parse(phone_number)))
 
 
+def salt_generator():
+    import uuid
+    return uuid.uuid4().hex
+
+
 make_user = build_make_user(
     name_validtor=name_validator,
     email_validator=email_validator,
     password_validator=password_validator,
-    phone_validator=phone_validator)
+    phone_validator=phone_validator,
+    hash_password=hash_password,
+    salt_generator=salt_generator)

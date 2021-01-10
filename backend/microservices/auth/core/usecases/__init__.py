@@ -12,8 +12,12 @@ def insert_user(user) -> bool:
     return UserDb.insert_user(user)
 
 
-def get_user(id) -> User:
-    return UserDb.get_user(id)
+def get_user_by_id(id) -> User:
+    return UserDb.get_user_by_id(id)
+
+
+def get_user_by_email(email) -> User:
+    return UserDb.get_user_by_email(email)
 
 
 def update_user(user) -> bool:
@@ -25,6 +29,6 @@ def delete_user(id) -> bool:
 
 
 add_user = build_add_user(insert_user=insert_user)
-get_user = build_get_user(get_user=get_user)
+get_user = build_get_user(get_user_by_id=get_user_by_id, get_user_by_email=get_user_by_email)
 update_user = build_update_user(update_user=update_user)
 delete_user = build_delete_user(delete_user=delete_user)

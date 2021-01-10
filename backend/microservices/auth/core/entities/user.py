@@ -1,23 +1,13 @@
 class User:
-    def __init__(self, id, first_name, last_name, phone, email, password, profile_picture_url):
+    def __init__(self, id, first_name, last_name, phone, email, hashed_password, salt, profile_picture_url):
         self.__id = id
         self.__first_name = first_name
         self.__last_name = last_name
         self.__phone = phone
         self.__email = email
-        self.__password = password
+        self.__hashed_password = hashed_password
         self.__profile_picture_url = profile_picture_url
-
-    def to_dict(self):
-        return {
-            'id': self.id,
-            'first_name': self.first_name,
-            'last_name': self.last_name,
-            'email': self.email,
-            'password': self.password,
-            'phone': self.phone,
-            'profile_picture_url': self.profile_picture_url,
-        }
+        self.__salt = salt
 
     @property
     def id(self):
@@ -40,8 +30,12 @@ class User:
         return self.__phone
 
     @property
-    def password(self):
-        return self.__password
+    def hashed_password(self):
+        return self.__hashed_password
+
+    @property
+    def salt(self):
+        return self.__salt
 
     @property
     def profile_picture_url(self):
