@@ -11,11 +11,14 @@ class EmotionDetection:
     def performEmotionDetection(self):
         pass
 
+    @property
     def _extractFeatures(self):
         pass
 
+    @property
     def _performClassification(self):
         pass
 
+    @property
     def _testAccuracy(self):
         pass

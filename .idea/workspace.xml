@@ -2,18 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8df75033-9ba9-4f4d-85cb-7cfbc638f563" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/backend/microservices/auth/config/serviceAccountKey.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/microservices/auth/config/serviceCredential.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/microservices/emotion-detection/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/microservices/emotion-detection/config/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/microservices/emotion-detection/controller/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/microservices/emotion-detection/core/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/microservices/emotion-detection/core/emotion-detection.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/Automatic-Audio-Book-Based-On-Emotion-Detection.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Automatic-Audio-Book-Based-On-Emotion-Detection.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/microservices/emotionDetection/config/backend_constant.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/microservices/emotionDetection/core/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/microservices/emotionDetection/core/emotion_detection_factory.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/microservices/auth/config/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/microservices/auth/config/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/microservices/auth/core/data-access/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/microservices/auth/core/data-access/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/microservices/emotion-detection/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/microservices/emotionDetection/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/microservices/emotion-detection/config/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/microservices/emotionDetection/config/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/microservices/emotion-detection/controller/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/microservices/emotionDetection/controller/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/microservices/emotion-detection/core/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/microservices/emotionDetection/controller/emotionManager.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/microservices/emotion-detection/core/emotion-detection.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/microservices/emotionDetection/core/emotion_detection.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
