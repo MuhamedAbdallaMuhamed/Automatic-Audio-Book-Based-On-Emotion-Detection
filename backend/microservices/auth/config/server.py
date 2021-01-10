@@ -1,0 +1,5 @@
+SECRET_KEY_LENGTH = 32
+SERVER_EMAIL = 'smtp.gmail.com'
+SERVER_EMAIL_PORT = 465
+SERVER_EMAIL_USERNAME = ''  # TODO: add username
+SERVER_EMAIL_PASSWORD = ''  # TODO: add password

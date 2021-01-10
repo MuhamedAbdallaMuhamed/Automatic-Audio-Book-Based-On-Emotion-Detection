@@ -1,0 +1,3 @@
+ACCESS_TOKEN_HEADER_NAME = 'access_token'
+REFRESH_TOKEN_HEADER_NAME = 'refresh_token'
+MESSAGE_HEADER_NAME = 'message'
