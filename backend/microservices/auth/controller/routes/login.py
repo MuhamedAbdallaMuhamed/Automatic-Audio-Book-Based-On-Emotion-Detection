@@ -8,7 +8,7 @@ from core.entities import hash_password
 from core.usecases import get_user
 
 
-def valid_user_respone(user):
+def valid_user_response(user):
     # creating access token
     expires = timedelta(minutes=ACCESS_TOKEN_LIFETIME)
     access_token = create_access_token(user.email, expires_delta=expires)
@@ -41,7 +41,7 @@ class LoginResource(Resource):
         if user:
             password = login_data[LOGIN_PASSWORD_KEY_NAME]
             if hash_password(password, user.salt) == user.hashed_password:
-                return valid_user_respone(user)
+                return valid_user_response(user)
         # wrong email or password
         return {
             'status': 401,  # HTTP unauthorized client error
@@ -54,7 +54,7 @@ class LoginByTokenResource(Resource):
     def post(self):
         user_email = get_jwt_identity()
         user = get_user(email=user_email)
-        return valid_user_respone(user)
+        return valid_user_response(user)
 
 
 api.add_resource(LoginResource, LOGIN_ABS_ENDPOINT_NAME)
