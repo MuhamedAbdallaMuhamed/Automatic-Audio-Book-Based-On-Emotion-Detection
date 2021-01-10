@@ -1,4 +1,4 @@
-from ..entities import User
+from core.entities import User
 
 
 def build_get_user(get_user_by_id, get_user_by_email):

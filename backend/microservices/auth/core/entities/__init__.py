@@ -1,6 +1,7 @@
 from .make_user import build_make_user
 from .user import User
 from .hash_password import hash_password
+from .token import Token
 
 
 def email_validator(email: str):

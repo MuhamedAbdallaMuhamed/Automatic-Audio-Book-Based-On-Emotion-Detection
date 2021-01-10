@@ -1,4 +1,4 @@
-from ..entities import make_user
+from core.entities import make_user
 
 
 def build_add_user(insert_user):
