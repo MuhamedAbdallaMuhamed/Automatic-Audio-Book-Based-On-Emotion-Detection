@@ -4,10 +4,9 @@ from ...config import *
 
 class TokenDb:
     @staticmethod
-    def insert_token(token: str, expire_date: datetime):
+    def insert_token(token: str):
         db.collection(TOKEN_COLLECTION_NAME).add({
             TOKEN_TOKEN_ENTITY_NAME: token,
-            TOKEN_EXPIRE_DATE_ENTITY_NAME: expire_date
         })
         return True
 
