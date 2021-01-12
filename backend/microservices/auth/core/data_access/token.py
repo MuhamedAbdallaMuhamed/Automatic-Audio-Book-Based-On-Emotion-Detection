@@ -1,16 +1,36 @@
-from datetime import datetime
-from .admin import db
 from ...config import *
 
+import time
+import threading
+
+
 class TokenDb:
+    __BLOCKED_TOKENS_1 = set()
+    __BLOCKED_TOKENS_2 = set()
+    __BLOCKED_TOKENS = __BLOCKED_TOKENS_1
+
     @staticmethod
     def insert_token(token: str):
-        db.collection(TOKEN_COLLECTION_NAME).add({
-            TOKEN_TOKEN_ENTITY_NAME: token,
-        })
+        TokenDb.__BLOCKED_TOKENS.add(token)
         return True
 
     @staticmethod
     def is_token_exist(token: str):
-        docs = db.collection(TOKEN_COLLECTION_NAME).where(TOKEN_TOKEN_ENTITY_NAME, '==', token).stream()
-        return len(docs) != 0
+        return token in TokenDb.__BLOCKED_TOKENS
+
+    # this method should run ever access_token_lifetime
+    @staticmethod
+    def __clear_tokens():
+        TokenDb.__BLOCKED_TOKENS.clear()
+        TokenDb.__BLOCKED_TOKENS = TokenDb.__BLOCKED_TOKENS_1 \
+            if TokenDb.__BLOCKED_TOKENS is TokenDb.__BLOCKED_TOKENS_2 else TokenDb.__BLOCKED_TOKENS_2
+
+    @staticmethod
+    def run_clear_tokens_job():
+        def clear_token_thread():
+            while True:
+                time.sleep(JWT_ACCESS_TOKEN_LIFETIME * 60)
+                TokenDb.__clear_tokens()
+
+        thread = threading.Thread(target=clear_token_thread, daemon=True)
+        thread.start()

@@ -61,5 +61,6 @@ class LoginByTokenResource(Resource):
         user = get_user(email=user_email)
         return valid_user_response(user, generate_token=False)
 
+
 api.add_resource(LoginResource, LOGIN_ABS_ENDPOINT_NAME)
 api.add_resource(LoginByTokenResource, LOGIN_BY_TOKEN_ABS_ENDPOINT_NAME)
