@@ -128,7 +128,6 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
-#pycharm stuff
+# IDE stuff
 backend/microservices/auth/.idea/
-
 
