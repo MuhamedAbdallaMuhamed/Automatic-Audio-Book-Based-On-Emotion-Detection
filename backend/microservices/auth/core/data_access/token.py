@@ -7,25 +7,28 @@ import threading
 class TokenDb:
     __BLOCKED_TOKENS_1 = set()
     __BLOCKED_TOKENS_2 = set()
-    __BLOCKED_TOKENS = __BLOCKED_TOKENS_1
+    __ACTIVE_BLOCKED_TOKENS = __BLOCKED_TOKENS_1
     __lock = threading.Lock()
 
     @staticmethod
     def insert_token(token: str):
-        TokenDb.__BLOCKED_TOKENS.add(token)
+        TokenDb.__ACTIVE_BLOCKED_TOKENS.add(token)
         return True
 
     @staticmethod
     def is_token_exist(token: str):
-        return token in TokenDb.__BLOCKED_TOKENS
+        return token in TokenDb.__BLOCKED_TOKENS_1 or token in TokenDb.__BLOCKED_TOKENS_2
 
     # this method should run ever access_token_lifetime
     @staticmethod
     def __clear_tokens():
         TokenDb.__lock.acquire()
-        TokenDb.__BLOCKED_TOKENS.clear()
-        TokenDb.__BLOCKED_TOKENS = TokenDb.__BLOCKED_TOKENS_1 \
-            if TokenDb.__BLOCKED_TOKENS is TokenDb.__BLOCKED_TOKENS_2 else TokenDb.__BLOCKED_TOKENS_2
+        if TokenDb.__ACTIVE_BLOCKED_TOKENS is TokenDb.__BLOCKED_TOKENS_1:
+            TokenDb.__BLOCKED_TOKENS_2.clear()
+        else:
+            TokenDb.__BLOCKED_TOKENS_1.clear()
+        TokenDb.__ACTIVE_BLOCKED_TOKENS = TokenDb.__BLOCKED_TOKENS_1 \
+            if TokenDb.__ACTIVE_BLOCKED_TOKENS is TokenDb.__BLOCKED_TOKENS_2 else TokenDb.__BLOCKED_TOKENS_2
         TokenDb.__lock.release()
 
     @staticmethod
