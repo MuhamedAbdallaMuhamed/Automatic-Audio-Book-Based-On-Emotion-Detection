@@ -21,6 +21,8 @@ class UserDb:
             salt=u[USER_SALT_ENTITY_NAME],
             phone=u[USER_PHONE_ENTITY_NAME],
             profile_picture_url=u[USER_PROFILE_PICTURE_URL_ENTITY_NAME],
+            birthday=u[USER_BIRTHDAY_ENTITY_NAME],
+            gender=u[USER_GENDER_ENTITY_NAME]
         )
         return user
 
@@ -41,6 +43,8 @@ class UserDb:
             salt=u[USER_SALT_ENTITY_NAME],
             phone=u[USER_PHONE_ENTITY_NAME],
             profile_picture_url=u[USER_PROFILE_PICTURE_URL_ENTITY_NAME],
+            birthday=u[USER_BIRTHDAY_ENTITY_NAME],
+            gender=u[USER_GENDER_ENTITY_NAME]
         )
         return user
 
@@ -66,4 +70,6 @@ class UserDb:
             USER_SALT_ENTITY_NAME: user.salt,
             USER_PHONE_ENTITY_NAME: user.phone,
             USER_PROFILE_PICTURE_URL_ENTITY_NAME: user.profile_picture_url,
+            USER_BIRTHDAY_ENTITY_NAME: user.birthday,
+            USER_GENDER_ENTITY_NAME: user.gender
         }

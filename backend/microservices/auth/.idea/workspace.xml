@@ -2,8 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="59822042-909a-409f-aa95-074f41b60795" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/user.py" beforeDir="false" afterPath="$PROJECT_DIR$/config/user.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/data_access/user.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/data_access/user.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/entities/make_user.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/entities/make_user.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/entities/user.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/entities/user.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/usecases/user/add_user.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/usecases/user/add_user.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/usecases/user/update_user.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/usecases/user/update_user.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

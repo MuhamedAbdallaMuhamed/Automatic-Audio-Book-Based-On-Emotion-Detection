@@ -9,6 +9,8 @@ def build_update_user(update_user):
                          email=user.email,
                          password=user.password,
                          phone=user.phone,
-                         profile_picture_url=user.profile_picture_url)
+                         profile_picture_url=user.profile_picture_url,
+                         birthday=user.birthday,
+                         gender=user.gender)
         return update_user(user)
     return update_user
