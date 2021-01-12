@@ -2,7 +2,7 @@ from .make_user import build_make_user
 from .user import User
 from .hash_password import hash_password
 from .token import Token
-
+from .make_edit_user import build_edit_user
 
 def email_validator(email: str):
     # validate email
@@ -41,6 +41,14 @@ def salt_generator():
 
 
 make_user = build_make_user(
+    name_validtor=name_validator,
+    email_validator=email_validator,
+    password_validator=password_validator,
+    phone_validator=phone_validator,
+    hash_password=hash_password,
+    salt_generator=salt_generator)
+
+edit_user = build_edit_user(
     name_validtor=name_validator,
     email_validator=email_validator,
     password_validator=password_validator,
