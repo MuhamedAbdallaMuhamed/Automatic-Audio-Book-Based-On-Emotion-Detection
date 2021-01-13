@@ -5,24 +5,15 @@ from .exception import *
 def build_make_user(name_validator, email_validator, password_validator, phone_validator, hash_password, salt_generator):
     def make_user(id, first_name, last_name, phone, email, password, profile_picture_url, birthday, gender):
         # validate first_name
-        if not name_validator(first_name):
-            raise NameLengthLimitExceeded
-
+        name_validator(first_name)
         # validate last_name
-        if not name_validator(last_name):
-            raise NameLengthLimitExceeded
-
+        name_validator(last_name)
         # validate phone
-        if not phone_validator(phone):
-            raise PhoneNotValid
-
+        phone_validator(phone)
         # validate email
-        if not email_validator(email):
-            raise EmailNotValid
-
+        email_validator(email)
         # validate password
-        if not password_validator(email):
-            raise PasswordLengthLimitExceeded
+        password_validator(email)
 
         salt = salt_generator()
         user = User(

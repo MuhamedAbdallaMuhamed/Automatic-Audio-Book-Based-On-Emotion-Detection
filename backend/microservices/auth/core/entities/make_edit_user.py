@@ -23,7 +23,7 @@ def build_edit_user(name_validator, email_validator, password_validator, phone_v
             raise EmailNotValid
 
         # validate password
-        if new_pasword and not password_validator(email):
+        if new_password and not password_validator(email):
             raise PasswordLengthLimitExceeded
 
         salt = salt_generator() if new_password else salt
