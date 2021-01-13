@@ -7,24 +7,24 @@ def build_edit_user(name_validator, email_validator, password_validator, phone_v
                   ,new_first_name = False, new_last_name = False, new_phone = False, new_email = False,
                   new_password = False, new_profile_picture_url = False, new_birthday = False, new_gender = False) -> User:
         # validate first_name
-        if new_first_name and not name_validator(first_name):
-            raise NameLengthLimitExceeded
+        if new_first_name:
+            name_validator(first_name)
 
         # validate last_name
-        if new_last_name and not name_validator(last_name):
-            raise NameLengthLimitExceeded
+        if new_last_name:
+            name_validator(last_name)
 
         # validate phone
-        if new_phone and not phone_validator(phone):
-            raise PhoneNotValid
+        if new_phone:
+            phone_validator(phone)
 
         # validate email
-        if new_email and not email_validator(email):
-            raise EmailNotValid
+        if new_email:
+            email_validator(email)
 
         # validate password
-        if new_password and not password_validator(email):
-            raise PasswordLengthLimitExceeded
+        if new_password:
+            password_validator(email)
 
         salt = salt_generator() if new_password else salt
         user = User(
