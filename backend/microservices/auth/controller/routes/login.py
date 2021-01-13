@@ -6,51 +6,50 @@ from . import api
 from config import *
 from core.entities import hash_password
 from core.usecases import get_user
-from core.usecases import is_token_exist
 
 
 def valid_user_response(user, generate_token):
     res = {
-        MESSAGE_HEADER_NAME: 'Logged in',
-        USER_FIRST_NAME_HEADER_NAME: user.first_name,
-        USER_LAST_NAME_HEADER_NAME: user.last_name,
-        USER_email_HEADER_NAME: user.email,
-        USER_PROFILE_PICTURE_URL_HEADER_NAME: user.profile_picture_url
+        RES_MESSAGE_KEY_NAME: 'Logged in',
+        RES_USER_FIRST_NAME_KEY_NAME: user.first_name,
+        RES_USER_LAST_NAME_KEY_NAME: user.last_name,
+        RES_USER_EMAIL_KEY_NAME: user.email,
+        RES_USER_PROFILE_PICTURE_URL_KEY_NAME: user.profile_picture_url
     }
 
     if generate_token:
         # creating access token
-        expires = timedelta(minutes=ACCESS_TOKEN_LIFETIME)
-        access_token = create_access_token(user.email, fresh=True)
+        expires = timedelta(minutes=JWT_ACCESS_TOKEN_LIFETIME)
+        access_token = create_access_token(user.email, expires=expires, fresh=True)
         # creating refresh token
-        expires = timedelta(minutes=REFRESH_TOKEN_LIFETIME)
-        refresh_token = create_refresh_token(user.email)
+        expires = timedelta(minutes=JWT_REFRESH_TOKEN_LIFETIME)
+        refresh_token = create_refresh_token(user.email, expires=expires)
         # user logged-in successfully
-        res[ACCESS_TOKEN_HEADER_NAME] = access_token
-        res[REFRESH_TOKEN_HEADER_NAME] = refresh_token
+        res[RES_ACCESS_TOKEN_KEY_NAME] = access_token
+        res[RES_REFRESH_TOKEN_NAME] = refresh_token
 
     return res
 
 
 class LoginResource(Resource):
     login_parser = reqparse.RequestParser()
-    login_parser.add_argument(LOGIN_EMAIL_KEY_NAME, required=True)
-    login_parser.add_argument(LOGIN_PASSWORD_KEY_NAME, required=True)
+    login_parser.add_argument(REQ_USER_EMAIL_KEY_NAME, type=str, required=True)
+    login_parser.add_argument(REQ_USER_PASSWORD_KEY_NAME, type=str, required=True)
 
     def post(self):
         # parsing the coming request
         login_data = LoginResource.login_parser.parse_args()
 
-        email = login_data[LOGIN_EMAIL_KEY_NAME]
+        email = login_data[REQ_USER_EMAIL_KEY_NAME]
         user = get_user(email=email)
         if user:
-            password = login_data[LOGIN_PASSWORD_KEY_NAME]
+            password = login_data[REQ_USER_PASSWORD_KEY_NAME]
             if hash_password(password, user.salt) == user.hashed_password:
                 return valid_user_response(user, generate_token=True)
         # wrong email or password
         return {
             'status': 401,  # HTTP unauthorized client error
-            MESSAGE_HEADER_NAME: 'bad credentials'
+            RES_MESSAGE_KEY_NAME: 'bad credentials'
         }
 
 

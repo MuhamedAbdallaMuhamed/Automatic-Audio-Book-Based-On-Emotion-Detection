@@ -59,7 +59,13 @@ def salt_generator():
     return uuid.uuid4().hex
 
 
+def id_generator():
+    import uuid
+    return uuid.uuid4()
+
+
 make_user = build_make_user(
+    id_generator=id_generator,
     name_validtor=name_validator,
     email_validator=email_validator,
     password_validator=password_validator,

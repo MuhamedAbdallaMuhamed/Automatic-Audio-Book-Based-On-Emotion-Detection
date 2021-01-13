@@ -14,12 +14,12 @@ def check_if_token_in_blacklist(decrypted_token):
 
 class LogoutResource(Resource):
     @jwt_required
-    def post(self):
+    def delete(self):
         # parsing the coming request
         jti = get_raw_jwt()['jti']
         insert_token(token=jti)
         return {
-            MESSAGE_HEADER_NAME: 'Logged out successfully'
+            RES_MESSAGE_KEY_NAME: 'Logged out successfully'
         }
 
 
