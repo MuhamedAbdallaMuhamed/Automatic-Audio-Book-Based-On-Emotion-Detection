@@ -4,6 +4,7 @@ from flask_jwt_extended import jwt_required , get_raw_jwt
 from . import api
 from config import *
 from core.usecases import *
+from core.entities.exception import *
 
 
 class RegisterResource(Resource):
@@ -29,8 +30,7 @@ class RegisterResource(Resource):
         phone = register_data[REQ_USER_PHONE_KEY_NAME]
         birthday = register_data[REQ_USER_BIRTHDAY_KEY_NAME]
         gender = register_data[REQ_USER_GENDER_KEY_NAME]
-        profile_picture_data = register_data[REQ_USER_PROFILE_PICTURE_DATA_KEY_NAME] \
-                                if REQ_USER_PROFILE_PICTURE_DATA_KEY_NAME in register_data else None
+        profile_picture_data = register_data.get(REQ_USER_PROFILE_PICTURE_DATA_KEY_NAME, None)
 
         try:
             add_user(
@@ -47,10 +47,30 @@ class RegisterResource(Resource):
                 'status': 201, # The request has been fulfilled, resulting in the creation of a new resource
                 RES_MESSAGE_KEY_NAME: 'registered successfully'
             }
+        except EmailException as e:
+            return {
+                'status': 400, # bad request
+                RES_MESSAGE_KEY_NAME: str(e)
+            }
+        except PasswordException as e:
+            return {
+                'status': 400, # bad request
+                RES_MESSAGE_KEY_NAME: str(e)
+            }
+        except PhoneException as e:
+            return {
+                'status': 400, # bad request
+                RES_MESSAGE_KEY_NAME: str(e)
+            }
+        except NameException as e:
+            return {
+                'status': 400, # bad request
+                RES_MESSAGE_KEY_NAME: str(e)
+            }
         except Exception as e:
             return {
-                'status': 400,
-                RES_MESSAGE_KEY_NAME: str(e)
+                'status': 400,  # bad request
+                RES_MESSAGE_KEY_NAME: "an error has occurred"
             }
 
 

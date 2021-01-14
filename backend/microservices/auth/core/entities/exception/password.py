@@ -1,7 +1,17 @@
 from config import USER_PASSWORD_MAX_LENGTH
 
 
-class PasswordLengthLimitExceeded(Exception):
+class PasswordException(Exception):
+    """Exception raised when password's length exceeds the allowed length"""
+
+    def __init__(self, message):
+        super().__init__(message)
+
+    def __str__(self):
+        return 'There is something wrong with the password.'
+
+
+class PasswordLengthLimitExceeded(PasswordException):
     """Exception raised when password's length exceeds the allowed length"""
 
     def __init__(self, password=None):

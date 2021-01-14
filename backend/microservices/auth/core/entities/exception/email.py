@@ -1,7 +1,17 @@
 from config import USER_EMAIL_MAX_LENGTH
 
 
-class EmailNotValid(Exception):
+class EmailException(Exception):
+    """Email Exception base class"""
+
+    def __init__(self, message):
+        super().__init__(message)
+
+    def __str__(self):
+        return 'There is something wrong with the email'
+
+
+class EmailNotValid(EmailException):
     """Exception raised for non emails string's"""
 
     def __init__(self, email=None):
@@ -14,7 +24,7 @@ class EmailNotValid(Exception):
         return 'The email is not a valid email.'
 
 
-class EmailLengthLimitExceeded(Exception):
+class EmailLengthLimitExceeded(EmailException):
     """Exception raised when email's length exceeds the allowed length"""
 
     def __init__(self, email=None):
@@ -27,7 +37,7 @@ class EmailLengthLimitExceeded(Exception):
         return 'The email is not a valid email.'
 
 
-class EmailAlreadyExist(Exception):
+class EmailAlreadyExist(EmailException):
     """Exception raised if the email already exist"""
 
     def __init__(self, email=None):

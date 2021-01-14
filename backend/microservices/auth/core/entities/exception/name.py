@@ -1,7 +1,17 @@
 from config import USER_NAME_MAX_LENGTH, USER_NAME_MIN_LENGTH
 
 
-class NameLengthLimitExceeded(Exception):
+class NameException(Exception):
+    """Exception raised when name's length exceeds the allowed length"""
+
+    def __init__(self, message):
+        super().__init__(message)
+
+    def __str__(self):
+        return 'there is something wrong with the name.'
+
+
+class NameLengthLimitExceeded(NameException):
     """Exception raised when name's length exceeds the allowed length"""
 
     def __init__(self, name=None):
@@ -14,8 +24,7 @@ class NameLengthLimitExceeded(Exception):
         return 'The name Length exceeded the allowed length.'
 
 
-
-class NameMinLengthBeyondLimit(Exception):
+class NameMinLengthBeyondLimit(NameException):
     """Exception raised when name's length < email min length"""
 
     def __init__(self, name=None):
