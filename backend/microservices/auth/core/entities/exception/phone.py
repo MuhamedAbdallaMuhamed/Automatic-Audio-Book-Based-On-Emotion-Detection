@@ -5,8 +5,6 @@ class PhoneException(Exception):
         super().__init__(message)
 
     def __str__(self):
-        if self.phone:
-            return f'"{self.phone}" is not a valid phone.'
         return 'there is something wrong with the phone.'
 
 
