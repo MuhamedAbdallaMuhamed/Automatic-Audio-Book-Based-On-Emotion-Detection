@@ -9,7 +9,7 @@ from ..data_access import *
 
 
 def add_image_to_storage(image_data):
-    pass
+    return UserDb.add_image_to_storage(image_data)
 
 
 def insert_user(user) -> bool:
