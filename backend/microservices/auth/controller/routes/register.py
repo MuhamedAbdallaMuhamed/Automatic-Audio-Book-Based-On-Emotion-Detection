@@ -17,7 +17,6 @@ class RegisterResource(Resource):
     register_parser.add_argument(REQ_USER_GENDER_KEY_NAME, type=str, required=True)
     register_parser.add_argument(REQ_USER_BIRTHDAY_KEY_NAME,
                                  type=lambda x: datetime.strptime(x, REQ_USER_BIRTHDAY_FORMAT), required=True)
-    register_parser.add_argument(REQ_USER_PROFILE_PICTURE_DATA_KEY_NAME, type=str, required=False)
 
     @jwt_required
     def post(self):
@@ -30,7 +29,6 @@ class RegisterResource(Resource):
         phone = register_data[REQ_USER_PHONE_KEY_NAME]
         birthday = register_data[REQ_USER_BIRTHDAY_KEY_NAME]
         gender = register_data[REQ_USER_GENDER_KEY_NAME]
-        profile_picture_data = register_data.get(REQ_USER_PROFILE_PICTURE_DATA_KEY_NAME, None)
 
         try:
             add_user(
@@ -41,7 +39,6 @@ class RegisterResource(Resource):
                     phone=phone,
                     gender=gender,
                     birthday=birthday,
-                    profile_picture_data=profile_picture_data
                 )
             return {
                 'status': 201, # The request has been fulfilled, resulting in the creation of a new resource

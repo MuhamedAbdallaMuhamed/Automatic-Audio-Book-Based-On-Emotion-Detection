@@ -10,3 +10,4 @@ firebase_admin.initialize_app(cred)
 
 db = firestore.client()
 db_storage = firebase.storage()
+image_ref = db_storage.ref().child('images')

@@ -1,9 +1,17 @@
-from .admin import db
+from .admin import db, image_ref
 from ..entities import User
 from ...config import *
 
+import uuid
 
 class UserDb:
+    @staticmethod
+    def add_image_to_storage(user_id, image_data):
+        image_id = uuid.uuid4()
+        file_ref = image_ref.child(user_id + '/' + image_id)
+        file_ref.put_string(image_data, 'base64')
+        return file_ref.get_download_url()
+
     @staticmethod
     def insert_user(user: User) -> bool:
         db.collection(USER_COLLECTION_NAME).document(user.id).set(UserDb.user_to_dict(user))
