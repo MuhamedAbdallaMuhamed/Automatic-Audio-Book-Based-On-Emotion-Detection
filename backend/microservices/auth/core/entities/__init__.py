@@ -66,7 +66,7 @@ def id_generator():
 
 make_user = build_make_user(
     id_generator=id_generator,
-    name_validtor=name_validator,
+    name_validator=name_validator,
     email_validator=email_validator,
     password_validator=password_validator,
     phone_validator=phone_validator,
@@ -74,7 +74,7 @@ make_user = build_make_user(
     salt_generator=salt_generator)
 
 edit_user = build_edit_user(
-    name_validtor=name_validator,
+    name_validator=name_validator,
     email_validator=email_validator,
     password_validator=password_validator,
     phone_validator=phone_validator,
