@@ -9,7 +9,7 @@ from core.usecases import *
 @jwt.token_in_blacklist_loader
 def check_if_token_in_blacklist(decrypted_token):
     jti = decrypted_token['jti']
-    return is_token_exist(jti)
+    return is_token_blocked(jti)
 
 
 class LogoutResource(Resource):

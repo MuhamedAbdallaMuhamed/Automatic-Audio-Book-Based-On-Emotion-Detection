@@ -4,7 +4,7 @@ from core.entities import make_user
 from core.entities.exception import *
 
 from config import *
-from .util import *
+from __test__.core_test.util.util import *
 from datetime import datetime
 
 

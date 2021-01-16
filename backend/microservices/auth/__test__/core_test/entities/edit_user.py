@@ -4,11 +4,11 @@ from core.entities import edit_user
 from core.entities.exception import *
 
 from config import *
-from .util import *
+from __test__.core_test.util.util import *
 from datetime import datetime
 
 
-class MyTestCase(unittest.TestCase):
+class EditUserTastCase(unittest.TestCase):
     def test_updating_valid_user(self):
         first_name = generate_lowercase_string_of_length(USER_NAME_MAX_LENGTH)
         last_name = generate_lowercase_string_of_length(USER_NAME_MAX_LENGTH)
@@ -232,8 +232,8 @@ class MyTestCase(unittest.TestCase):
                 new_password=True
             )
 
-        password = generate_lowercase_string_of_length(USER_PASSWORD_MIN_LENGTH + 1)
-        with self.assertRaises(PasswordLengthLimitExceeded) as e:
+        password = generate_lowercase_string_of_length(USER_PASSWORD_MIN_LENGTH - 1)
+        with self.assertRaises(PasswordMinLengthBeyondLimit) as e:
             edit_user(
                 id="1",
                 first_name=first_name,

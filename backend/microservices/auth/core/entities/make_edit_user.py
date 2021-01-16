@@ -24,7 +24,7 @@ def build_edit_user(name_validator, email_validator, password_validator, phone_v
 
         # validate password
         if new_password:
-            password_validator(email)
+            password_validator(password)
 
         salt = salt_generator() if new_password else salt
         user = User(

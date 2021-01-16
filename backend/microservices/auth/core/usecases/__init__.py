@@ -38,13 +38,13 @@ update_user = build_update_user(update_user=update_user, add_image_to_storage=ad
 delete_user = build_delete_user(delete_user=delete_user)
 
 
-def insert_token(token: str, expire_date: datetime) -> bool:
-    return TokenDb.insert_token(token=token, expire_date=expire_date)
+def insert_token(token: str) -> bool:
+    return TokenDb.insert_token(token=token)
 
 
 def is_token_exist(token: str) -> bool:
     return TokenDb.is_token_exist(token=token)
 
 
-is_token_exist = build_is_token_exist(is_token_exist=is_token_exist)
+is_token_blocked = build_is_token_exist(is_token_exist=is_token_exist)
 add_token = build_add_token(insert_token=insert_token)

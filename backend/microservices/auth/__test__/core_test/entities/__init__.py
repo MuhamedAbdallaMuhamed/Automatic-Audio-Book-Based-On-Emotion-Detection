@@ -1,2 +1,2 @@
 from .make_user import *
-from .make_edit_user import *
+from .edit_user import *

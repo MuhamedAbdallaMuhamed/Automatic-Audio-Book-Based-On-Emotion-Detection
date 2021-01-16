@@ -6,7 +6,6 @@ sys.path.append(path.realpath(path.join(path.dirname(__file__), '../..')))
 from .make_user import build_make_user
 from .user import User
 from .hash_password import hash_password
-from .token import Token
 from .make_edit_user import build_edit_user
 from .exception import *
 
@@ -62,6 +61,7 @@ def phone_validator(phone_number: str):
         return True
     except Exception:
         raise PhoneNotValid
+
 
 def salt_generator():
     import uuid
