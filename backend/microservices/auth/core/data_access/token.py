@@ -35,7 +35,7 @@ class TokenDb:
     def run_clear_tokens_job():
         def clear_token_thread():
             while True:
-                time.sleep(JWT_ACCESS_TOKEN_LIFETIME * 60)
+                time.sleep(JWT_ACCESS_TOKEN_LIFETIME_IN_MINUTES * 60)
                 TokenDb.__clear_tokens()
 
         thread = threading.Thread(target=clear_token_thread, daemon=True)

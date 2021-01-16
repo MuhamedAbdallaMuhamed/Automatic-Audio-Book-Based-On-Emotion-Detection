@@ -23,10 +23,10 @@ class LoginResource(Resource):
             password = login_data[REQ_USER_PASSWORD_KEY_NAME]
             if hash_password(password, user.salt) == user.hashed_password:
                 # creating access token
-                expires = timedelta(minutes=JWT_ACCESS_TOKEN_LIFETIME)
+                expires = timedelta(minutes=JWT_ACCESS_TOKEN_LIFETIME_IN_MINUTES)
                 access_token = create_access_token(user.id, expires=expires, fresh=True)
                 # creating refresh token
-                expires = timedelta(minutes=JWT_REFRESH_TOKEN_LIFETIME)
+                expires = timedelta(minutes=JWT_REFRESH_TOKEN_LIFETIME_IN_MINUTES)
                 refresh_token = create_refresh_token(user.id, expires=expires)
                 # user logged-in successfully
                 return {
