@@ -1,5 +1,5 @@
 LOGIN_ABS_ENDPOINT_NAME = '/login'
-LOGIN_BY_TOKEN_ABS_ENDPOINT_NAME = '/login-token'
 
-LOGIN_EMAIL_KEY_NAME = 'email'
-LOGIN_PASSWORD_KEY_NAME = 'password'
+
+RES_ACCESS_TOKEN_KEY_NAME = 'access_token'
+RES_REFRESH_TOKEN_KEY_NAME = 'refresh_token'

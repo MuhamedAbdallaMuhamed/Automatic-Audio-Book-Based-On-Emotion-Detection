@@ -1,4 +1,14 @@
-class PhoneNotValid(Exception):
+class PhoneException(Exception):
+    """Exception raised for non phones string's"""
+
+    def __init__(self, message):
+        super().__init__(message)
+
+    def __str__(self):
+        return 'there is something wrong with the phone.'
+
+
+class PhoneNotValid(PhoneException):
     """Exception raised for non phones string's"""
 
     def __init__(self, phone=None):

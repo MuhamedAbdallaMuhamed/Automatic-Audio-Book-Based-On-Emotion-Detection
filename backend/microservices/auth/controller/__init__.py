@@ -1,7 +1,7 @@
 from flask import Flask, Blueprint
 from flask_restful import Api
 from flask_jwt_extended import JWTManager
-from flask_mail import  Mail
+from flask_mail import Mail
 
 from .config import Config
 

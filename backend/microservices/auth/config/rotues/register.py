@@ -1,0 +1,1 @@
+REGISTER_ABS_ENDPOINT_NAME = '/register'
