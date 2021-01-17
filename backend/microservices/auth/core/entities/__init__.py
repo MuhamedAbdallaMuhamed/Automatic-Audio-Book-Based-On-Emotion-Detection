@@ -70,7 +70,7 @@ def salt_generator():
 
 def id_generator():
     import uuid
-    return uuid.uuid4()
+    return uuid.uuid4().hex
 
 
 make_user = build_make_user(

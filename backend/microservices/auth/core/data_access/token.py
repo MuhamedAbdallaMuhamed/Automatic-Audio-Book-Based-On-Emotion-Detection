@@ -19,16 +19,16 @@ class TokenDb:
     def is_token_exist(token: str):
         return token in TokenDb.__BLOCKED_TOKENS_1 or token in TokenDb.__BLOCKED_TOKENS_2
 
-    # this method should run ever access_token_lifetime
+    # this method should run every access_token_lifetime
     @staticmethod
     def __clear_tokens():
         TokenDb.__lock.acquire()
         if TokenDb.__ACTIVE_BLOCKED_TOKENS is TokenDb.__BLOCKED_TOKENS_1:
             TokenDb.__BLOCKED_TOKENS_2.clear()
+            TokenDb.__ACTIVE_BLOCKED_TOKENS = TokenDb.__BLOCKED_TOKENS_2
         else:
             TokenDb.__BLOCKED_TOKENS_1.clear()
-        TokenDb.__ACTIVE_BLOCKED_TOKENS = TokenDb.__BLOCKED_TOKENS_1 \
-            if TokenDb.__ACTIVE_BLOCKED_TOKENS is TokenDb.__BLOCKED_TOKENS_2 else TokenDb.__BLOCKED_TOKENS_2
+            TokenDb.__ACTIVE_BLOCKED_TOKENS = TokenDb.__BLOCKED_TOKENS_1
         TokenDb.__lock.release()
 
     @staticmethod

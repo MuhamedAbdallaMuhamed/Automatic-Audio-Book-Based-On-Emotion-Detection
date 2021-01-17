@@ -1,7 +1,3 @@
-from datetime import datetime
-
-from ..entities import User
-
 from core.usecases.user import *
 from core.usecases.token import *
 
@@ -34,8 +30,8 @@ def delete_user(id) -> bool:
 
 add_user = build_add_user(insert_user=insert_user)
 get_user = build_get_user(get_user_by_id=get_user_by_id, get_user_by_email=get_user_by_email)
-update_user = build_update_user(update_user=update_user, add_image_to_storage=add_image_to_storage)
-delete_user = build_delete_user(delete_user=delete_user)
+update_user = build_update_user(db_update_user=update_user, add_image_to_storage=add_image_to_storage)
+delete_user = build_delete_user(db_delete_user=delete_user)
 
 
 def insert_token(token: str) -> bool:

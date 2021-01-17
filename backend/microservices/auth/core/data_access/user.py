@@ -20,25 +20,28 @@ class UserDb:
     @staticmethod
     def get_user_by_id(id: str) -> User:
         u = db.collection(USER_COLLECTION_NAME).document(id).get().to_dict()
-        user = User(
-            id=u[USER_ID_ENTITY_NAME],
-            first_name=u[USER_FIRST_NAME_ENTITY_NAME],
-            last_name=u[USER_LAST_NAME_ENTITY_NAME],
-            email=u[USER_EMAIL_ENTITY_NAME],
-            hashed_password=u[USER_HASHED_PASSWORD_ENTITY_NAME],
-            salt=u[USER_SALT_ENTITY_NAME],
-            phone=u[USER_PHONE_ENTITY_NAME],
-            profile_picture_url=u[USER_PROFILE_PICTURE_URL_ENTITY_NAME],
-            birthday=u[USER_BIRTHDAY_ENTITY_NAME],
-            gender=u[USER_GENDER_ENTITY_NAME]
-        )
-        return user
+        if u:
+            user = User(
+                id=u[USER_ID_ENTITY_NAME],
+                first_name=u[USER_FIRST_NAME_ENTITY_NAME],
+                last_name=u[USER_LAST_NAME_ENTITY_NAME],
+                email=u[USER_EMAIL_ENTITY_NAME],
+                hashed_password=u[USER_HASHED_PASSWORD_ENTITY_NAME],
+                salt=u[USER_SALT_ENTITY_NAME],
+                phone=u[USER_PHONE_ENTITY_NAME],
+                profile_picture_url=u[USER_PROFILE_PICTURE_URL_ENTITY_NAME],
+                birthday=u[USER_BIRTHDAY_ENTITY_NAME],
+                gender=u[USER_GENDER_ENTITY_NAME]
+            )
+            return user
+        return None
 
     @staticmethod
     def get_user_by_email(email: str) -> User:
         users = db.collection(USER_COLLECTION_NAME).where(USER_EMAIL_ENTITY_NAME, '==', email).stream()
 
         for u in users:
+            u = u.to_dict()
             user = User(
                     id=u[USER_ID_ENTITY_NAME],
                     first_name=u[USER_FIRST_NAME_ENTITY_NAME],

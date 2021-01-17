@@ -11,7 +11,7 @@ class UserException(Exception):
 class UserDoesNotExist(UserException):
     """Exception raised for non phones string's"""
 
-    def __init__(self, identity):
+    def __init__(self, identity=None):
         self.identity = identity
         super().__init__(self.__str__())
 
