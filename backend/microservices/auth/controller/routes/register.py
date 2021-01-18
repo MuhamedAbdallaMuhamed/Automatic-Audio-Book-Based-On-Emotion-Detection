@@ -1,5 +1,4 @@
 from flask_restful import Resource, reqparse
-from flask_jwt_extended import jwt_required
 
 from . import api
 from config import *
@@ -18,7 +17,6 @@ class RegisterResource(Resource):
     register_parser.add_argument(REQ_USER_BIRTHDAY_KEY_NAME,
                                  type=lambda x: datetime.strptime(x, REQ_USER_BIRTHDAY_FORMAT), required=True)
 
-    @jwt_required
     def post(self):
         # parsing the coming request
         register_data = RegisterResource.register_parser.parse_args()
@@ -40,35 +38,18 @@ class RegisterResource(Resource):
                     gender=gender,
                     birthday=birthday,
                 )
-            return {
-                'status': 201, # The request has been fulfilled, resulting in the creation of a new resource
-                RES_MESSAGE_KEY_NAME: 'registered successfully'
-            }
+            # The request has been fulfilled, resulting in the creation of a new resource
+            return {RES_MESSAGE_KEY_NAME: 'registered successfully'}, 201
         except EmailException as e:
-            return {
-                'status': 400, # bad request
-                RES_MESSAGE_KEY_NAME: str(e)
-            }
+            return {RES_MESSAGE_KEY_NAME: str(e)}, 400,  # bad request
         except PasswordException as e:
-            return {
-                'status': 400, # bad request
-                RES_MESSAGE_KEY_NAME: str(e)
-            }
+            return {RES_MESSAGE_KEY_NAME: str(e)}, 400,  # bad request
         except PhoneException as e:
-            return {
-                'status': 400, # bad request
-                RES_MESSAGE_KEY_NAME: str(e)
-            }
+            return {RES_MESSAGE_KEY_NAME: str(e)}, 400,  # bad request
         except NameException as e:
-            return {
-                'status': 400, # bad request
-                RES_MESSAGE_KEY_NAME: str(e)
-            }
+            return {RES_MESSAGE_KEY_NAME: str(e)}, 400,  # bad request
         except Exception as e:
-            return {
-                'status': 400,  # bad request
-                RES_MESSAGE_KEY_NAME: "an error has occurred"
-            }
+            return {RES_MESSAGE_KEY_NAME: "an error has occurred"}, 400,  # bad reques
 
 
 api.add_resource(RegisterResource, REGISTER_ABS_ENDPOINT_NAME)

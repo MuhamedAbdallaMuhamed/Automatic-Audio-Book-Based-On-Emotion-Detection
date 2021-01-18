@@ -15,8 +15,8 @@ jwt = JWTManager(app)
 # initializing mail service
 mail = Mail(app)
 
-# # initializing api
-api_bp = Blueprint('api', __name__);
+# initializing api
+api_bp = Blueprint('api', __name__)
 api = Api(api_bp)
 app.register_blueprint(api_bp)
 

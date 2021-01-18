@@ -1,5 +1,9 @@
+import sys
+from os import path
+sys.path.append(path.join(path.dirname(__file__), '..'))
+
 import secrets
-from ..config import *
+from config import *
 
 
 class Config(object):
