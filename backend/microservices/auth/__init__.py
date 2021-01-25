@@ -1,1 +1,4 @@
-from .core.entities.make_user import build_make_user
+from .controller import app
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0')
