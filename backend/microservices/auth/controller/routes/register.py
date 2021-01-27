@@ -1,6 +1,6 @@
 from flask_restful import Resource, reqparse
 
-from . import api
+from . import app, api
 from config import *
 from core.usecases import *
 from core.entities.exception import *
@@ -49,6 +49,7 @@ class RegisterResource(Resource):
         except NameException as e:
             return {RES_MESSAGE_KEY_NAME: str(e)}, 400,  # bad request
         except Exception as e:
+            app.logger.error(str(e))
             return {RES_MESSAGE_KEY_NAME: "an error has occurred"}, 400,  # bad reques
 
 

@@ -38,7 +38,7 @@ class LoginResource(Resource):
         return {RES_MESSAGE_KEY_NAME: 'bad credentials'}, 401  # HTTP unauthorized client error
 
 
-@api_bp.route(REFRESH_TOKEN_ABS_ENDPOINT_NAME)
+@api_bp.route(REFRESH_TOKEN_ABS_ENDPOINT_NAME, methods=('POST',))
 @jwt_refresh_token_required
 def refresh_token():
     user_id = get_jwt_identity()

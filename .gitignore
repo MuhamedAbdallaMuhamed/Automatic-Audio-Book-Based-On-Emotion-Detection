@@ -129,5 +129,5 @@ dmypy.json
 .pyre/
 
 # IDE stuff
-backend/microservices/auth/.idea/
+.idea/
 

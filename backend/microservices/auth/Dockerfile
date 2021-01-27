@@ -1,4 +1,4 @@
-FROM python
+FROM python:3.8
 
 WORKDIR /app
 
@@ -6,5 +6,6 @@ COPY requirements.txt .
 RUN pip install -r requirements.txt
 
 COPY . .
-
-CMD [ "python", "__init__.py" ]
+ENV JWT_ACCESS_TOKEN_LIFETIME_IN_MINUTES=15
+EXPOSE 5000
+CMD gunicorn --bind 0.0.0.0:$PORT __init__:app

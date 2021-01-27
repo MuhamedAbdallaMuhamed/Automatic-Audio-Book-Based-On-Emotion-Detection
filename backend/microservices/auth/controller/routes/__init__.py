@@ -1,4 +1,4 @@
-from .. import api, api_bp, jwt
+from .. import app, api, api_bp, jwt
 
 from .register import *
 from .login import *
