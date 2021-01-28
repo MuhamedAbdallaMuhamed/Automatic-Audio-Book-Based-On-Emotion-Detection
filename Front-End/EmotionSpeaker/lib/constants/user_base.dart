@@ -4,4 +4,5 @@ class UserBase {
   static const String Register = 'register';
   static const String Update = 'user';
   static const String Logout = 'logout';
+  static const String RefreshToken = 'refresh-token';
 }

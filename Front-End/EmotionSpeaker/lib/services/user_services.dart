@@ -112,4 +112,28 @@ class UserServices {
       return Result.error('Application Error');
     }
   }
+
+  Future<Result> updateToken({String refreshToken}) async {
+    try {
+      Response response = await dio.get(
+        uri: UserBase.Url + UserBase.RefreshToken,
+        options: Options(
+          headers: {
+            Keys.Authorization: Keys.Bearer + refreshToken,
+          },
+        ),
+      );
+      if (response.statusCode == 200) {
+        print(response.data);
+        print(User.fromMap(response.data));
+        return Result.success(User.fromMap(response.data));
+      } else {
+        String resultMessage = response.data['message'];
+        return Result.error(resultMessage);
+      }
+    } catch (e) {
+      print(e);
+      return Result.error('Application Error');
+    }
+  }
 }
