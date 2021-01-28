@@ -1,5 +1,5 @@
 import 'package:EmotionSpeaker/constants/custom_colors.dart';
-import 'package:EmotionSpeaker/ui/signin_screen.dart';
+import 'package:EmotionSpeaker/ui/register_or_login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:EmotionSpeaker/utils/sizing_extension.dart';
@@ -15,7 +15,7 @@ class _SplachScreenState extends State<SplachScreen> {
   void initState() {
     super.initState();
     Future.delayed(Duration(seconds: 5), () async {
-      Get.off(SigninScreen());
+      Get.offAll(RegisterOrLoginScreen());
     });
   }
 
