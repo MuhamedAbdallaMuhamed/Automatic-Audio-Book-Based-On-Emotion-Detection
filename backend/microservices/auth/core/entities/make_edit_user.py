@@ -3,7 +3,7 @@ from .exception import *
 
 
 def build_edit_user(name_validator, email_validator, password_validator, phone_validator, hash_password, salt_generator):
-    def edit_user(id, first_name, last_name, phone, email, password, salt, birthday, gender
+    def edit_user(id, first_name, last_name, phone, email, password, salt, birthday, gender, reset_code
                   ,new_first_name = False, new_last_name = False, new_phone = False, new_email = False,
                   new_password = False, new_birthday = False, new_gender = False) -> User:
         # validate first_name
@@ -37,7 +37,8 @@ def build_edit_user(name_validator, email_validator, password_validator, phone_v
                     salt=salt,
                     profile_picture_url=None,
                     birthday=birthday,
-                    gender=gender
+                    gender=gender,
+                    password_reset_code=reset_code
                 )
         return user
     return edit_user

@@ -1,5 +1,6 @@
 class User:
-    def __init__(self, id, first_name, last_name, phone, email, hashed_password, salt, profile_picture_url, birthday, gender):
+    def __init__(self, id, first_name, last_name, phone, email, hashed_password,
+                 salt, profile_picture_url, birthday, gender, password_reset_code=None):
         self.__id = id
         self.__first_name = first_name
         self.__last_name = last_name
@@ -10,6 +11,7 @@ class User:
         self.__salt = salt
         self.__birthday = birthday
         self.__gender = gender
+        self.__password_reset_code = password_reset_code
 
     @property
     def id(self):
@@ -50,3 +52,7 @@ class User:
     @property
     def gender(self):
         return self.__gender
+
+    @property
+    def password_reset_code(self):
+        return self.__password_reset_code

@@ -13,7 +13,7 @@ firebase_admin.initialize_app(cred)
 
 db = firestore.client()
 db_storage = firebase.storage()
-image_ref = db_storage.child('images')
+image_ref = db_storage
 
 app = firebase_admin.initialize_app(cred, options={"storageBucket": "auto-audio-book-with-emotion.appspot.com"}, name="storage")
 bucket = storage.bucket(app=app)

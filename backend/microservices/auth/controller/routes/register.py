@@ -1,6 +1,7 @@
 from flask_restful import Resource, reqparse
 
 from . import app, api
+from .user import user_response
 from config import *
 from core.usecases import *
 from core.entities.exception import *
@@ -38,8 +39,9 @@ class RegisterResource(Resource):
                     gender=gender,
                     birthday=birthday,
                 )
+            user = get_user(email=email)
             # The request has been fulfilled, resulting in the creation of a new resource
-            return {RES_MESSAGE_KEY_NAME: 'registered successfully'}, 201
+            return user_response(user), 201
         except EmailException as e:
             return {RES_MESSAGE_KEY_NAME: str(e)}, 400,  # bad request
         except PasswordException as e:

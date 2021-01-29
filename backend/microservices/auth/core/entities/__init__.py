@@ -8,7 +8,7 @@ from .user import User
 from .hash_password import hash_password
 from .make_edit_user import build_edit_user
 from .exception import *
-
+from .util import *
 
 def email_validator(email: str):
     # validate email

@@ -3,7 +3,7 @@ from core.entities import edit_user
 
 def build_update_user(db_update_user, add_image_to_storage):
     def update_user(id, first_name=None, last_name=None, email=None, password=None,
-                    phone=None, profile_picture_data=None, birthday=None, gender=None) -> bool:
+                    phone=None, profile_picture_data=None, birthday=None, gender=None, reset_code=None) -> bool:
         from .. import get_user
         if not id:
             return False
@@ -25,6 +25,7 @@ def build_update_user(db_update_user, add_image_to_storage):
                         phone=phone if phone is not None and phone != old_user.phone else old_user.phone,
                         birthday=birthday if birthday is not None else old_user.birthday,
                         gender=gender if gender is not None and gender != old_user.gender else old_user.gender,
+                        reset_code=reset_code,
                         new_email=email is not None and email != old_user.email,
                         new_phone=phone is not None and phone != old_user.phone,
                         new_gender=gender is not None and gender != old_user.gender,

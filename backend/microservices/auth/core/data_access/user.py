@@ -9,22 +9,18 @@ class UserDb:
     def add_image_to_storage(user_id, image_data):
         import base64
         image_data = base64.b64decode(image_data)
-
         image_id = user_id
         filename = image_id + '.png'
         with open(filename, 'wb') as f:
             f.write(image_data)
-        image_ref.put(filename)
+        image_ref.child('images/' + user_id + '.png').put(filename, token=None)
         os.remove(filename)
-
         image_ref.child(filename).download(filename)
         return True
 
     @staticmethod
     def get_image_url(user_id):
-        import datetime
-        blob = bucket.blob('images/' + user_id)
-        return blob.generate_signed_url(datetime.timedelta(seconds=300), method='GET')
+        return image_ref.child('images/' + user_id + '.png').get_url(None)
 
     @staticmethod
     def insert_user(user: User) -> bool:
@@ -45,7 +41,8 @@ class UserDb:
                 phone=u[USER_PHONE_ENTITY_NAME],
                 profile_picture_url=UserDb.get_image_url(u[USER_ID_ENTITY_NAME]),
                 birthday=u[USER_BIRTHDAY_ENTITY_NAME],
-                gender=u[USER_GENDER_ENTITY_NAME]
+                gender=u[USER_GENDER_ENTITY_NAME],
+                password_reset_code=u[USER_PASSWORD_RESET_CODE_ENTITY_NAME]
             )
             return user
         return None
@@ -66,8 +63,9 @@ class UserDb:
                     phone=u[USER_PHONE_ENTITY_NAME],
                     profile_picture_url=UserDb.get_image_url(u[USER_ID_ENTITY_NAME]),
                     birthday=u[USER_BIRTHDAY_ENTITY_NAME],
-                    gender=u[USER_GENDER_ENTITY_NAME]
-                )
+                    gender=u[USER_GENDER_ENTITY_NAME],
+                    password_reset_code=u[USER_PASSWORD_RESET_CODE_ENTITY_NAME]
+            )
             return user
         return None
 
@@ -93,5 +91,6 @@ class UserDb:
             USER_PHONE_ENTITY_NAME: user.phone,
             USER_PROFILE_PICTURE_URL_ENTITY_NAME: user.profile_picture_url,
             USER_BIRTHDAY_ENTITY_NAME: user.birthday,
-            USER_GENDER_ENTITY_NAME: user.gender
+            USER_GENDER_ENTITY_NAME: user.gender,
+            USER_PASSWORD_RESET_CODE_ENTITY_NAME: user.password_reset_code
         }
