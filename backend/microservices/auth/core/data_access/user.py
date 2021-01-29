@@ -8,6 +8,12 @@ class UserDb:
     @staticmethod
     def add_image_to_storage(user_id, image_data):
         import base64
+        #  removing meta data if it exists
+        image_data = image_data.encode("ascii");
+        if image_data.startswith(b'data:image'):
+            idx = image_data.index(b',')
+            image_data = image_data[idx + 1:]
+
         image_data = base64.b64decode(image_data)
         image_id = user_id
         filename = image_id + '.png'
