@@ -12,8 +12,9 @@ def build_update_user(db_update_user, add_image_to_storage):
         if not old_user:
             from . import UserDoesNotExist
             raise UserDoesNotExist
-
-        profile_picture_url = add_image_to_storage(old_user.id, profile_picture_data) if profile_picture_data else None
+        
+        if profile_picture_data:
+            add_image_to_storage(old_user.id, profile_picture_data)
         edited_user = edit_user(
                         id=old_user.id,
                         first_name=first_name if first_name is not None else old_user.first_name,
@@ -22,7 +23,6 @@ def build_update_user(db_update_user, add_image_to_storage):
                         password=password if password is not None else old_user.hashed_password,
                         salt=old_user.salt,
                         phone=phone if phone is not None else old_user.phone,
-                        profile_picture_url=profile_picture_url if profile_picture_url is not None else old_user.profile_picture_url,
                         birthday=birthday if birthday is not None else old_user.birthday,
                         gender=gender if gender is not None else old_user.gender,
                         new_email=email is not None,
@@ -32,7 +32,6 @@ def build_update_user(db_update_user, add_image_to_storage):
                         new_password=password is not None,
                         new_last_name=last_name is not None,
                         new_first_name=first_name is not None,
-                        new_profile_picture_url=profile_picture_url is not None
                     )
         return db_update_user(edited_user)
     return update_user

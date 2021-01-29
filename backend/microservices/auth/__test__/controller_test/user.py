@@ -48,6 +48,9 @@ class UserEndpointTestCase(unittest.TestCase):
         assert RES_USER_EMAIL_KEY_NAME in res
         assert RES_USER_ID_KEY_NAME in res
         assert RES_USER_PROFILE_PICTURE_URL_KEY_NAME in res
+        assert RES_USER_PHONE_KEY_NAME in res
+        assert RES_USER_GENDER_KEY_NAME in res
+        assert RES_USER_BIRTHDAY_KEY_NAME in res
 
     def test_get_user_data_with_invalid_jwt(self):
         acccess_jwt = generate_random_string_of_length(100)
