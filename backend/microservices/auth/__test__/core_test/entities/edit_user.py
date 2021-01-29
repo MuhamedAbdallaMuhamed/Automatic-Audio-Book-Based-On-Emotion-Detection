@@ -26,7 +26,6 @@ class EditUserTestCase(unittest.TestCase):
             phone=phone,
             password=password,
             salt=salt,
-            profile_picture_url=None,
             gender=gender,
             birthday=birthday,
             new_first_name=True,
@@ -66,7 +65,6 @@ class EditUserTestCase(unittest.TestCase):
                 phone=phone,
                 password=password,
                 salt=salt,
-                profile_picture_url=None,
                 gender=gender,
                 birthday=birthday,
                 new_email=True
@@ -82,7 +80,6 @@ class EditUserTestCase(unittest.TestCase):
                 phone=phone,
                 password=password,
                 salt=salt,
-                profile_picture_url=None,
                 gender=gender,
                 birthday=birthday,
                 new_email=True
@@ -98,7 +95,6 @@ class EditUserTestCase(unittest.TestCase):
                 phone=phone,
                 password=password,
                 salt=salt,
-                profile_picture_url=None,
                 gender=gender,
                 birthday=birthday,
                 new_email=True
@@ -122,7 +118,6 @@ class EditUserTestCase(unittest.TestCase):
                 phone=phone,
                 password=password,
                 salt=salt,
-                profile_picture_url=None,
                 gender=gender,
                 birthday=birthday,
                 new_first_name=True
@@ -138,7 +133,6 @@ class EditUserTestCase(unittest.TestCase):
                 phone=phone,
                 password=password,
                 salt=salt,
-                profile_picture_url=None,
                 gender=gender,
                 birthday=birthday,
                 new_first_name=True
@@ -162,7 +156,6 @@ class EditUserTestCase(unittest.TestCase):
                 phone=phone,
                 password=password,
                 salt=salt,
-                profile_picture_url=None,
                 gender=gender,
                 birthday=birthday,
                 new_last_name=True,
@@ -178,7 +171,6 @@ class EditUserTestCase(unittest.TestCase):
                 phone=phone,
                 password=password,
                 salt=salt,
-                profile_picture_url=None,
                 gender=gender,
                 birthday=birthday,
                 new_last_name=True,
@@ -202,7 +194,6 @@ class EditUserTestCase(unittest.TestCase):
                 phone=phone,
                 password=password,
                 salt=salt,
-                profile_picture_url=None,
                 gender=gender,
                 birthday=birthday,
                 new_phone=True
@@ -226,7 +217,6 @@ class EditUserTestCase(unittest.TestCase):
                 phone=phone,
                 password=password,
                 salt=salt,
-                profile_picture_url=None,
                 gender=gender,
                 birthday=birthday,
                 new_password=True
@@ -242,7 +232,6 @@ class EditUserTestCase(unittest.TestCase):
                 phone=phone,
                 password=password,
                 salt=salt,
-                profile_picture_url=None,
                 gender=gender,
                 birthday=birthday,
                 new_password=True
