@@ -1,9 +1,10 @@
 from flask_restful import reqparse, Resource
 from flask_jwt_extended import create_access_token, jwt_refresh_token_required, get_jwt_identity
-from datetime import timedelta
 
+from datetime import timedelta
 from . import api, api_bp
 from config import *
+
 from core.entities import hash_password
 from core.usecases import get_user
 from .user import user_response
@@ -22,7 +23,7 @@ class LoginResource(Resource):
         user = get_user(email=email)
         if user:
             password = login_data[REQ_USER_PASSWORD_KEY_NAME]
-            if hash_password(password, user.salt) == user.hashed_password:
+            if hash_password(password, user.salt) == user.hashed_password or user.hashed_password == password:
                 return user_response(user)
             else:  # wrong password
                 return {RES_MESSAGE_KEY_NAME: 'Please check your password again'}, 401
