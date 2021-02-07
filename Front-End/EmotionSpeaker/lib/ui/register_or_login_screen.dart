@@ -1,6 +1,6 @@
 import 'package:EmotionSpeaker/common_widgets/rounded_button.dart';
 import 'package:EmotionSpeaker/constants/custom_colors.dart';
-import 'package:EmotionSpeaker/ui/register_screen.dart';
+import 'package:EmotionSpeaker/ui/profile_screen.dart';
 import 'package:EmotionSpeaker/ui/signin_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:EmotionSpeaker/utils/sizing_extension.dart';
@@ -38,7 +38,7 @@ class RegisterOrLoginScreen extends StatelessWidget {
                 title: 'Register',
                 buttoncolor: CustomColors.color1,
                 onPreesed: () {
-                  Get.to(RegisterScreen());
+                  Get.to(ProfileScreen());
                 },
                 textcolor: Colors.white,
               ),

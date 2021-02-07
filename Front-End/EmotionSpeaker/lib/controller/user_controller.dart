@@ -3,13 +3,11 @@ import 'package:EmotionSpeaker/constants/shared_preferences_keys.dart';
 import 'package:EmotionSpeaker/models/user.dart';
 import 'package:EmotionSpeaker/utils/shared_pref.dart';
 import 'package:get/state_manager.dart';
-
 import 'package:EmotionSpeaker/repository/user_repository.dart';
 import 'package:EmotionSpeaker/models/result.dart';
+import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 
 class UserController extends GetxController {
-  String accessToken;
-  String refreshToken;
   UserRepository userRepository = UserRepository();
   User mainUser;
   Future<Result> openApp() async {
@@ -33,18 +31,14 @@ class UserController extends GetxController {
       Result result = await userRepository.userLogin(user: user);
       if (result is SuccessResult) {
         mainUser = user;
-        List list = result.getSuccessData();
-        accessToken = list[0];
-        refreshToken = list[1];
+        mainUser = result.getSuccessData();
+        mainUser.password = user.password;
+        await _setPhoneNumber();
         SharedPref.pref.setBool(SharedPreferencesKeys.Login, true);
         SharedPref.pref.setString(SharedPreferencesKeys.Email, user.email);
         SharedPref.pref
             .setString(SharedPreferencesKeys.Password, user.password);
-        Result result2 = await getUser();
-        if (result2 is SuccessResult)
-          return Result.success('Success');
-        else
-          return result2;
+        return Result.success('Success');
       } else
         return result;
     } catch (e) {
@@ -56,7 +50,42 @@ class UserController extends GetxController {
     try {
       Result result = await userRepository.userRegister(user: user);
       if (result is SuccessResult) {
-        return await userLogin(user: user);
+        mainUser = result.getSuccessData();
+        await _setPhoneNumber();
+        SharedPref.pref.setBool(SharedPreferencesKeys.Login, true);
+        SharedPref.pref.setString(SharedPreferencesKeys.Email, user.email);
+        SharedPref.pref
+            .setString(SharedPreferencesKeys.Password, user.password);
+        return Result.success('Success');
+      } else
+        return result;
+    } catch (e) {
+      return Result.error('Application Error');
+    }
+  }
+
+  Future<Result> getResetPasswordCode({String email}) async {
+    try {
+      Result result = await userRepository.getResetPasswordCode(email: email);
+      if (result is SuccessResult) {
+        return Result.success('Success');
+      } else
+        return result;
+    } catch (e) {
+      return Result.error('Application Error');
+    }
+  }
+
+  Future<Result> resetPassword(
+      {String email, String code, String password}) async {
+    try {
+      Result result = await userRepository.resetPasswordCode(
+        email: email,
+        code: code,
+        password: password,
+      );
+      if (result is SuccessResult) {
+        return Result.success('Success');
       } else
         return result;
     } catch (e) {
@@ -66,11 +95,13 @@ class UserController extends GetxController {
 
   Future<Result> getUser({User user}) async {
     try {
-      Result result = await userRepository.getUser(accessToken: accessToken);
+      Result result =
+          await userRepository.getUser(accessToken: mainUser.access_token);
       if (result is SuccessResult) {
         User newUser = result.getSuccessData();
         newUser.password = mainUser.password;
         mainUser = newUser;
+        await _setPhoneNumber();
         return Result.success('Success');
       } else
         return result;
@@ -83,9 +114,14 @@ class UserController extends GetxController {
     try {
       Result result = await userRepository.userUpdate(
         user: user,
-        accessToken: accessToken,
+        accessToken: mainUser.access_token,
       );
       if (result is SuccessResult) {
+        user.password = mainUser.password;
+        user.access_token = mainUser.access_token;
+        user.refresh_token = mainUser.refresh_token;
+        mainUser = user;
+        await _setPhoneNumber();
         return Result.success('Success');
       } else
         return result;
@@ -94,19 +130,45 @@ class UserController extends GetxController {
     }
   }
 
-  Future<Result> userLogut() async {
+  Future<Result> updatePassword({User user, String oldPassword}) async {
     try {
-      Result result = await userRepository.userLogut(accessToken: accessToken);
+      if (oldPassword != mainUser.password)
+        return Result.error('old password not correct');
+      Result result = await userRepository.userUpdate(
+        user: user,
+        accessToken: mainUser.access_token,
+      );
       if (result is SuccessResult) {
-        accessToken = null;
-        refreshToken = null;
-        SharedPref.pref.setBool(SharedPreferencesKeys.Login, false);
-        SharedPref.pref.setString(SharedPreferencesKeys.Email, '');
-        SharedPref.pref.setString(SharedPreferencesKeys.Password, '');
-      }
-      return result;
+        mainUser.password = user.password;
+        SharedPref.pref
+            .setString(SharedPreferencesKeys.Password, user.password);
+        return Result.success('Success');
+      } else
+        return result;
     } catch (e) {
       return Result.error('Application Error');
+    }
+  }
+
+  void userLogut() {
+    mainUser = null;
+    SharedPref.pref.setBool(SharedPreferencesKeys.Login, false);
+    SharedPref.pref.setString(SharedPreferencesKeys.Email, '');
+    SharedPref.pref.setString(SharedPreferencesKeys.Password, '');
+  }
+
+  Future<void> _setPhoneNumber() async {
+    try {
+      PhoneNumber number =
+          await PhoneNumber.getRegionInfoFromPhoneNumber(mainUser.phone);
+      String parsableNumber = number.parseNumber();
+      mainUser.countryCode = '+' + number.dialCode;
+      String phonenumber = parsableNumber.replaceAll('+', '');
+      mainUser.phoneWithoutCode = phonenumber;
+      print(mainUser.countryCode);
+      print(mainUser.phoneWithoutCode);
+    } catch (e) {
+      print(e);
     }
   }
 }

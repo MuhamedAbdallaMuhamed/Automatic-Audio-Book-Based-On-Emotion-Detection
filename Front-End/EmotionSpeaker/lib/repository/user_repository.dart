@@ -31,6 +31,29 @@ class UserRepository {
     }
   }
 
+  Future<Result> getResetPasswordCode({String email}) async {
+    try {
+      Result result = await userServices.getResetPasswordCode(email: email);
+      return result;
+    } catch (e) {
+      return Result.error('Application Error');
+    }
+  }
+
+  Future<Result> resetPasswordCode(
+      {String email, String code, String password}) async {
+    try {
+      Result result = await userServices.resetPassword(
+        email: email,
+        code: code,
+        password: password,
+      );
+      return result;
+    } catch (e) {
+      return Result.error('Application Error');
+    }
+  }
+
   Future<Result> userUpdate({User user, String accessToken}) async {
     try {
       Result result =

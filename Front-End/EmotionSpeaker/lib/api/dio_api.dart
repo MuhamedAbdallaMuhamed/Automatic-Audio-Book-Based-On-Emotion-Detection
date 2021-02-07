@@ -75,6 +75,7 @@ class DioClient {
     } catch (e) {
       if (e is DioError) {
         print(e.response);
+        return e.response;
       }
     }
   }
@@ -102,6 +103,7 @@ class DioClient {
     } catch (e) {
       if (e is DioError) {
         print(e.response);
+        return e.response;
       }
     }
   }

@@ -1,46 +1,48 @@
+import 'dart:convert';
+
 import 'package:EmotionSpeaker/api/dio_api.dart';
 import 'package:EmotionSpeaker/constants/keys.dart';
 import 'package:EmotionSpeaker/constants/user_base.dart';
 import 'package:EmotionSpeaker/models/result.dart';
 import 'package:EmotionSpeaker/models/user.dart';
 import 'package:dio/dio.dart';
-import 'dart:convert';
 
 class UserServices {
   DioClient dio = DioClient();
   Future<Result> userLogin({User user}) async {
+    Response response;
     try {
-      Response response = await dio.post(
+      response = await dio.post(
         uri: UserBase.Url + UserBase.Login,
         data: user.toJson(),
       );
       if (response.statusCode == 200) {
-        String accessToken = response.data['access_token'];
-        String refreshToken = response.data['refresh_token'];
-        return Result.success([accessToken, refreshToken]);
+        return Result.success(User.fromMap(response.data));
       } else {
+        print(response.statusCode);
         String resultMessage = response.data['message'];
         return Result.error(resultMessage);
       }
     } catch (e) {
-      return Result.error('Application Error');
+      return Result.error(response.data['message']);
     }
   }
 
   Future<Result> userRegister({User user}) async {
+    Response response;
     try {
-      Response response = await dio.post(
+      response = await dio.post(
         uri: UserBase.Url + UserBase.Register,
         data: user.toJson(),
       );
       if (response.statusCode == 201) {
-        return Result.success(response.statusMessage);
+        return Result.success(User.fromMap(response.data));
       } else {
         String resultMessage = response.data['message'];
         return Result.error(resultMessage);
       }
     } catch (e) {
-      return Result.error('Application Error');
+      return Result.error(response.data['message']);
     }
   }
 
@@ -49,7 +51,7 @@ class UserServices {
       Map map = user.toMap();
       map.remove('email');
       Response response = await dio.put(
-        uri: UserBase.Url + UserBase.Register,
+        uri: UserBase.Url + UserBase.Update,
         data: json.encode(map),
         options: Options(
           headers: {
@@ -57,13 +59,58 @@ class UserServices {
           },
         ),
       );
-      if (response.statusCode == 201) {
+      if (response.statusCode == 200) {
         return Result.success(response.statusMessage);
       } else {
         String resultMessage = response.data['message'];
         return Result.error(resultMessage);
       }
     } catch (e) {
+      return Result.error('Application Error');
+    }
+  }
+
+  Future<Result> getResetPasswordCode({String email}) async {
+    try {
+      print('send mail');
+      Response response = await dio.get(
+        uri: UserBase.Url + UserBase.ForgetPassword,
+        queryParameters: {
+          'email': email,
+        },
+      );
+      print('response done ');
+      if (response.statusCode == 200) {
+        return Result.success(response.data['message']);
+      } else {
+        String resultMessage = response.data['message'];
+        return Result.error(resultMessage);
+      }
+    } catch (e) {
+      print(e);
+      return Result.error('Application Error');
+    }
+  }
+
+  Future<Result> resetPassword(
+      {String email, String code, String password}) async {
+    try {
+      Response response = await dio.put(
+        uri: UserBase.Url + UserBase.ForgetPassword,
+        data: {
+          'email': email,
+          'password': password,
+          "password_reset_code": code,
+        },
+      );
+      if (response.statusCode == 200) {
+        return Result.success(response.data['message']);
+      } else {
+        String resultMessage = response.data['message'];
+        return Result.error(resultMessage);
+      }
+    } catch (e) {
+      print(e);
       return Result.error('Application Error');
     }
   }

@@ -23,7 +23,7 @@ class ShowCustomDatePicker extends StatelessWidget {
       controller: controller,
       validator: (value) => TextInput.validateText(value.toString()),
       format: DateFormat(
-        'EEEE، d MMM yyyy',
+        'yyyy-MM-d',
       ),
       style: TextStyle(fontFamily: Keys.Araboto),
       onShowPicker: (context, currentValue) async {

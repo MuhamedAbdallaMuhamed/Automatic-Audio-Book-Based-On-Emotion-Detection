@@ -1,13 +1,13 @@
-import 'package:EmotionSpeaker/common_widgets/hidden_menu/controllers/simple_hidden_drawer_controller.dart';
-import 'package:EmotionSpeaker/common_widgets/hidden_menu/simple_hidden_drawer/simple_hidden_drawer.dart';
 import 'package:EmotionSpeaker/constants/custom_colors.dart';
 import 'package:EmotionSpeaker/controller/user_controller.dart';
-import 'package:EmotionSpeaker/models/result.dart';
 import 'package:EmotionSpeaker/ui/register_or_login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:EmotionSpeaker/constants/Keys.dart';
 import 'package:EmotionSpeaker/utils/sizing_extension.dart';
 import 'package:get/get.dart';
+import 'package:hidden_drawer_menu/controllers/simple_hidden_drawer_controller.dart';
+import 'package:hidden_drawer_menu/simple_hidden_drawer/simple_hidden_drawer.dart';
+import 'package:EmotionSpeaker/ui/profile_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   @override
@@ -16,7 +16,6 @@ class HomeScreen extends StatelessWidget {
       menu: Menu(),
       contentCornerRadius: 25.0,
       slidePercent: 60.0,
-      enableRotateAnimation: true,
       verticalScalePercent: 80.0,
       screenSelectedBuilder: (position, controller) {
         return Scaffold(
@@ -91,6 +90,9 @@ class Menu extends StatelessWidget {
               MenuItem(
                 ontap: () {
                   SimpleHiddenDrawerController.of(context).toggle();
+                  Get.to(ProfileScreen(
+                    notRegister: true,
+                  ));
                 },
                 text: 'Profile',
               ),
@@ -98,16 +100,10 @@ class Menu extends StatelessWidget {
                 height: 1.heightPercentage(context),
               ),
               MenuItem(
-                ontap: () async {
+                ontap: () {
                   SimpleHiddenDrawerController.of(context).toggle();
-                  Result result = await userController.userLogut();
-                  if (result is SuccessResult) {
-                    Get.offAll(RegisterOrLoginScreen());
-                  } else
-                    Get.defaultDialog(
-                      title: 'Error',
-                      middleText: result.getErrorMessage(),
-                    );
+                  userController.userLogut();
+                  Get.offAll(RegisterOrLoginScreen());
                 },
                 text: 'Logout',
               ),
@@ -134,10 +130,10 @@ class MenuItem extends StatelessWidget {
       child: Text(
         text,
         style: TextStyle(
-          color: Colors.black,
+          color: CustomColors.color1,
           fontSize: 18.sp(context),
           fontFamily: Keys.Araboto,
-          // fontWeight: FontWeight.bold,
+          fontWeight: FontWeight.bold,
         ),
       ),
     );

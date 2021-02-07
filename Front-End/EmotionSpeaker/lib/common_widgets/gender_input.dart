@@ -5,17 +5,25 @@ import 'package:EmotionSpeaker/constants/custom_colors.dart';
 
 enum Gender { male, female }
 
+Gender genderVal = Gender.male;
+
 class GenderInput extends StatefulWidget {
-  const GenderInput({
+  GenderInput({
+    this.gender,
     this.genderStr,
-  });
+  }) {
+    if (gender == 'Male')
+      genderVal = Gender.male;
+    else
+      genderVal = Gender.female;
+  }
   final Function(String value) genderStr;
+  final String gender;
   @override
   _GenderInputState createState() => _GenderInputState();
 }
 
 class _GenderInputState extends State<GenderInput> {
-  Gender genderVal = Gender.male;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -29,7 +37,7 @@ class _GenderInputState extends State<GenderInput> {
               onTap: () {
                 setState(() {
                   genderVal = Gender.male;
-                  widget.genderStr('male');
+                  widget.genderStr('Male');
                 });
               },
               child: Row(
@@ -40,7 +48,7 @@ class _GenderInputState extends State<GenderInput> {
                     onChanged: (value) {
                       setState(() {
                         genderVal = Gender.male;
-                        widget.genderStr('male');
+                        widget.genderStr('Male');
                       });
                     },
                     activeColor: CustomColors.color1,
@@ -75,7 +83,7 @@ class _GenderInputState extends State<GenderInput> {
                     onChanged: (value) {
                       setState(() {
                         genderVal = value;
-                        widget.genderStr('female');
+                        widget.genderStr('Female');
                       });
                     },
                     activeColor: CustomColors.color1,
