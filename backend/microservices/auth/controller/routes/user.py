@@ -3,13 +3,13 @@ from flask_jwt_extended import jwt_required, get_jwt_identity, create_refresh_to
 from datetime import timedelta
 from threading import Thread
 from flask_mail import Message
+from cryptography import fernet
 
 from . import app, mail, api
 from config import *
 from core.usecases import *
 from core.entities import send_email, generate_random_string_of_length
 from core.entities.exception import *
-
 
 
 def user_response(user):
@@ -28,6 +28,30 @@ def user_response(user):
         RES_USER_FIRST_NAME_KEY_NAME: user.first_name,
         RES_USER_LAST_NAME_KEY_NAME: user.last_name,
         RES_USER_EMAIL_KEY_NAME: user.email,
+        RES_USER_PROFILE_PICTURE_URL_KEY_NAME: user.profile_picture_url,
+        RES_USER_BIRTHDAY_KEY_NAME: user.birthday.strftime(REQ_USER_BIRTHDAY_FORMAT),
+        RES_USER_GENDER_KEY_NAME: user.gender,
+        RES_USER_PHONE_KEY_NAME: user.phone
+    }
+
+
+def auth_response(user):
+    # creating access token
+    expires = timedelta(minutes=JWT_ACCESS_TOKEN_LIFETIME_IN_MINUTES)
+    access_token = create_access_token(user.id, expires_delta=expires, fresh=True)
+    # creating refresh token
+    expires = timedelta(minutes=JWT_REFRESH_TOKEN_LIFETIME_IN_MINUTES)
+    refresh_token = create_refresh_token(user.id, expires_delta=expires)
+    # user logged-in successfully
+    return {
+        RES_MESSAGE_KEY_NAME: 'Logged in',
+        RES_ACCESS_TOKEN_KEY_NAME: access_token,
+        RES_REFRESH_TOKEN_KEY_NAME: refresh_token,
+        RES_USER_ID_KEY_NAME: user.id,
+        RES_USER_FIRST_NAME_KEY_NAME: user.first_name,
+        RES_USER_LAST_NAME_KEY_NAME: user.last_name,
+        RES_USER_EMAIL_KEY_NAME: user.email,
+        RES_USER_PASSWORD_KEY_NAME: user.hashed_password,
         RES_USER_PROFILE_PICTURE_URL_KEY_NAME: user.profile_picture_url,
         RES_USER_BIRTHDAY_KEY_NAME: user.birthday.strftime(REQ_USER_BIRTHDAY_FORMAT),
         RES_USER_GENDER_KEY_NAME: user.gender,
@@ -139,8 +163,8 @@ class ForgetPasswordResource(Resource):
         password = forget_password_data[REQ_USER_PASSWORD_KEY_NAME]
         try:
             if update_user(
-                id=user.id,
-                password=password
+                    id=user.id,
+                    password=password
             ):
                 return {
                     RES_MESSAGE_KEY_NAME: 'user has been updated successfully'
