@@ -3,9 +3,10 @@ from .exception import *
 
 
 def build_edit_user(name_validator, email_validator, password_validator, phone_validator, hash_password, salt_generator):
-    def edit_user(id, first_name, last_name, phone, email, password, salt, birthday, gender, reset_code
-                  ,new_first_name = False, new_last_name = False, new_phone = False, new_email = False,
-                  new_password = False, new_birthday = False, new_gender = False) -> User:
+    def edit_user(id, first_name, last_name, phone, email, password, salt, birthday, gender,
+                  profile_picture_url, reset_code, new_first_name = False, new_last_name = False,
+                  new_phone = False, new_email = False, new_password = False, new_birthday = False,
+                  new_gender = False, new_profile_picture_url = False) -> User:
         # validate first_name
         if new_first_name:
             name_validator(first_name)
@@ -35,7 +36,7 @@ def build_edit_user(name_validator, email_validator, password_validator, phone_v
                     email=email,
                     hashed_password=hash_password(password, salt) if new_password else password,
                     salt=salt,
-                    profile_picture_url=None,
+                    profile_picture_url=profile_picture_url,
                     birthday=birthday,
                     gender=gender,
                     password_reset_code=reset_code

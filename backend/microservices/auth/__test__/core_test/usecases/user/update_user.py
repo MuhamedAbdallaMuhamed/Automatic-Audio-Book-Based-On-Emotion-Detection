@@ -45,6 +45,7 @@ class UpdateUserTestCase(unittest.TestCase):
                 last_name=last_name,
                 email=email,
                 phone=phone,
+                profile_picture_data=None,
                 password=password,
                 gender=gender,
                 birthday=birthday

@@ -3,6 +3,8 @@ from ..entities import User
 from config import *
 
 import os
+import datetime
+
 
 class UserDb:
     @staticmethod
@@ -21,12 +23,7 @@ class UserDb:
             f.write(image_data)
         image_ref.child('images/' + user_id + '.png').put(filename, token=None)
         os.remove(filename)
-        image_ref.child(filename).download(filename)
-        return True
-
-    @staticmethod
-    def get_image_url(user_id):
-        return image_ref.child('images/' + user_id + '.png').get_url(None)
+        return bucket.blob('images/' + user_id + '.png').generate_signed_url(datetime.timedelta(seconds=60 * 60 * 24), method='GET')
 
     @staticmethod
     def insert_user(user: User) -> bool:
@@ -45,7 +42,7 @@ class UserDb:
                 hashed_password=u[USER_HASHED_PASSWORD_ENTITY_NAME],
                 salt=u[USER_SALT_ENTITY_NAME],
                 phone=u[USER_PHONE_ENTITY_NAME],
-                profile_picture_url=UserDb.get_image_url(u[USER_ID_ENTITY_NAME]),
+                profile_picture_url=u[USER_PROFILE_PICTURE_URL_ENTITY_NAME],
                 birthday=u[USER_BIRTHDAY_ENTITY_NAME],
                 gender=u[USER_GENDER_ENTITY_NAME],
                 password_reset_code=u[USER_PASSWORD_RESET_CODE_ENTITY_NAME]
@@ -67,7 +64,7 @@ class UserDb:
                     hashed_password=u[USER_HASHED_PASSWORD_ENTITY_NAME],
                     salt=u[USER_SALT_ENTITY_NAME],
                     phone=u[USER_PHONE_ENTITY_NAME],
-                    profile_picture_url=UserDb.get_image_url(u[USER_ID_ENTITY_NAME]),
+                    profile_picture_url=u[USER_PROFILE_PICTURE_URL_ENTITY_NAME],
                     birthday=u[USER_BIRTHDAY_ENTITY_NAME],
                     gender=u[USER_GENDER_ENTITY_NAME],
                     password_reset_code=u[USER_PASSWORD_RESET_CODE_ENTITY_NAME]
