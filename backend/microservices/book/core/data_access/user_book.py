@@ -1,6 +1,6 @@
 from .admin import db
 from ..entities import UserBook
-from ...config import *
+from config import *
 
 
 class UserBookDb:

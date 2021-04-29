@@ -44,7 +44,7 @@ def title_validator(title: str):
 
 def id_generator():
     import uuid
-    return uuid.uuid4()
+    return uuid.uuid4().hex
 
 
 make_book = build_make_book(

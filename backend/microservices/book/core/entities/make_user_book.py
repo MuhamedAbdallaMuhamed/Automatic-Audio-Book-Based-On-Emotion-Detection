@@ -3,7 +3,7 @@ from .exception import *
 
 
 def build_make_user_book(id_generator, book_validator, user_validator, title_validator):
-    def make_user_book(id, book_id, user_id, title):
+    def make_user_book(book_id, user_id, title):
         # validate book
         if not book_validator(book_id):
             raise BookNotFoundException

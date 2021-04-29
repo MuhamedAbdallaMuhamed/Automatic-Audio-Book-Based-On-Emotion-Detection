@@ -1,9 +1,11 @@
 from datetime import datetime
-from ..entities import Book
-from ..entities import UserBook
-from .book import *
-from .user_book import *
-from ..data_access import *
+from core.entities import Book
+from core.entities import UserBook
+from core.data_access.book import *
+from core.data_access.user_book import *
+from core.data_access import *
+from core.use_cases.book import *
+from core.use_cases.user_book import *
 
 
 def insert_book(book) -> bool:
@@ -23,18 +25,22 @@ def update_book(book) -> bool:
 
 
 def delete_book(id) -> bool:
-    return BookDb.deleter_book(id)
+    return BookDb.delete_book(id)
+
+
+def book_to_dict(book: Book):
+    return BookDb.book_to_dict(book)
 
 
 def insert_user_book(user_book) -> bool:
     return UserBookDb.insert_user_book(user_book)
 
 
-def delete_book(id) -> bool:
-    return UserBookDb.deleter_user_book(id)
+def delete_user_book(id) -> bool:
+    return UserBookDb.delete_user_book(id)
 
 
-def get_user_book_by_record_id(id)->UserBook:
+def get_user_book_by_id(id) -> UserBook:
     return UserBookDb.get_user_book_by_record_id(id)
 
 
@@ -44,7 +50,7 @@ update_book = build_update_book(update_book=update_book)
 delete_book = build_delete_book(delete_book=delete_book)
 
 add_user_book = build_add_user_book(insert_user_book=insert_user_book)
-get_user_book = build_get_user_book(get_user_book_by_id=get_user_book_by_record_id)
+get_user_book = build_get_user_book(get_user_book_by_id=get_user_book_by_id)
 delete_user_book = build_delete_user_book(delete_user_book=delete_user_book)
 
 

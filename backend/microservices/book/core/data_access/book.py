@@ -1,6 +1,10 @@
-from .admin import db
+from typing import Optional
+
+from flask import jsonify
+
+from core.data_access.admin import db
 from ..entities import Book
-from ...config import *
+from config import *
 
 
 class BookDb:
@@ -10,31 +14,37 @@ class BookDb:
         return True
 
     @staticmethod
-    def get_book_by_id(id: str) -> Book:
-        b = db.collection(BOOK_COLLECTION_NAME).document(id).get().to_dict()
-        book = Book(
-            id=b[BOOK_ID_ENTITY_NAME],
-            book_hash=b[BOOK_HASH_ENTITY_NAME],
-            book_path=b[BOOK_BOOK_PATH_ENTITY_NAME],
-            sentence_features=b[BOOK_SENTENCE_FEATURES_ENTITY_NAME]
-        )
-        return book
+    def get_book_by_id(id: str) -> Optional[Book]:
+        try:
+            b = db.collection(BOOK_COLLECTION_NAME).document(id).get().to_dict()
+            if b:
+                book = Book(
+                    id=b[BOOK_ID_ENTITY_NAME],
+                    book_hash=b[BOOK_HASH_ENTITY_NAME],
+                    book_path=b[BOOK_BOOK_PATH_ENTITY_NAME],
+                    sentence_features=b[BOOK_SENTENCE_FEATURES_ENTITY_NAME],
+                    name=b[BOOK_NAME_ENTITY_NAME]
+                )
+                return book
+            return None
+        except Exception as e:
+            print(e)
 
     @staticmethod
     def get_book_by_book_hash(book_hash: str) -> Book:
-        b = db.collection(BOOK_COLLECTION_NAME).where(BOOK_HASH_ENTITY_NAME, '==', book_hash).stream()
+        books = db.collection(BOOK_COLLECTION_NAME).where(BOOK_HASH_ENTITY_NAME, '==', book_hash).stream()
 
-        if len(b) == 0:
-            return None
-        b = b[0].to_dict()
-
-        book = Book(
-            id=b[BOOK_ID_ENTITY_NAME],
-            book_hash=b[BOOK_HASH_ENTITY_NAME],
-            book_path=b[BOOK_BOOK_PATH_ENTITY_NAME],
-            sentence_features=b[BOOK_SENTENCE_FEATURES_ENTITY_NAME]
-        )
-        return book
+        for b in books:
+            bb = b.to_dict()
+            book = Book(
+                id=bb[BOOK_ID_ENTITY_NAME],
+                book_hash=bb[BOOK_HASH_ENTITY_NAME],
+                book_path=bb[BOOK_BOOK_PATH_ENTITY_NAME],
+                sentence_features=bb[BOOK_SENTENCE_FEATURES_ENTITY_NAME],
+                name=bb[BOOK_NAME_ENTITY_NAME]
+            )
+            return book
+        return None
 
     @staticmethod
     def update_book(book: Book) -> bool:
@@ -52,5 +62,6 @@ class BookDb:
             BOOK_ID_ENTITY_NAME: book.id,
             BOOK_HASH_ENTITY_NAME: book.book_hash,
             BOOK_BOOK_PATH_ENTITY_NAME: book.book_path,
-            BOOK_SENTENCE_FEATURES_ENTITY_NAME: book.sentence_features
+            BOOK_SENTENCE_FEATURES_ENTITY_NAME: book.sentence_features,
+            BOOK_NAME_ENTITY_NAME: book.name
         }

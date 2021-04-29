@@ -3,7 +3,7 @@ from .exception import *
 
 
 def build_make_book(id_generator, name_validator, book_hash_validator, book_path_validator, sentence_features_validator):
-    def make_book(id, name, book_hash, book_path, sentence_features):
+    def make_book(name, book_hash, book_path, sentence_features):
         # validate name
         if not name_validator(name):
             raise NameLengthLimitExceededException
