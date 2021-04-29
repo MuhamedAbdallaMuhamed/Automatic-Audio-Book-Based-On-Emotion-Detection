@@ -48,7 +48,7 @@ class RegisterResource(Resource):
             return {RES_MESSAGE_KEY_NAME: str(e)}, 400,  # bad request
         except PhoneException as e:
             return {RES_MESSAGE_KEY_NAME: str(e)}, 400,  # bad request
-        except NameException as e:
+        except BookTItleException as e:
             return {RES_MESSAGE_KEY_NAME: str(e)}, 400,  # bad request
         except Exception as e:
             app.logger.error(str(e))
