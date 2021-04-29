@@ -1,0 +1,1 @@
+AUTHENTICATION_ABS_ENDPOINT_NAME = "/authentication"

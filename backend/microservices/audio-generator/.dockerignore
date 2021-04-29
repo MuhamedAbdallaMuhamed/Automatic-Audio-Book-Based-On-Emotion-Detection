@@ -1,0 +1,3 @@
+venv/
+__test__/
+Dockerfile
