@@ -171,7 +171,6 @@ def gateway(file_path, lst_text):
 
             ## Generating the spectrogram
             text = filterText(lst_text)
-            print(text)
             # If seed is specified, reset torch seed and force synthesizer reload
             if args.seed is not None:
                 torch.manual_seed(args.seed)
