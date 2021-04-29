@@ -55,7 +55,6 @@ def TTS():
             filename = secure_filename(file.filename)
             file.save(os.path.join(app.config["FILE_UPLOADS"], filename))
             file_path = gateway(os.path.join(app.config["FILE_UPLOADS"], filename), sentences)
-            print(sentences)
             if file_path != "":
                 sound = AudioSegment.from_file(os.path.join(app.config["FILE_PATH"], file_path))
                 slower_sound = slow_down(sound, 0.9)
