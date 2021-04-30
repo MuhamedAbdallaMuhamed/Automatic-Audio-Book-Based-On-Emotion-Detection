@@ -1,5 +1,6 @@
 import 'package:EmotionSpeaker/constants/custom_colors.dart';
 import 'package:EmotionSpeaker/controller/user_controller.dart';
+import 'package:EmotionSpeaker/ui/new_request_screen.dart';
 import 'package:EmotionSpeaker/ui/register_or_login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:EmotionSpeaker/constants/Keys.dart';
@@ -41,6 +42,18 @@ class HomeScreen extends StatelessWidget {
                 letterSpacing: 0.8,
               ),
             ),
+          ),
+          floatingActionButton: FloatingActionButton(
+            onPressed: () {
+              Get.to(
+                NewRequestScreen(),
+              );
+            },
+            child: Icon(
+              Icons.add,
+              size: 30,
+            ),
+            backgroundColor: CustomColors.color1,
           ),
         );
       },

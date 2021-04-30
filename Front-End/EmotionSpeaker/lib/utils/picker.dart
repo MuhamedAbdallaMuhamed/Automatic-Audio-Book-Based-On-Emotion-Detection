@@ -57,8 +57,8 @@ class Picker {
     return image;
   }
 
-  static Future<void> pickFile(List<File> doc) async {
+  static Future<String> pickFile() async {
     FilePickerResult result = await FilePicker.platform.pickFiles();
-    doc.add(File(result.files.single.path));
+    return result.files.single.path;
   }
 }
