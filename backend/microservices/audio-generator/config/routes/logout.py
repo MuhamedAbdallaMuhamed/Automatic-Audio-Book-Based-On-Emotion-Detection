@@ -1,1 +1,0 @@
-LOGOUT_ABS_ENDPOINT_NAME = '/logout'

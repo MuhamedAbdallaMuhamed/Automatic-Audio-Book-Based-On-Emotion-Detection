@@ -1,4 +1,5 @@
 from flask_restful import Resource, reqparse
+from flask_jwt_extended import jwt_required, get_jwt_identity, create_refresh_token, create_access_token
 
 from . import app, api
 from .user import auth_response
@@ -37,4 +38,13 @@ class AuthenticationResource(Resource):
             return {RES_MESSAGE_KEY_NAME: "an error has occurred"}, 404,  # bad reques
 
 
+class ValidateTokenResource(Resource):
+    @jwt_required
+    def get(self):
+        user_id = get_jwt_identity()
+        return {RES_USER_ID_KEY_NAME: user_id}
+
+
+api.add_resource(ValidateTokenResource, VALIDATE_TOKEN_ABS_ENDPOINT_NAME)
 api.add_resource(AuthenticationResource, AUTHENTICATION_ABS_ENDPOINT_NAME)
+

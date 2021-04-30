@@ -8,7 +8,7 @@ class AudioOrder:
         self.__end_page = end_page
         self.__audio_link = audio_link
         self.__cloned = cloned
-        self.__chars_names = {char_name: '' for char_name in chars_names}
+        self.__chars_names = chars_names if chars_names is None else {char_name: '' for char_name in chars_names}
 
     @property
     def id(self):
@@ -44,4 +44,4 @@ class AudioOrder:
 
     @property
     def chars_names(self):
-        return self.__chars_names[:]
+        return self.__chars_names

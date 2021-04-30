@@ -30,7 +30,7 @@ def id_generator():
     return uuid.uuid4().hex
 
 
-make_user = build_make_audio_order(
+make_audio_order = build_make_audio_order(
     id_generator=id_generator,
     title_validator=title_validator,
     page_number_validator=page_number_validator)

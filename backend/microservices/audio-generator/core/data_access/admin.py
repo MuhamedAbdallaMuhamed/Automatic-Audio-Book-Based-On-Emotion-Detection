@@ -7,7 +7,7 @@ from firebase_admin import credentials, firestore, storage
 from config import config
 
 cred = credentials.Certificate(os.path.realpath(
-    "E:/Graduation Project/Automatic-Audio-Book-Based-On-Emotion-Detection/backend/microservices/audio-generator/config/serviceAccountKey.json"))
+    "config/serviceAccountKey.json"))
 
 firebase = pyrebase.initialize_app(config)
 firebase_admin.initialize_app(cred)
