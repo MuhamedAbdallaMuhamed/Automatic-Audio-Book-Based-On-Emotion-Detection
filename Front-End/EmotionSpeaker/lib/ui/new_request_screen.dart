@@ -1,15 +1,23 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+import 'package:EmotionSpeaker/common_widgets/rounded_button.dart';
+import 'package:EmotionSpeaker/common_widgets/text_input.dart';
 import 'package:EmotionSpeaker/constants/custom_colors.dart';
 import 'package:EmotionSpeaker/constants/keys.dart';
-import 'package:EmotionSpeaker/common_widgets/text_input.dart';
 import 'package:EmotionSpeaker/utils/sizing_extension.dart';
-import 'package:EmotionSpeaker/common_widgets/rounded_button.dart';
-import 'package:EmotionSpeaker/utils/picker.dart';
-import 'package:pdf_text/pdf_text.dart';
 
 enum SoundType { defultSound, specialSound }
 
 class NewRequestScreen extends StatefulWidget {
+  final String filePath;
+  final int pagesNumber;
+  final String bookName;
+  const NewRequestScreen({
+    @required this.filePath,
+    @required this.pagesNumber,
+    @required this.bookName,
+  });
   @override
   _NewRequestScreenState createState() => _NewRequestScreenState();
 }
@@ -17,7 +25,17 @@ class NewRequestScreen extends StatefulWidget {
 class _NewRequestScreenState extends State<NewRequestScreen> {
   SoundType _soundType = SoundType.defultSound;
   String s = '';
+
+  RangeValues values;
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final TextEditingController nameTextEditingController =
+      TextEditingController();
+  @override
+  void initState() {
+    super.initState();
+    values = RangeValues(1, widget.pagesNumber.toDouble());
+    nameTextEditingController.text = widget.bookName;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -48,26 +66,10 @@ class _NewRequestScreenState extends State<NewRequestScreen> {
               ),
               TextInput(
                 validate: TextInput.validateText,
+                controller: nameTextEditingController,
               ),
               SizedBox(
                 height: 15,
-              ),
-              Text(
-                'Book',
-                style: TextStyle(
-                  fontSize: 18.sp(context),
-                  fontFamily: Keys.Araboto,
-                ),
-              ),
-              RaisedButton(
-                onPressed: pickFile,
-                child: Icon(
-                  Icons.upload_file,
-                  size: 25,
-                  color: Colors.white,
-                ),
-                color: CustomColors.color1,
-                padding: EdgeInsets.all(10),
               ),
               SizedBox(
                 height: 15,
@@ -79,52 +81,45 @@ class _NewRequestScreenState extends State<NewRequestScreen> {
                   fontFamily: Keys.Araboto,
                 ),
               ),
-              Padding(
-                padding: EdgeInsets.symmetric(
-                  horizontal: 10,
-                  vertical: 5,
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Text(
-                      'Start',
-                      style: TextStyle(
-                        fontSize: 18.sp(context),
-                        fontFamily: Keys.Araboto,
-                      ),
+              Row(
+                children: [
+                  Text(
+                    values.start.toInt().toString(),
+                    style: TextStyle(
+                      fontSize: 15.sp(context),
+                      fontFamily: Keys.Araboto,
                     ),
-                    Expanded(
-                      child: Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 5),
-                        child: TextInput(
-                          validate: TextInput.validateText,
-                        ),
-                      ),
+                  ),
+                  SizedBox(
+                    width: 2,
+                  ),
+                  Expanded(
+                    child: RangeSlider(
+                      onChanged: (value) {
+                        setState(() {
+                          values = value;
+                        });
+                      },
+                      values: values,
+                      min: 1,
+                      max: widget.pagesNumber.toDouble(),
+                      labels: RangeLabels(
+                          values.start.toString(), values.end.toString()),
+                      activeColor: CustomColors.color1,
+                      inactiveColor: Colors.grey.shade300,
                     ),
-                    SizedBox(
-                      width: 10,
+                  ),
+                  SizedBox(
+                    width: 2,
+                  ),
+                  Text(
+                    values.end.toInt().toString(),
+                    style: TextStyle(
+                      fontSize: 15.sp(context),
+                      fontFamily: Keys.Araboto,
                     ),
-                    Text(
-                      'End',
-                      style: TextStyle(
-                        fontSize: 18.sp(context),
-                        fontFamily: Keys.Araboto,
-                      ),
-                    ),
-                    Expanded(
-                      child: Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 5),
-                        child: TextInput(
-                          validate: TextInput.validateText,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(
-                height: 10,
+                  ),
+                ],
               ),
               Text(
                 'Sound Type:',
@@ -176,20 +171,6 @@ class _NewRequestScreenState extends State<NewRequestScreen> {
         ),
       ),
     );
-  }
-
-  void pickFile() async {
-    String filePath = await Picker.pickFile();
-    print(filePath);
-    PDFDoc doc = await PDFDoc.fromPath(filePath);
-    PDFPage page = doc.pageAt(5);
-    setState(() async {
-      s = await page.text;
-    });
-    //  print(s);
-    print(s.length);
-
-    print('done');
   }
 
   Widget soundTypeRadio(
