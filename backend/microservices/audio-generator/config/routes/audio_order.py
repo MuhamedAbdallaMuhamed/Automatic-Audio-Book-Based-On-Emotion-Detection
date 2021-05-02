@@ -28,7 +28,7 @@ MOZILLA_BASE_URL = 'http://localhost:5000'
 MOZILLA_ABS_ENDPOINT = MOZILLA_BASE_URL + '/tts'
 REQ_MOZILLA_TSS_TEXT_KEY_NAME = 'text'
 
-TTS_BASE_URL = 'http://localhost:9090'
+TTS_BASE_URL = 'http://localhost:6060'
 TTS_ABS_ENDPOINT = TTS_BASE_URL + '/TTS'
 REQ_TSS_TEXT_KEY_NAME = 'text'
 REQ_TSS_FILE_KEY_NAME = 'file'
