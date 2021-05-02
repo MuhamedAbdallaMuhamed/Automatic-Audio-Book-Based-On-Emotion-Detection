@@ -1,14 +1,21 @@
 FROM python:3.8
 
-WORKDIR /app
+WORKDIR /tts
 
-RUN apt -y update && apt install -y libsndfile1 && apt -y install espeak
+RUN apt -y update && \
+    apt install -y libsndfile1 && \
+    apt -y install espeak
+RUN apt-get update -y && \
+    apt-get install -y python-pip python-dev
+RUN apt-get -y upgrade
+RUN apt-get install -y ffmpeg
 
+COPY ./requirements.txt /tts/requirements.txt
 
-COPY requirments.txt .
-RUN pip3 install -r requirments.txt
+RUN pip install --upgrade pip
+RUN pip install -r requirements.txt
 
-COPY . .
-ENV APP_DIRECTORY=/app
-EXPOSE 9090
-CMD gunicorn --bind 0.0.0.0:$PORT __init__:app
+COPY . /tts
+EXPOSE 5000
+ENTRYPOINT [ "python" ]
+CMD [ "/tts/__init__.py" ]
