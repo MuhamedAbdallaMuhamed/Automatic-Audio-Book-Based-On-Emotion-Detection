@@ -1,5 +1,5 @@
 class AudioOrder:
-    def __init__(self, id, user_id, title, text, start_page, end_page, cloned, audio_link, chars_names):
+    def __init__(self, id, user_id, title, text, start_page, end_page, cloned, audio_link, chars_names, scripts):
         self.__id = id
         self.__user_id = user_id
         self.__title = title
@@ -8,7 +8,8 @@ class AudioOrder:
         self.__end_page = end_page
         self.__audio_link = audio_link
         self.__cloned = cloned
-        self.__chars_names = chars_names
+        self.__scripts = scripts
+        self.__chars_names = chars_names if chars_names is None else {char_name: '' for char_name in chars_names}
 
     @property
     def id(self):
@@ -43,5 +44,9 @@ class AudioOrder:
         return self.__audio_link
 
     @property
+    def scripts(self):
+        return self.__scripts
+
+    @property
     def chars_names(self):
-        return self.__chars_names[:]
+        return self.__chars_names

@@ -1,19 +1,14 @@
 from .audio_order import AudioOrder
-from .exception import *
 
 
-def build_make_user(id_generator):
-    def make_user(user_id, title, text, start_page, end_page, cloned):
-        # validate first_name
-        name_validator(first_name)
-        # validate last_name
-        name_validator(last_name)
-        # validate phone
-        phone_validator(phone)
-        # validate email
-        email_validator(email)
-        # validate password
-        password_validator(password)
+def build_make_audio_order(id_generator, title_validator, page_number_validator):
+    def make_audio_order(user_id, title, text, start_page, end_page, cloned):
+        # validate title
+        title_validator(title)
+        # validate start_page
+        page_number_validator(start_page)
+        # validate end_page
+        page_number_validator(end_page)
 
         user = AudioOrder(
                     id=id_generator(),
@@ -24,7 +19,8 @@ def build_make_user(id_generator):
                     end_page=end_page,
                     cloned=cloned,
                     audio_link=None,
-                    chars_names=None
+                    chars_names=None,
+                    scripts=None
                 )
         return user
-    return make_user
+    return make_audio_order

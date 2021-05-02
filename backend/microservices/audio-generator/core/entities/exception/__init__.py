@@ -1,4 +1,2 @@
-from .email import *
-from .name import *
-from .phone import *
-from .password import *
+from .book_title import *
+from .page_number import *

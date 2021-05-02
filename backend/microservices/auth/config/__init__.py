@@ -1,7 +1,7 @@
 from .user import *
 from .token import *
 from .server import *
-from .rotues import *
+from .routes import *
 from .serviceCredential import *
 
 import os

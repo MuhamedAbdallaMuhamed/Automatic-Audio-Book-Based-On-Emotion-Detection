@@ -11,4 +11,4 @@ RUN pip3 install -r requirments.txt
 COPY . .
 ENV APP_DIRECTORY=/app
 EXPOSE 5000
-CMD gunicorn --bind 0.0.0.0:$PORT __init__:app
+CMD python __init__.py
