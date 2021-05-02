@@ -1,9 +1,11 @@
+from flask import request
 from flask_restful import Resource, reqparse
 from collections import deque
+from werkzeug.utils import secure_filename
 import requests
+import os
 
 from . import api
-from .queue_handlers import QueuesHandlers
 from config.routes import *
 from core.usecases import *
 
@@ -32,7 +34,9 @@ def to_orders_list(audio_orders: [AudioOrder]):
             RES_AUDIO_ORDER_TEXT_KEY_NAME: audio_order.text,
             RES_AUDIO_ORDER_STARTING_PAGE_NUMBER_KEY_NAME: audio_order.start_page,
             RES_AUDIO_ORDER_ENDING_PAGE_NUMBER_KEY_NAME: audio_order.end_page,
-            RES_AUDIO_ORDER_STATUS: get_order_status(audio_order)
+            RES_AUDIO_ORDER_STATUS: get_order_status(audio_order),
+            RES_AUDIO_ORDER_AUDIO_LINK: audio_order.audio_link,
+            RES_AUDIO_ORDER_AUDIO_CHARS: audio_order.chars_names
         })
     return orders_list
 
@@ -55,8 +59,7 @@ class AudioOrderResource(Resource):
     audio_order_post_parser.add_argument(REQ_JSON_WEB_TOKEN_HEADER_NAME, required=True, location='headers')
 
     audio_order_put_parser = reqparse.RequestParser()
-    audio_order_put_parser.add_argument(REQ_AUDIO_ORDER_CHARS_NAMES_KEY_NAME, type=dict, required=True)
-    audio_order_put_parser.add_argument(REQ_AUDIO_ORDER_ID_KEY_NAME, type=str, required=True)
+    audio_order_put_parser.add_argument(REQ_AUDIO_ORDER_ID_KEY_NAME, type=str, required=True, location='form')
     audio_order_put_parser.add_argument(REQ_JSON_WEB_TOKEN_HEADER_NAME, required=True, location='headers')
 
     audio_order_get_parser = reqparse.RequestParser()
@@ -93,7 +96,7 @@ class AudioOrderResource(Resource):
         if audio_order.cloned:
             cx_queue.append((audio_order.id, audio_order.text))
         else:
-            tts_queue.append((audio_order.id, None, None, text)) #scripts, chars_audio, list_pargraphes
+            tts_queue.append((audio_order.id, None, None, audio_order.text)) #scripts, chars_audio, list_pargraphes
         return {RES_MESSAGE_KEY_NAME: 'Your request has been recorded'}, 200
 
     def put(self):
@@ -104,16 +107,24 @@ class AudioOrderResource(Resource):
         except():
             return {RES_MESSAGE_KEY_NAME: 'access token is invalid'}, 400
         id = req[REQ_AUDIO_ORDER_ID_KEY_NAME]
-        chars = req[REQ_AUDIO_ORDER_CHARS_NAMES_KEY_NAME]
-        update_audio_order(audio_link=None, chars_names=chars, id=id)
+        update_audio_order(audio_link=None, chars_names=None, id=id, scripts=None)
+        chars = {}
+        for char_name in request.files:
+            print(char_name)
+            file_name = secure_filename(str(id) + char_name + request.files[char_name].filename)
+            request.files[char_name].save(file_name)
+            pre, ext = os.path.splitext(file_name)
+            os.rename(file_name, pre + '.ogg')
+            chars[char_name] = pre + '.ogg'
         audio_order = get_audio_order(id)
-        tts_queue.append((id, audio_order.scripts, chars, audio_order.text)) #scripts, chars_audio, senteces
+        tts_queue.append((id, audio_order.scripts, chars, audio_order.text)) #scripts, chars_names, senteces
         return {RES_MESSAGE_KEY_NAME: "Your request will be processed"}, 200,  # bad reques
 
 
 api.add_resource(AudioOrderResource, AUDIO_ORDER_ABS_ENDPOINT_NAME)
 
 ######
+from .queue_handlers import QueuesHandlers
 QueuesHandlers.run_queue_handlers()
 # thread
 #####

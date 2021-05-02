@@ -1,11 +1,11 @@
-def parse_book(text):
-    import nltk
-    import re
-    import spacy
-    import neuralcoref
-    from nltk.corpus import stopwords
-    from collections import defaultdict
+import nltk
+import re
+import spacy
+import neuralcoref
+from nltk.corpus import stopwords
+from collections import defaultdict
 
+def parse_book(text):
     DELIMITER = " $@$ "
     DISTANCE_LIMIT = 20
     KEYWORD_LIMIT = 5
@@ -191,7 +191,8 @@ def parse_book(text):
             tmp_str = str()
             for i in range(len(entityNames[j])):
                 if i + 1 < len(entityNames[j]) and i - 1 >= 0 and \
-                        entityNames[j][i] == "'" and not (isValid(entityNames[j][i + 1], entityNames[j][i - 1])):
+                        entityNames[j][i] == "'" and not isValid(entityNames[j][i + 1], entityNames[j][i - 1]) \
+                            and str(entityNames[j][i + 1]).isalpha():
                     continue
                 else:
                     tmp_str += entityNames[j][i]
@@ -203,7 +204,7 @@ def parse_book(text):
         """
         Adds names to the major character list if they appear frequently.
         """
-        return {name for name in entityNames if entityNames.count(name) > 10}
+        return {name for name in entityNames}
 
     def removeHonorifics(name):
         honorifics = ["Mr.", "mr.", "Mrs.", "mrs.", "Jr.", "jr.", "Dr.", "dr.",

@@ -19,7 +19,8 @@ def build_make_audio_order(id_generator, title_validator, page_number_validator)
                     end_page=end_page,
                     cloned=cloned,
                     audio_link=None,
-                    chars_names=None
+                    chars_names=None,
+                    scripts=None
                 )
         return user
     return make_audio_order

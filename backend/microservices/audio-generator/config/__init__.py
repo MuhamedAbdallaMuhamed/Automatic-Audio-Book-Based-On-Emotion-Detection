@@ -1,6 +1,7 @@
 from .audioOrder import *
 from .server import *
 from .serviceCredential import *
+from .routes import *
 
 import os
 APP_PATH = os.path.abspath('.')
