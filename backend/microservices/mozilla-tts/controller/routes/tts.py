@@ -19,19 +19,11 @@ def tts():
     # if '200' not in r.status_code:
     #     return {RES_TTS_MESSAGE_KEY: 'not authorized'}, 401
 
-    if 'TTS' not in sys.modules:
-        os.system('''pip3 install numpy>=1.16.0 && pip3 install TTS''')
-
     text = tts_data[REQ_TTS_TEXT_KEY]
-    stream = os.popen(f'''tts --text="{text}." --model_name="tts_models/en/ljspeech/tacotron2-DCA" \
-                --vocoder_name="vocoder_models/en/ljspeech/mulitband-melgan" --out_path="temp"''')
-    output = stream.read()
-    pattren = "Saving output to "
-    file_path_str_start_index = output.index(pattren) + len(pattren)
-    file_path = output[file_path_str_start_index:-1]
-
+    stream = os.system(f'''tts --text="{text}" --model_name="tts_models/en/ljspeech/glow-tts" \
+                --vocoder_name="vocoder_models/en/ljspeech/multiband-melgan"''')
     return send_file(
-         f'{APP_PATH}/{file_path}',
+         f'{APP_PATH}/tts_output.wav',
          mimetype="audio/wav",
          as_attachment=True,
          attachment_filename="audio.wav")

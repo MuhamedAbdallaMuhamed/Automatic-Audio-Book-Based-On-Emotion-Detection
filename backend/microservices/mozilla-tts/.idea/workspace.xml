@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="9a62b88d-6395-4f3f-bbf2-d5358ffd43cc" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../../../.idea/Automatic-Audio-Book-Based-On-Emotion-Detection.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../audio-generator/commands.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../audio-generator/controller/routes/queue_handlers.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../audio-generator/core/entities/book_parsing.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../audio-generator/fragment.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/mozilla-tts.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../../../.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../LICENSE" beforeDir="false" afterPath="$PROJECT_DIR$/../../../LICENSE" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../../README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TTS/.dockerignore" beforeDir="false" afterPath="$PROJECT_DIR$/../TTS/.dockerignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TTS/.idea/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../TTS/.idea/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TTS/.idea/TTS.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../TTS/.idea/TTS.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TTS/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../TTS/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TTS/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../TTS/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TTS/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../TTS/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TTS/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../TTS/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TTS/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../TTS/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TTS/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/../TTS/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TTS/VC/demo_cli.py" beforeDir="false" afterPath="$PROJECT_DIR$/../TTS/VC/demo_cli.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TTS/VC/demo_toolbox.py" beforeDir="false" afterPath="$PROJECT_DIR$/../TTS/VC/demo_toolbox.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TTS/VC/encoder/audio.py" beforeDir="false" afterPath="$PROJECT_DIR$/../TTS/VC/encoder/audio.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TTS/VC/encoder/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/../TTS/VC/encoder/config.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TTS/VC/encoder/data_objects/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../TTS/VC/encoder/data_objects/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TTS/VC/encoder/data_objects/random_cycler.py" beforeDir="false" afterPath="$PROJECT_DIR$/../TTS/VC/encoder/data_objects/random_cycler.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TTS/VC/encoder/data_objects/speaker.py" beforeDir="false" afterPath="$PROJECT_DIR$/../TTS/VC/encoder/data_objects/speaker.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TTS/VC/encoder/data_objects/speaker_batch.py" beforeDir="false" afterPath="$PROJECT_DIR$/../TTS/VC/encoder/data_objects/speaker_batch.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TTS/VC/encoder/data_objects/speaker_verification_dataset.py" beforeDir="false" afterPath="$PROJECT_DIR$/../TTS/VC/encoder/data_objects/speaker_verification_dataset.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TTS/VC/encoder/data_objects/utterance.py" beforeDir="false" afterPath="$PROJECT_DIR$/../TTS/VC/encoder/data_objects/utterance.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TTS/VC/encoder/inference.py" beforeDir="false" afterPath="$PROJECT_DIR$/../TTS/VC/encoder/inference.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TTS/VC/encoder/model.py" beforeDir="false" afterPath="$PROJECT_DIR$/../TTS/VC/encoder/model.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TTS/VC/encoder/params_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/../TTS/VC/encoder/params_data.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TTS/VC/encoder/params_model.py" beforeDir="false" afterPath="$PROJECT_DIR$/../TTS/VC/encoder/params_model.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TTS/VC/encoder/preprocess.py" beforeDir="false" afterPath="$PROJECT_DIR$/../TTS/VC/encoder/preprocess.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TTS/VC/encoder/train.py" beforeDir="false" afterPath="$PROJECT_DIR$/../TTS/VC/encoder/train.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TTS/VC/encoder/visualizations.py" beforeDir="false" afterPath="$PROJECT_DIR$/../TTS/VC/encoder/visualizations.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TTS/VC/encoder_preprocess.py" beforeDir="false" afterPath="$PROJECT_DIR$/../TTS/VC/encoder_preprocess.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TTS/VC/encoder_train.py" beforeDir="false" afterPath="$PROJECT_DIR$/../TTS/VC/encoder_train.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TTS/VC/samples/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../TTS/VC/samples/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TTS/VC/samples/VCTK.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../TTS/VC/samples/VCTK.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TTS/VC/synthesizer/audio.py" beforeDir="false" afterPath="$PROJECT_DIR$/../TTS/VC/synthesizer/audio.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TTS/VC/synthesizer/hparams.py" beforeDir="false" afterPath="$PROJECT_DIR$/../TTS/VC/synthesizer/hparams.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TTS/VC/synthesizer/inference.py" beforeDir="false" afterPath="$PROJECT_DIR$/../TTS/VC/synthesizer/inference.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TTS/VC/synthesizer/models/tacotron.py" beforeDir="false" afterPath="$PROJECT_DIR$/../TTS/VC/synthesizer/models/tacotron.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TTS/VC/synthesizer/preprocess.py" beforeDir="false" afterPath="$PROJECT_DIR$/../TTS/VC/synthesizer/preprocess.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TTS/VC/synthesizer/synthesize.py" beforeDir="false" afterPath="$PROJECT_DIR$/../TTS/VC/synthesizer/synthesize.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TTS/VC/synthesizer/synthesizer_dataset.py" beforeDir="false" afterPath="$PROJECT_DIR$/../TTS/VC/synthesizer/synthesizer_dataset.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TTS/VC/synthesizer/train.py" beforeDir="false" afterPath="$PROJECT_DIR$/../TTS/VC/synthesizer/train.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TTS/VC/synthesizer/utils/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../TTS/VC/synthesizer/utils/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TTS/VC/synthesizer/utils/_cmudict.py" beforeDir="false" afterPath="$PROJECT_DIR$/../TTS/VC/synthesizer/utils/_cmudict.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TTS/VC/synthesizer/utils/cleaners.py" beforeDir="false" afterPath="$PROJECT_DIR$/../TTS/VC/synthesizer/utils/cleaners.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TTS/VC/synthesizer/utils/numbers.py" beforeDir="false" afterPath="$PROJECT_DIR$/../TTS/VC/synthesizer/utils/numbers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TTS/VC/synthesizer/utils/plot.py" beforeDir="false" afterPath="$PROJECT_DIR$/../TTS/VC/synthesizer/utils/plot.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TTS/VC/synthesizer/utils/symbols.py" beforeDir="false" afterPath="$PROJECT_DIR$/../TTS/VC/synthesizer/utils/symbols.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TTS/VC/synthesizer/utils/text.py" beforeDir="false" afterPath="$PROJECT_DIR$/../TTS/VC/synthesizer/utils/text.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TTS/VC/synthesizer_preprocess_audio.py" beforeDir="false" afterPath="$PROJECT_DIR$/../TTS/VC/synthesizer_preprocess_audio.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TTS/VC/synthesizer_preprocess_embeds.py" beforeDir="false" afterPath="$PROJECT_DIR$/../TTS/VC/synthesizer_preprocess_embeds.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TTS/VC/synthesizer_train.py" beforeDir="false" afterPath="$PROJECT_DIR$/../TTS/VC/synthesizer_train.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TTS/VC/toolbox/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../TTS/VC/toolbox/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TTS/VC/toolbox/ui.py" beforeDir="false" afterPath="$PROJECT_DIR$/../TTS/VC/toolbox/ui.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TTS/VC/toolbox/utterance.py" beforeDir="false" afterPath="$PROJECT_DIR$/../TTS/VC/toolbox/utterance.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TTS/VC/utils/argutils.py" beforeDir="false" afterPath="$PROJECT_DIR$/../TTS/VC/utils/argutils.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TTS/VC/utils/logmmse.py" beforeDir="false" afterPath="$PROJECT_DIR$/../TTS/VC/utils/logmmse.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TTS/VC/utils/modelutils.py" beforeDir="false" afterPath="$PROJECT_DIR$/../TTS/VC/utils/modelutils.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TTS/VC/utils/profiler.py" beforeDir="false" afterPath="$PROJECT_DIR$/../TTS/VC/utils/profiler.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TTS/VC/vocoder/audio.py" beforeDir="false" afterPath="$PROJECT_DIR$/../TTS/VC/vocoder/audio.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TTS/VC/vocoder/display.py" beforeDir="false" afterPath="$PROJECT_DIR$/../TTS/VC/vocoder/display.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TTS/VC/vocoder/distribution.py" beforeDir="false" afterPath="$PROJECT_DIR$/../TTS/VC/vocoder/distribution.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TTS/VC/vocoder/gen_wavernn.py" beforeDir="false" afterPath="$PROJECT_DIR$/../TTS/VC/vocoder/gen_wavernn.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TTS/VC/vocoder/hparams.py" beforeDir="false" afterPath="$PROJECT_DIR$/../TTS/VC/vocoder/hparams.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TTS/VC/vocoder/inference.py" beforeDir="false" afterPath="$PROJECT_DIR$/../TTS/VC/vocoder/inference.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TTS/VC/vocoder/models/deepmind_version.py" beforeDir="false" afterPath="$PROJECT_DIR$/../TTS/VC/vocoder/models/deepmind_version.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TTS/VC/vocoder/models/fatchord_version.py" beforeDir="false" afterPath="$PROJECT_DIR$/../TTS/VC/vocoder/models/fatchord_version.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TTS/VC/vocoder/train.py" beforeDir="false" afterPath="$PROJECT_DIR$/../TTS/VC/vocoder/train.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TTS/VC/vocoder/vocoder_dataset.py" beforeDir="false" afterPath="$PROJECT_DIR$/../TTS/VC/vocoder/vocoder_dataset.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TTS/VC/vocoder_preprocess.py" beforeDir="false" afterPath="$PROJECT_DIR$/../TTS/VC/vocoder_preprocess.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TTS/VC/vocoder_train.py" beforeDir="false" afterPath="$PROJECT_DIR$/../TTS/VC/vocoder_train.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TTS/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/../TTS/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TTS/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../TTS/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../audio-generator/.dockerignore" beforeDir="false" afterPath="$PROJECT_DIR$/../audio-generator/.dockerignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../audio-generator/.idea/audio-generator.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../audio-generator/.idea/audio-generator.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../audio-generator/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../audio-generator/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../audio-generator/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../audio-generator/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../audio-generator/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../audio-generator/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../audio-generator/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../audio-generator/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../audio-generator/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../audio-generator/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../audio-generator/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/../audio-generator/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../audio-generator/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../audio-generator/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../audio-generator/config/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../audio-generator/config/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../audio-generator/config/audioOrder.py" beforeDir="false" afterPath="$PROJECT_DIR$/../audio-generator/config/audioOrder.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../audio-generator/config/routes/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../audio-generator/config/routes/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../audio-generator/config/routes/audio_order.py" beforeDir="false" afterPath="$PROJECT_DIR$/../audio-generator/config/routes/audio_order.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../audio-generator/config/routes/authentication.py" beforeDir="false" afterPath="$PROJECT_DIR$/../audio-generator/config/routes/authentication.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../audio-generator/config/routes/headers.py" beforeDir="false" afterPath="$PROJECT_DIR$/../audio-generator/config/routes/headers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../audio-generator/config/server.py" beforeDir="false" afterPath="$PROJECT_DIR$/../audio-generator/config/server.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../audio-generator/config/serviceAccountKey.json" beforeDir="false" afterPath="$PROJECT_DIR$/../audio-generator/config/serviceAccountKey.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../audio-generator/config/serviceCredential.py" beforeDir="false" afterPath="$PROJECT_DIR$/../audio-generator/config/serviceCredential.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../audio-generator/controller/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../audio-generator/controller/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../audio-generator/controller/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/../audio-generator/controller/config.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../audio-generator/controller/routes/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../audio-generator/controller/routes/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../audio-generator/controller/routes/audio_order.py" beforeDir="false" afterPath="$PROJECT_DIR$/../audio-generator/controller/routes/audio_order.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../audio-generator/core/data_access/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../audio-generator/core/data_access/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../audio-generator/core/data_access/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/../audio-generator/core/data_access/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../audio-generator/core/data_access/audio_order.py" beforeDir="false" afterPath="$PROJECT_DIR$/../audio-generator/core/data_access/audio_order.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../audio-generator/core/entities/OlivarTwist.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../audio-generator/core/entities/OlivarTwist.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../audio-generator/core/entities/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../audio-generator/core/entities/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../audio-generator/core/entities/audio_order.py" beforeDir="false" afterPath="$PROJECT_DIR$/../audio-generator/core/entities/audio_order.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../audio-generator/core/entities/book-parsing.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../audio-generator/core/entities/exception/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../audio-generator/core/entities/exception/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../audio-generator/core/entities/exception/book_title.py" beforeDir="false" afterPath="$PROJECT_DIR$/../audio-generator/core/entities/exception/book_title.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../audio-generator/core/entities/exception/page_number.py" beforeDir="false" afterPath="$PROJECT_DIR$/../audio-generator/core/entities/exception/page_number.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../audio-generator/core/entities/make_audio_order.py" beforeDir="false" afterPath="$PROJECT_DIR$/../audio-generator/core/entities/make_audio_order.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../audio-generator/core/usecases/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../audio-generator/core/usecases/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../audio-generator/core/usecases/user/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../audio-generator/core/usecases/audio_order/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../audio-generator/core/usecases/user/add_audio_order.py" beforeDir="false" afterPath="$PROJECT_DIR$/../audio-generator/core/usecases/audio_order/add_audio_order.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../audio-generator/core/usecases/user/get_audio_orders.py" beforeDir="false" afterPath="$PROJECT_DIR$/../audio-generator/core/usecases/audio_order/get_audio_orders.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../audio-generator/core/usecases/user/update_audio_order.py" beforeDir="false" afterPath="$PROJECT_DIR$/../audio-generator/core/usecases/audio_order/update_audio_order.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../audio-generator/neuralcoref" beforeDir="false" afterPath="$PROJECT_DIR$/../audio-generator/neuralcoref" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../audio-generator/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../audio-generator/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../auth/.dockerignore" beforeDir="false" afterPath="$PROJECT_DIR$/../auth/.dockerignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../auth/.idea/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../auth/.idea/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../auth/.idea/auth.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../auth/.idea/auth.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../auth/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../auth/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../auth/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../auth/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../auth/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../auth/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../auth/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../auth/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../auth/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/../auth/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../auth/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../auth/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../auth/__test__/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../auth/__test__/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../auth/__test__/__main__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../auth/__test__/__main__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../auth/__test__/controller_test/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../auth/__test__/controller_test/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../auth/__test__/controller_test/authentication.py" beforeDir="false" afterPath="$PROJECT_DIR$/../auth/__test__/controller_test/authentication.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../auth/__test__/controller_test/login.py" beforeDir="false" afterPath="$PROJECT_DIR$/../auth/__test__/controller_test/login.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../auth/__test__/controller_test/logout.py" beforeDir="false" afterPath="$PROJECT_DIR$/../auth/__test__/controller_test/logout.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../auth/__test__/controller_test/register.py" beforeDir="false" afterPath="$PROJECT_DIR$/../auth/__test__/controller_test/register.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../auth/__test__/controller_test/user.py" beforeDir="false" afterPath="$PROJECT_DIR$/../auth/__test__/controller_test/user.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../auth/__test__/core_test/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../auth/__test__/core_test/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../auth/__test__/core_test/entities/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../auth/__test__/core_test/entities/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../auth/__test__/core_test/entities/edit_user.py" beforeDir="false" afterPath="$PROJECT_DIR$/../auth/__test__/core_test/entities/edit_user.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../auth/__test__/core_test/entities/make_user.py" beforeDir="false" afterPath="$PROJECT_DIR$/../auth/__test__/core_test/entities/make_user.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../auth/__test__/core_test/usecases/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../auth/__test__/core_test/usecases/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../auth/__test__/core_test/usecases/token/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../auth/__test__/core_test/usecases/token/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../auth/__test__/core_test/usecases/token/token.py" beforeDir="false" afterPath="$PROJECT_DIR$/../auth/__test__/core_test/usecases/token/token.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../auth/__test__/core_test/usecases/user/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../auth/__test__/core_test/usecases/user/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../auth/__test__/core_test/usecases/user/add_user.py" beforeDir="false" afterPath="$PROJECT_DIR$/../auth/__test__/core_test/usecases/user/add_user.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../auth/__test__/core_test/usecases/user/delete_user.py" beforeDir="false" afterPath="$PROJECT_DIR$/../auth/__test__/core_test/usecases/user/delete_user.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../auth/__test__/core_test/usecases/user/get_user.py" beforeDir="false" afterPath="$PROJECT_DIR$/../auth/__test__/core_test/usecases/user/get_user.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../auth/__test__/core_test/usecases/user/update_user.py" beforeDir="false" afterPath="$PROJECT_DIR$/../auth/__test__/core_test/usecases/user/update_user.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../auth/__test__/core_test/util/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../auth/__test__/core_test/util/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../auth/__test__/core_test/util/util.py" beforeDir="false" afterPath="$PROJECT_DIR$/../auth/__test__/core_test/util/util.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../auth/config/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../auth/config/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../auth/config/routes/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../auth/config/routes/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../auth/config/routes/authentication.py" beforeDir="false" afterPath="$PROJECT_DIR$/../auth/config/routes/authentication.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../auth/config/routes/headers.py" beforeDir="false" afterPath="$PROJECT_DIR$/../auth/config/routes/headers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../auth/config/routes/login.py" beforeDir="false" afterPath="$PROJECT_DIR$/../auth/config/routes/login.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../auth/config/routes/logout.py" beforeDir="false" afterPath="$PROJECT_DIR$/../auth/config/routes/logout.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../auth/config/routes/register.py" beforeDir="false" afterPath="$PROJECT_DIR$/../auth/config/routes/register.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../auth/config/routes/user.py" beforeDir="false" afterPath="$PROJECT_DIR$/../auth/config/routes/user.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../auth/config/server.py" beforeDir="false" afterPath="$PROJECT_DIR$/../auth/config/server.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../auth/config/serviceAccountKey.json" beforeDir="false" afterPath="$PROJECT_DIR$/../auth/config/serviceAccountKey.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../auth/config/serviceCredential.py" beforeDir="false" afterPath="$PROJECT_DIR$/../auth/config/serviceCredential.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../auth/config/token.py" beforeDir="false" afterPath="$PROJECT_DIR$/../auth/config/token.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../auth/config/user.py" beforeDir="false" afterPath="$PROJECT_DIR$/../auth/config/user.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../auth/controller/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../auth/controller/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../auth/controller/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/../auth/controller/config.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../auth/controller/routes/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../auth/controller/routes/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../auth/controller/routes/authentication.py" beforeDir="false" afterPath="$PROJECT_DIR$/../auth/controller/routes/authentication.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../auth/controller/routes/login.py" beforeDir="false" afterPath="$PROJECT_DIR$/../auth/controller/routes/login.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../auth/controller/routes/logout.py" beforeDir="false" afterPath="$PROJECT_DIR$/../auth/controller/routes/logout.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../auth/controller/routes/register.py" beforeDir="false" afterPath="$PROJECT_DIR$/../auth/controller/routes/register.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../auth/controller/routes/user.py" beforeDir="false" afterPath="$PROJECT_DIR$/../auth/controller/routes/user.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../auth/core/data_access/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../auth/core/data_access/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../auth/core/data_access/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/../auth/core/data_access/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../auth/core/data_access/token.py" beforeDir="false" afterPath="$PROJECT_DIR$/../auth/core/data_access/token.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../auth/core/data_access/user.py" beforeDir="false" afterPath="$PROJECT_DIR$/../auth/core/data_access/user.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../auth/core/entities/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../auth/core/entities/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../auth/core/entities/exception/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../auth/core/entities/exception/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../auth/core/entities/exception/email.py" beforeDir="false" afterPath="$PROJECT_DIR$/../auth/core/entities/exception/email.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../auth/core/entities/exception/name.py" beforeDir="false" afterPath="$PROJECT_DIR$/../auth/core/entities/exception/name.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../auth/core/entities/exception/password.py" beforeDir="false" afterPath="$PROJECT_DIR$/../auth/core/entities/exception/password.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../auth/core/entities/exception/phone.py" beforeDir="false" afterPath="$PROJECT_DIR$/../auth/core/entities/exception/phone.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../auth/core/entities/hash_password.py" beforeDir="false" afterPath="$PROJECT_DIR$/../auth/core/entities/hash_password.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../auth/core/entities/make_edit_user.py" beforeDir="false" afterPath="$PROJECT_DIR$/../auth/core/entities/make_edit_user.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../auth/core/entities/make_user.py" beforeDir="false" afterPath="$PROJECT_DIR$/../auth/core/entities/make_user.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../auth/core/entities/token.py" beforeDir="false" afterPath="$PROJECT_DIR$/../auth/core/entities/token.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../auth/core/entities/user.py" beforeDir="false" afterPath="$PROJECT_DIR$/../auth/core/entities/user.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../auth/core/entities/util.py" beforeDir="false" afterPath="$PROJECT_DIR$/../auth/core/entities/util.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../auth/core/usecases/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../auth/core/usecases/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../auth/core/usecases/token/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../auth/core/usecases/token/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../auth/core/usecases/token/add_token.py" beforeDir="false" afterPath="$PROJECT_DIR$/../auth/core/usecases/token/add_token.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../auth/core/usecases/token/is_token_exist.py" beforeDir="false" afterPath="$PROJECT_DIR$/../auth/core/usecases/token/is_token_exist.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../auth/core/usecases/user/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../auth/core/usecases/user/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../auth/core/usecases/user/add_user.py" beforeDir="false" afterPath="$PROJECT_DIR$/../auth/core/usecases/user/add_user.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../auth/core/usecases/user/delete_user.py" beforeDir="false" afterPath="$PROJECT_DIR$/../auth/core/usecases/user/delete_user.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../auth/core/usecases/user/exception/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../auth/core/usecases/user/exception/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../auth/core/usecases/user/exception/update_user.py" beforeDir="false" afterPath="$PROJECT_DIR$/../auth/core/usecases/user/exception/update_user.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../auth/core/usecases/user/get_user.py" beforeDir="false" afterPath="$PROJECT_DIR$/../auth/core/usecases/user/get_user.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../auth/core/usecases/user/update_user.py" beforeDir="false" afterPath="$PROJECT_DIR$/../auth/core/usecases/user/update_user.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../auth/requirements.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../book/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../book/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../emotion-detection/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../emotion-detection/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../emotion-detection/config/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../emotion-detection/config/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../emotion-detection/config/backend_constant.py" beforeDir="false" afterPath="$PROJECT_DIR$/../emotion-detection/config/backend_constant.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../emotion-detection/controller/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../emotion-detection/controller/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../emotion-detection/controller/emotionManager.py" beforeDir="false" afterPath="$PROJECT_DIR$/../emotion-detection/controller/emotionManager.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../emotion-detection/core/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../emotion-detection/core/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../emotion-detection/core/emotion_detection.py" beforeDir="false" afterPath="$PROJECT_DIR$/../emotion-detection/core/emotion_detection.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../emotion-detection/core/emotion_detection_factory.py" beforeDir="false" afterPath="$PROJECT_DIR$/../emotion-detection/core/emotion_detection_factory.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../extracting information/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../extracting information/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../extracting information/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../extracting information/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../extracting information/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../extracting information/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../extracting information/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../extracting information/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../extracting information/OlivarTwist.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../extracting information/OlivarTwist.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../extracting information/characterExtraction.py" beforeDir="false" afterPath="$PROJECT_DIR$/../extracting information/characterExtraction.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dockerignore" beforeDir="false" afterPath="$PROJECT_DIR$/.dockerignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/config/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/server.py" beforeDir="false" afterPath="$PROJECT_DIR$/config/server.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/tts.py" beforeDir="false" afterPath="$PROJECT_DIR$/config/tts.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controller/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/controller/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controller/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/controller/config.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controller/routes/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/controller/routes/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controller/routes/tts.py" beforeDir="false" afterPath="$PROJECT_DIR$/controller/routes/tts.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirments.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirments.txt" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
+  </component>
+  <component name="ProjectId" id="1rueSbdA7LUtysKC5pxSOsUhyUq" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../auth" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="9a62b88d-6395-4f3f-bbf2-d5358ffd43cc" name="Default Changelist" comment="" />
+      <created>1619830417743</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1619830417743</updated>
+      <workItem from="1619830419321" duration="41000" />
+      <workItem from="1619831099235" duration="6277000" />
+      <workItem from="1619841585484" duration="2488000" />
+      <workItem from="1619876834714" duration="3123000" />
+      <workItem from="1619903789511" duration="7238000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

@@ -3,16 +3,18 @@ from collections import deque
 import requests
 
 from . import api
+from .queue_handlers import QueuesHandlers
 from config.routes import *
 from core.usecases import *
 
-waiting_queue = deque()
+tts_queue = deque()
+cx_queue = deque()
 
 
 def get_order_status(audio_order):
     if audio_order.audio_link:
         return RES_AUDIO_ORDER_FINISHED_STATUS
-    elif audio_order.id in waiting_queue:
+    elif audio_order.id in cx_queue or audio_order.id in tts_queue:
         return RES_AUDIO_ORDER_WAITING_STATUS
     else:
         #####################
@@ -36,10 +38,6 @@ def to_orders_list(audio_orders: [AudioOrder]):
 
 
 def validate_user(access_token):
-    ######################
-    # TODO: validate access_token from auth service
-    ######################
-    print(access_token)
     r = requests.get(url=TOKEN_VALIDATION_ABS_ENDPOINT, headers={REQ_JSON_WEB_TOKEN_HEADER_NAME: str(access_token)})
     if 200 != r.status_code:
         raise Exception()
@@ -92,26 +90,30 @@ class AudioOrderResource(Resource):
             end_page=audio_order_req[REQ_AUDIO_ORDER_ENDING_PAGE_NUMBER_KEY_NAME],
             cloned=audio_order_req[REQ_AUDIO_ORDER_CLONED_KEY_NAME]
         )
-        waiting_queue.append(audio_order.id)
-        ################################
-        # TODO: start audio generating
-        ################################
+        if audio_order.cloned:
+            cx_queue.append((audio_order.id, audio_order.text))
+        else:
+            tts_queue.append((audio_order.id, None, None, text)) #scripts, chars_audio, list_pargraphes
         return {RES_MESSAGE_KEY_NAME: 'Your request has been recorded'}, 200
 
     def put(self):
         req = self.audio_order_put_parser.parse_args()
         access_token = req[REQ_JSON_WEB_TOKEN_HEADER_NAME]
         try:
-            user_id = validate_user(access_token)
+            validate_user(access_token)
         except():
             return {RES_MESSAGE_KEY_NAME: 'access token is invalid'}, 400
         id = req[REQ_AUDIO_ORDER_ID_KEY_NAME]
         chars = req[REQ_AUDIO_ORDER_CHARS_NAMES_KEY_NAME]
         update_audio_order(audio_link=None, chars_names=chars, id=id)
-        ################################
-        # TODO: continue audio generating
-        ################################
+        audio_order = get_audio_order(id)
+        tts_queue.append((id, audio_order.scripts, chars, audio_order.text)) #scripts, chars_audio, senteces
         return {RES_MESSAGE_KEY_NAME: "Your request will be processed"}, 200,  # bad reques
 
 
 api.add_resource(AudioOrderResource, AUDIO_ORDER_ABS_ENDPOINT_NAME)
+
+######
+QueuesHandlers.run_queue_handlers()
+# thread
+#####

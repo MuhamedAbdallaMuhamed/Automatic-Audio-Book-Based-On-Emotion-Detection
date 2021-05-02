@@ -13,6 +13,24 @@ class AudioOrderDb:
         return audioOrder
 
     @staticmethod
+    def get_audio_order_by_id(id):
+        a = db.collection(AUDIO_ORDER_COLLECTION_NAME).document(id).to_dict()
+        audio_order = AudioOrder(
+            id=a[AUDIO_ORDER_ID_ENTITY_NAME],
+            title=a[AUDIO_ORDER_TITLE_ENTITY_NAME],
+            user_id=a[AUDIO_ORDER_USER_ID_ENTITY_NAME],
+            text=a[AUDIO_ORDER_TEXT_ENTITY_NAME],
+            start_page=a[AUDIO_ORDER_START_PAGE_ENTITY_NAME],
+            end_page=a[AUDIO_ORDER_END_PAGE_ENTITY_NAME],
+            cloned=a[AUDIO_ORDER_CLONED_ENTITY_NAME],
+            audio_link=a[AUDIO_ORDER_AUDIO_LINK_ENTITY_NAME],
+            chars_names=a[AUDIO_ORDER_CHARACTERS_NAMES_ENTITY_NAME],
+            scripts={char_name: (a[AUDIO_ORDER_AUDIO_SCRIPTS][char_name][0], a[AUDIO_ORDER_AUDIO_SCRIPTS][char_name][1])
+                     for char_name in a[AUDIO_ORDER_AUDIO_SCRIPTS]}
+        )
+        return audio_order
+
+    @staticmethod
     def get_user_audio_orders(user_id: str) -> Optional[AudioOrder]:
         try:
             audio_orders = []
@@ -28,7 +46,8 @@ class AudioOrderDb:
                   end_page=a[AUDIO_ORDER_END_PAGE_ENTITY_NAME],
                   cloned=a[AUDIO_ORDER_CLONED_ENTITY_NAME],
                   audio_link=a[AUDIO_ORDER_AUDIO_LINK_ENTITY_NAME],
-                  chars_names=a[AUDIO_ORDER_CHARACTERS_NAMES_ENTITY_NAME]
+                  chars_names=a[AUDIO_ORDER_CHARACTERS_NAMES_ENTITY_NAME],
+                  scripts={ char_name: (a[AUDIO_ORDER_AUDIO_SCRIPTS][char_name][0], a[AUDIO_ORDER_AUDIO_SCRIPTS][char_name][1]) for char_name in a[AUDIO_ORDER_AUDIO_SCRIPTS]}
                 )
                 audio_orders.append(audio_order)
             return audio_orders
@@ -36,7 +55,7 @@ class AudioOrderDb:
             print(e)
 
     @staticmethod
-    def update_audio_order(id, audio_link, chars_names) -> bool:
+    def update_audio_order(id, audio_link, chars_names, scripts) -> bool:
         if audio_link and chars_names:
             db.collection(AUDIO_ORDER_COLLECTION_NAME).document(id).update({
                 AUDIO_ORDER_CHARACTERS_NAMES_ENTITY_NAME: chars_names,
@@ -49,6 +68,10 @@ class AudioOrderDb:
         elif chars_names:
             db.collection(AUDIO_ORDER_COLLECTION_NAME).document(id).update({
                 AUDIO_ORDER_CHARACTERS_NAMES_ENTITY_NAME: chars_names,
+            })
+        if scripts:
+            db.collection(AUDIO_ORDER_COLLECTION_NAME).document(id).update({
+                AUDIO_ORDER_AUDIO_SCRIPTS: to_scripts(scripts),
             })
         return True
 
@@ -69,4 +92,9 @@ class AudioOrderDb:
             AUDIO_ORDER_USER_ID_ENTITY_NAME: audio_order.user_id,
             AUDIO_ORDER_AUDIO_LINK_ENTITY_NAME: audio_order.audio_link,
             AUDIO_ORDER_CHARACTERS_NAMES_ENTITY_NAME: audio_order.chars_names,
+            AUDIO_ORDER_AUDIO_SCRIPTS: to_scripts(audio_order.scripts)
         }
+
+    @staticmethod
+    def to_scripts(scripts):
+        return {char_name: [scripts[char_name][0], scripts[char_name][1]] for char_name in scripts.key()}
