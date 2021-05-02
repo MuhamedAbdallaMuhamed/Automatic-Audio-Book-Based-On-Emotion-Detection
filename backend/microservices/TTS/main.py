@@ -6,7 +6,7 @@ from pydub import AudioSegment
 
 app = Flask(__name__)
 app.config["FILE_UPLOADS"] = os.path.dirname(os.path.realpath(__file__))
-app.config["ALLOWED_FILE_EXTENSIONS"] = ["WAV", "MP3", "OGG"]
+app.config["ALLOWED_FILE_EXTENSIONS"] = ["WAV", "OGG"]
 app.config["SENTENCE"] = "text"
 app.config["FILE"] = "file"
 app.config["FILE_SIZE"] = "file_size"
@@ -57,7 +57,7 @@ def TTS():
             file_path = gateway(os.path.join(app.config["FILE_UPLOADS"], filename), sentences)
             if file_path != "":
                 sound = AudioSegment.from_file(os.path.join(app.config["FILE_PATH"], file_path))
-                slower_sound = slow_down(sound, 0.9)
+                slower_sound = slow_down(sound)
                 slower_file_path = os.path.join(app.config["FILE_PATH"], file_path + 'slower.wav')
                 slower_file_name = file_path + 'slower.wav'
                 slower_sound.export(slower_file_path, format="wav")

@@ -15,8 +15,6 @@ multiprocess~=0.70.11.1
 numba
 webrtcvad; platform_system != "Windows"
 
-numpy~=1.20.2
-webrtcvad~=2.0.10
 torch~=1.8.1
 scikit-learn~=0.24.1
 umap~=0.1.1
