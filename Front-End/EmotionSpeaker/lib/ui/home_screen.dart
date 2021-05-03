@@ -2,6 +2,7 @@ import 'package:EmotionSpeaker/constants/custom_colors.dart';
 import 'package:EmotionSpeaker/controller/user_controller.dart';
 import 'package:EmotionSpeaker/ui/pick_book_screen.dart';
 import 'package:EmotionSpeaker/ui/register_or_login_screen.dart';
+import 'package:EmotionSpeaker/ui/audio_player_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:EmotionSpeaker/constants/Keys.dart';
 import 'package:EmotionSpeaker/utils/sizing_extension.dart';
@@ -9,6 +10,7 @@ import 'package:get/get.dart';
 import 'package:hidden_drawer_menu/controllers/simple_hidden_drawer_controller.dart';
 import 'package:hidden_drawer_menu/simple_hidden_drawer/simple_hidden_drawer.dart';
 import 'package:EmotionSpeaker/ui/profile_screen.dart';
+import 'package:EmotionSpeaker/common_widgets/rounded_button.dart';
 
 class HomeScreen extends StatelessWidget {
   @override
@@ -43,6 +45,22 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
           ),
+          body: Padding(
+            padding: EdgeInsets.symmetric(
+              horizontal: 10,
+              vertical: 5,
+            ),
+            child: ListView(
+              children: [
+                BookCard(),
+                BookCard(),
+                BookCard(),
+                BookCard(),
+                BookCard(),
+                BookCard(),
+              ],
+            ),
+          ),
           floatingActionButton: FloatingActionButton(
             onPressed: () {
               Get.to(
@@ -57,6 +75,139 @@ class HomeScreen extends StatelessWidget {
           ),
         );
       },
+    );
+  }
+}
+
+class BookCard extends StatelessWidget {
+  const BookCard({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+      child: Container(
+        decoration: BoxDecoration(
+          color: CustomColors.itembackgroundColor,
+          borderRadius: BorderRadius.all(
+            Radius.circular(5),
+          ),
+          boxShadow: [
+            BoxShadow(
+              blurRadius: 1,
+              color: Colors.black38,
+            ),
+          ],
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              SizedBox(
+                height: 5,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    "Book Title",
+                    style: TextStyle(
+                      fontSize: 18.sp(context),
+                      fontFamily: Keys.Araboto,
+                      color: Colors.grey,
+                    ),
+                  ),
+                  Icon(
+                    Icons.menu_book,
+                    size: 30,
+                    color: CustomColors.color2,
+                  ),
+                ],
+              ),
+              Text(
+                "Harry Potter",
+                style: TextStyle(
+                  fontSize: 20.sp(context),
+                  fontFamily: Keys.Araboto,
+                  color: Colors.black87,
+                ),
+              ),
+              Row(
+                children: [
+                  Text(
+                    "Page Range: ",
+                    style: TextStyle(
+                      fontSize: 18.sp(context),
+                      fontFamily: Keys.Araboto,
+                      color: Colors.grey,
+                    ),
+                  ),
+                  Text(
+                    "10 to 100",
+                    style: TextStyle(
+                      fontSize: 20.sp(context),
+                      fontFamily: Keys.Araboto,
+                      color: Colors.black87,
+                    ),
+                  ),
+                ],
+              ),
+              Row(
+                children: [
+                  Text(
+                    "Sound Type: ",
+                    style: TextStyle(
+                      fontSize: 18.sp(context),
+                      fontFamily: Keys.Araboto,
+                      color: Colors.grey,
+                    ),
+                  ),
+                  Text(
+                    "Defult Sound",
+                    style: TextStyle(
+                      fontSize: 20.sp(context),
+                      fontFamily: Keys.Araboto,
+                      color: Colors.black87,
+                    ),
+                  ),
+                ],
+              ),
+              Row(
+                children: [
+                  Text(
+                    "Status: ",
+                    style: TextStyle(
+                      fontSize: 18.sp(context),
+                      fontFamily: Keys.Araboto,
+                      color: Colors.grey,
+                    ),
+                  ),
+                  Text(
+                    "Finised",
+                    style: TextStyle(
+                      fontSize: 20.sp(context),
+                      fontFamily: Keys.Araboto,
+                      color: Colors.black87,
+                    ),
+                  ),
+                ],
+              ),
+              RoundedButton(
+                buttoncolor: CustomColors.color2,
+                onPreesed: () {
+                  Get.to(AudioPlayerScreen());
+                },
+                textcolor: Colors.white,
+                title: "Play",
+                fontSize: 20.sp(context),
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }

@@ -7,6 +7,7 @@ import 'package:EmotionSpeaker/ui/register_or_login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:EmotionSpeaker/utils/sizing_extension.dart';
+import 'package:EmotionSpeaker/controller/audio_order_controller.dart';
 
 class SplachScreen extends StatefulWidget {
   static const String Route_Name = 'SplachScreen';
@@ -16,6 +17,7 @@ class SplachScreen extends StatefulWidget {
 
 class _SplachScreenState extends State<SplachScreen> {
   final userController = Get.put(UserController());
+  final audioOrderController = Get.put(AudioOrderController());
   @override
   void initState() {
     super.initState();

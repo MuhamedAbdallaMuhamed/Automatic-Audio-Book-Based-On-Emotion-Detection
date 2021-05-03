@@ -8,6 +8,12 @@
       "languageVersion": "2.10"
     },
     {
+      "name": "audioplayer",
+      "rootUri": "file:///E:/projects/sdk/New%20folder/flutter/.pub-cache/hosted/pub.dartlang.org/audioplayer-0.8.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.0"
+    },
+    {
       "name": "boolean_selector",
       "rootUri": "file:///E:/projects/sdk/New%20folder/flutter/.pub-cache/hosted/pub.dartlang.org/boolean_selector-2.1.0-nullsafety.1",
       "packageUri": "lib/",
@@ -416,7 +422,7 @@
       "languageVersion": "2.7"
     }
   ],
-  "generated": "2021-04-30T18:00:57.498208Z",
+  "generated": "2021-05-02T23:37:44.593549Z",
   "generator": "pub",
   "generatorVersion": "2.10.5"
 }

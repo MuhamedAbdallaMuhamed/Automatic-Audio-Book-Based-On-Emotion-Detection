@@ -16,6 +16,7 @@ class UserServices {
         uri: UserBase.Url + UserBase.Login,
         data: user.toJson(),
       );
+      print(response.statusCode);
       if (response.statusCode == 200) {
         return Result.success(User.fromMap(response.data));
       } else {
@@ -80,6 +81,7 @@ class UserServices {
         },
       );
       print('response done ');
+
       if (response.statusCode == 200) {
         return Result.success(response.data['message']);
       } else {
@@ -103,6 +105,7 @@ class UserServices {
           "password_reset_code": code,
         },
       );
+
       if (response.statusCode == 200) {
         return Result.success(response.data['message']);
       } else {

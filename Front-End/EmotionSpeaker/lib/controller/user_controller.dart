@@ -33,6 +33,7 @@ class UserController extends GetxController {
         mainUser = user;
         mainUser = result.getSuccessData();
         mainUser.password = user.password;
+        print(mainUser.access_token);
         await _setPhoneNumber();
         SharedPref.pref.setBool(SharedPreferencesKeys.Login, true);
         SharedPref.pref.setString(SharedPreferencesKeys.Email, user.email);
