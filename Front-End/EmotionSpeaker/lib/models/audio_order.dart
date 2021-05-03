@@ -11,6 +11,7 @@ class AudioOrder {
   bool cloned;
   String audioLink;
   List<String> charactersNames;
+  String status;
   AudioOrder({
     this.id,
     this.title,
@@ -19,6 +20,7 @@ class AudioOrder {
     this.endPage,
     this.cloned,
     this.audioLink,
+    this.status,
     this.charactersNames,
   });
 
@@ -66,7 +68,10 @@ class AudioOrder {
       endPage: map['endPage'],
       cloned: map['cloned'],
       audioLink: map['audioLink'],
-      charactersNames: List<String>.from(map['charactersNames']),
+      charactersNames: map['charactersNames'] == null
+          ? []
+          : List<String>.from(map['charactersNames']),
+      status: map["status"] == null ? "Finished" : map["status"],
     );
   }
 

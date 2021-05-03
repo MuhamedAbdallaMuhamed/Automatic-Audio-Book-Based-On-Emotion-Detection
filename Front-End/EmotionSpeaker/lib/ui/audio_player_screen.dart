@@ -1,17 +1,37 @@
 import 'package:EmotionSpeaker/constants/keys.dart';
+import 'package:EmotionSpeaker/models/audio_order.dart';
+import 'package:audioplayer/audioplayer.dart';
 import 'package:flutter/material.dart';
 import 'package:EmotionSpeaker/constants/custom_colors.dart';
 import 'package:EmotionSpeaker/utils/sizing_extension.dart';
 
 class AudioPlayerScreen extends StatefulWidget {
+  final AudioOrder audioOrder;
+
+  const AudioPlayerScreen({Key key, this.audioOrder}) : super(key: key);
   @override
   _AudioPlayerScreenState createState() => _AudioPlayerScreenState();
 }
 
 class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
-  bool voiceOn = false;
+  bool voiceOn = true;
   double value = 5.5;
+  Duration curDuration;
   RangeValues values = RangeValues(1, 50);
+  AudioPlayer audioPlayer = AudioPlayer();
+
+  @override
+  void initState() {
+    super.initState();
+    audioPlayer.play(widget.audioOrder.audioLink);
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    audioPlayer.stop();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,7 +48,7 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
             ),
           ),
           Text(
-            "Oliver Twist",
+            widget.audioOrder.title,
             style: TextStyle(
               fontFamily: Keys.Araboto,
               fontSize: 30.sp(context),
@@ -47,6 +67,12 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
                 color: CustomColors.color3,
                 onPressed: () {
                   setState(() {
+                    if (voiceOn) {
+                      curDuration = audioPlayer.duration;
+                      audioPlayer.pause();
+                    } else {
+                      audioPlayer.play(widget.audioOrder.audioLink);
+                    }
                     voiceOn = !voiceOn;
                   });
                 },
@@ -58,7 +84,7 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
                   child: Padding(
                     padding: EdgeInsets.all(8.0),
                     child: Icon(
-                      voiceOn ? Icons.play_arrow : Icons.pause,
+                      !voiceOn ? Icons.play_arrow : Icons.pause,
                       color: CustomColors.color2,
                       size: 35.sp(context),
                     ),
@@ -70,7 +96,7 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
           SizedBox(
             height: 10.hp(context),
           ),
-          Slider(
+          /*Slider(
             min: 1,
             max: values.end,
             value: value,
@@ -91,7 +117,7 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  (value/ 4.53).toStringAsFixed(2),
+                  (value / 4.53).toStringAsFixed(2),
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 20.sp(context),
@@ -106,7 +132,7 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
                 ),
               ],
             ),
-          ),
+          ),*/
         ],
       ),
     );

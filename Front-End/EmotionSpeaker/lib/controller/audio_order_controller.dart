@@ -20,4 +20,15 @@ class AudioOrderController extends GetxController {
       return Result.error('Application Error');
     }
   }
+  Future<Result> getAllAudioOrder(
+      {String accessToken}) async {
+    try {
+      Result result = await audioOrderRepository.getAllAudioOrder(
+        accessToken: accessToken,
+      );
+      return result;
+    } catch (e) {
+      return Result.error('Application Error');
+    }
+  }
 }

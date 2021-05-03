@@ -1,5 +1,5 @@
 class UserBase {
-  static const String Url = 'http://192.168.1.9:';
+  static const String Url = 'http://192.168.1.6:';
   static const String Login = '6000/login';
   static const String Register = '6000/register';
   static const String Update = '6000/user';

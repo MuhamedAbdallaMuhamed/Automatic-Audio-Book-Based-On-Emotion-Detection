@@ -45,6 +45,8 @@ dependencies:
   path_provider: ^1.6.27
   flutter_xlider: ^3.4.0
   audioplayer: ^0.8.1
+  fluttertoast: ^7.1.8
+  pull_to_refresh: ^1.6.4
 
 dev_dependencies:
   flutter_test:

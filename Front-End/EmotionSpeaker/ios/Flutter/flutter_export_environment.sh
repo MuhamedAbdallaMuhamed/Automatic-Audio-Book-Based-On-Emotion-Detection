@@ -1,12 +1,12 @@
 #!/bin/sh
 # This is a generated file; do not edit or check into version control.
-export "FLUTTER_ROOT=E:\projects\sdk\New folder\flutter"
-export "FLUTTER_APPLICATION_PATH=E:\Automatic-Audio-Book-Based-On-Emotion-Detection\Front-End\EmotionSpeaker"
-export "FLUTTER_TARGET=lib\main.dart"
+export "FLUTTER_ROOT=/home/mathnoob/snap/flutter/common/flutter"
+export "FLUTTER_APPLICATION_PATH=/home/mathnoob/Documents/GameExchange/nader/Automatic-Audio-Book-Based-On-Emotion-Detection/Front-End/EmotionSpeaker"
+export "FLUTTER_TARGET=lib/main.dart"
 export "FLUTTER_BUILD_DIR=build"
-export "SYMROOT=${SOURCE_ROOT}/../build\ios"
+export "SYMROOT=${SOURCE_ROOT}/../build/ios"
 export "OTHER_LDFLAGS=$(inherited) -framework Flutter"
-export "FLUTTER_FRAMEWORK_DIR=E:\projects\sdk\New folder\flutter\bin\cache\artifacts\engine\ios"
+export "FLUTTER_FRAMEWORK_DIR=/home/mathnoob/snap/flutter/common/flutter/bin/cache/artifacts/engine/ios"
 export "FLUTTER_BUILD_NAME=1.0.0"
 export "FLUTTER_BUILD_NUMBER=1"
 export "DART_OBFUSCATION=false"
