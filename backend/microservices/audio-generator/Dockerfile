@@ -13,6 +13,6 @@ RUN git clone https://github.com/huggingface/neuralcoref.git &&\
     cd neuralcoref && pip install -r requirements.txt && pip install -e .
 
 ENV JWT_ACCESS_TOKEN_LIFETIME_IN_MINUTES=60
-EXPOSE 5050
+EXPOSE 7000
 CMD python __init__.py
 

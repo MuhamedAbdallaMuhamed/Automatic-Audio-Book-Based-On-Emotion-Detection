@@ -16,6 +16,6 @@ RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 
 COPY . /tts
-EXPOSE 6060
+EXPOSE 8000
 ENTRYPOINT [ "python" ]
-CMD [ "/tts/__init__.py" ]
+CMD [ "/tts/main.py" ]
