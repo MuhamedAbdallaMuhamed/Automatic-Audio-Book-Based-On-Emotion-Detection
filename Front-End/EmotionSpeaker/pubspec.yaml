@@ -46,7 +46,7 @@ dependencies:
   flutter_xlider: ^3.4.0
   audioplayer: ^0.8.1
   fluttertoast: ^7.1.8
-  pull_to_refresh: ^1.6.4
+  pull_to_refresh: 1.6.3
 
 dev_dependencies:
   flutter_test:
@@ -77,7 +77,7 @@ flutter:
   # To add custom fonts to your application, add a fonts section here,
   # in this "flutter" section. Each entry in this list should have a
   # "family" key with the font family name, and a "fonts" key with a
-  # list giving the asset and other descriptors for the font. For
+  # list giving the asse and other descriptors for the font. For
   # example:
   fonts:
    - family: Araboto

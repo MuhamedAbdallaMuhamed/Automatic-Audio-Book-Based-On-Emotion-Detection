@@ -33,8 +33,8 @@ class AudioOrderServices {
       return Result.error(response.data['message']);
     }
   }
-  Future<Result> getAllOrders(
-      {String accessToken}) async {
+
+  Future<Result> getAllOrders({String accessToken}) async {
     Response response;
     try {
       print(accessToken);
@@ -48,7 +48,7 @@ class AudioOrderServices {
       );
       if (response.statusCode == 200) {
         List<AudioOrder> orders = [];
-        var ordersList=response.data['orders'] as List;
+        var ordersList = response.data['orders'] as List ?? [];
         for (int i = 0; i < ordersList.length; i++) {
           print("HEREEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE");
           print(ordersList[i]);
@@ -59,6 +59,40 @@ class AudioOrderServices {
       } else {
         print(response.statusCode);
         String resultMessage = response.data['message'];
+        return Result.error(resultMessage);
+      }
+    } catch (e) {
+      return Result.error(response.data['message']);
+    }
+  }
+
+  Future<Result> sendCharacterVoices({
+    String accessToken,
+    AudioOrder audioOrder,
+  }) async {
+    Response response;
+    try {
+      print(accessToken);
+      FormData formData = FormData();
+      audioOrder.charactersVoices.forEach((character, voice) async {
+        MultipartFile file = await MultipartFile.fromFile(voice);
+        formData.files.add(MapEntry(character, file));
+      });
+      formData.fields.add(MapEntry("id", audioOrder.id));
+      response = await dio.put(
+        uri: UserBase.Url + UserBase.AudioOrder,
+        data: formData,
+        options: Options(
+          headers: {
+            Keys.Authorization: Keys.Bearer + accessToken,
+          },
+        ),
+      );
+      String resultMessage = response.data['message'];
+      if (response.statusCode == 200) {
+        return Result.success(resultMessage);
+      } else {
+        print(response.statusCode);
         return Result.error(resultMessage);
       }
     } catch (e) {

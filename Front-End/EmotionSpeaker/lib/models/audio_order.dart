@@ -11,6 +11,7 @@ class AudioOrder {
   bool cloned;
   String audioLink;
   List<String> charactersNames;
+  Map<String, dynamic> charactersVoices = {};
   String status;
   AudioOrder({
     this.id,

@@ -16,11 +16,26 @@ class AudioOrderRepository {
       return Result.error('Application Error');
     }
   }
-  Future<Result> getAllAudioOrder(
-      {String accessToken}) async {
+
+  Future<Result> getAllAudioOrder({String accessToken}) async {
     try {
       Result result = await audioOrderServices.getAllOrders(
         accessToken: accessToken,
+      );
+      return result;
+    } catch (e) {
+      return Result.error('Application Error');
+    }
+  }
+
+  Future<Result> sendCharacterVoices({
+    String accessToken,
+    AudioOrder audioOrder,
+  }) async {
+    try {
+      Result result = await audioOrderServices.sendCharacterVoices(
+        accessToken: accessToken,
+        audioOrder: audioOrder,
       );
       return result;
     } catch (e) {

@@ -58,7 +58,17 @@ class Picker {
   }
 
   static Future<String> pickFile() async {
-    FilePickerResult result = await FilePicker.platform.pickFiles();
+    FilePickerResult result =
+        await FilePicker.platform.pickFiles(allowMultiple: false);
+    return result.files.single.path;
+  }
+
+  static Future<String> pickVoice() async {
+    FilePickerResult result = await FilePicker.platform.pickFiles(
+      allowMultiple: false,
+      allowedExtensions: ["wav", "ogg", "mp3"],
+      type: FileType.custom,
+    );
     return result.files.single.path;
   }
 }

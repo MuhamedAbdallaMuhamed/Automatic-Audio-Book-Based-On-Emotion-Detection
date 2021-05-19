@@ -3,6 +3,7 @@ import 'package:EmotionSpeaker/controller/audio_order_controller.dart';
 import 'package:EmotionSpeaker/controller/user_controller.dart';
 import 'package:EmotionSpeaker/models/audio_order.dart';
 import 'package:EmotionSpeaker/models/result.dart';
+import 'package:EmotionSpeaker/ui/characters_voice_screen.dart';
 import 'package:EmotionSpeaker/ui/pick_book_screen.dart';
 import 'package:EmotionSpeaker/ui/register_or_login_screen.dart';
 import 'package:EmotionSpeaker/ui/audio_player_screen.dart';
@@ -15,6 +16,7 @@ import 'package:hidden_drawer_menu/simple_hidden_drawer/simple_hidden_drawer.dar
 import 'package:EmotionSpeaker/ui/profile_screen.dart';
 import 'package:EmotionSpeaker/common_widgets/rounded_button.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -36,7 +38,7 @@ class _HomeScreenState extends State<HomeScreen> {
     getData();
   }
 
-  void getData() async {
+  Future<void> getData() async {
     setState(() {
       loading = true;
     });
@@ -91,33 +93,47 @@ class _HomeScreenState extends State<HomeScreen> {
                 horizontal: 10,
                 vertical: 5,
               ),
-              child: ListView.builder(
-                itemCount: orders.length,
-                itemBuilder: (context, index) {
-                  return BookCard(
-                    title: orders[index].title,
-                    startPage: orders[index].startPage,
-                    endPage: orders[index].endPage,
-                    cloned: orders[index].cloned,
-                    status: orders[index].status,
-                    onPressed: () {
-                      if (orders[index].status == "finished")
-                        Get.to(
-                          AudioPlayerScreen(
-                            audioOrder: orders[index],
-                          ),
-                        );
-                    },
-                  );
-                },
+              child: SmartRefresher(
+                enablePullDown: true,
+                header: WaterDropHeader(),
+                controller: _refreshController,
+                onRefresh: _onRefresh,
+                child: ListView.builder(
+                  itemCount: orders.length,
+                  itemBuilder: (context, index) {
+                    return BookCard(
+                      title: orders[index].title,
+                      startPage: orders[index].startPage,
+                      endPage: orders[index].endPage,
+                      cloned: orders[index].cloned,
+                      status: orders[index].status,
+                      onPressed: () async {
+                        if (orders[index].status == "Finished")
+                          await Get.to(
+                            AudioPlayerScreen(
+                              audioOrder: orders[index],
+                            ),
+                          );
+                        else
+                          await Get.to(
+                            CharactersVoiceScreen(
+                              audioOrder: orders[index],
+                            ),
+                          );
+                        await getData();
+                      },
+                    );
+                  },
+                ),
               ),
             ),
           ),
           floatingActionButton: FloatingActionButton(
-            onPressed: () {
-              Get.to(
+            onPressed: () async {
+              await Get.to(
                 PickBookScreen(),
               );
+              await getData();
             },
             child: Icon(
               Icons.add,
@@ -129,9 +145,12 @@ class _HomeScreenState extends State<HomeScreen> {
       },
     );
   }
-}
 
-class RefreshController {}
+  void _onRefresh() async {
+    await getData();
+    _refreshController.refreshCompleted();
+  }
+}
 
 class BookCard extends StatelessWidget {
   final String title;
@@ -262,12 +281,12 @@ class BookCard extends StatelessWidget {
                   ),
                 ],
               ),
-              if (this.status != "waiting")
+              if (this.status != "Waiting")
                 RoundedButton(
                   buttoncolor: CustomColors.color2,
                   onPreesed: onPressed,
                   textcolor: Colors.white,
-                  title: "Play",
+                  title: getButtonTitle(),
                   fontSize: 20.sp(context),
                 ),
             ],
@@ -278,7 +297,7 @@ class BookCard extends StatelessWidget {
   }
 
   String getButtonTitle() {
-    if (this.status == 'finished')
+    if (this.status == 'Finished')
       return "Play";
     else
       return "Select Voices";
