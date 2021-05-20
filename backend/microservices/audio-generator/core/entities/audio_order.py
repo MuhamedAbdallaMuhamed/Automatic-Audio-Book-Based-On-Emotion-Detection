@@ -9,7 +9,7 @@ class AudioOrder:
         self.__audio_link = audio_link
         self.__cloned = cloned
         self.__scripts = scripts
-        self.__chars_names = chars_names if chars_names is None else {char_name: '' for char_name in chars_names}
+        self.__chars_names = chars_names
 
     @property
     def id(self):

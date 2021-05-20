@@ -13,16 +13,34 @@ tts_queue = deque()
 cx_queue = deque()
 
 
+def isInTtsQ(audio_order):
+    for i in tts_queue:
+        print(i)
+        if i[0] == audio_order.id:
+            return True
+    return False
+
+
+def isInCxQ(audio_order):
+    for i in cx_queue:
+        if i[0] == audio_order.id:
+            return True
+    return False
+
+
 def get_order_status(audio_order):
-    if audio_order.audio_link:
-        return RES_AUDIO_ORDER_FINISHED_STATUS
-    elif audio_order.id in cx_queue or audio_order.id in tts_queue:
-        return RES_AUDIO_ORDER_WAITING_STATUS
+    order = audio_order
+    if order.cloned:
+        if isInTtsQ(audio_order) or isInCxQ(audio_order):
+            return RES_AUDIO_ORDER_WAITING_STATUS
+        elif audio_order.audio_link is not None:
+            return RES_AUDIO_ORDER_FINISHED_STATUS
+        else:
+            return RES_AUDIO_ORDER_GATH_STATUS
     else:
-        #####################
-        # TODO: check audio status from audio generating service
-        #####################
-        pass
+        if audio_order.audio_link is None:
+            return RES_AUDIO_ORDER_WAITING_STATUS
+        return RES_AUDIO_ORDER_FINISHED_STATUS
 
 
 def to_orders_list(audio_orders: [AudioOrder]):
@@ -31,12 +49,13 @@ def to_orders_list(audio_orders: [AudioOrder]):
         orders_list.append({
             RES_AUDIO_ORDER_ID_KEY_NAME: audio_order.id,
             RES_AUDIO_ORDER_TITLE: audio_order.title,
-            RES_AUDIO_ORDER_TEXT_KEY_NAME: audio_order.text,
+            RES_AUDIO_ORDER_TEXT_KEY_NAME: [],
             RES_AUDIO_ORDER_STARTING_PAGE_NUMBER_KEY_NAME: audio_order.start_page,
             RES_AUDIO_ORDER_ENDING_PAGE_NUMBER_KEY_NAME: audio_order.end_page,
             RES_AUDIO_ORDER_STATUS: get_order_status(audio_order),
             RES_AUDIO_ORDER_AUDIO_LINK: audio_order.audio_link,
-            RES_AUDIO_ORDER_AUDIO_CHARS: audio_order.chars_names
+            RES_AUDIO_ORDER_AUDIO_CHARS: audio_order.chars_names,
+            RES_AUDIO_ORDER_CLONED_KEY_NAME: audio_order.cloned,
         })
     return orders_list
 
@@ -74,9 +93,9 @@ class AudioOrderResource(Resource):
 
         audio_orders = get_audio_orders(user_id)
         return {
-            RES_MESSAGE_KEY_NAME: 'Your orders',
-            RES_AUDIO_ORDER_ORDERS: to_orders_list(audio_orders)
-           }, 200
+                   RES_MESSAGE_KEY_NAME: 'Your orders',
+                   RES_AUDIO_ORDER_ORDERS: to_orders_list(audio_orders)
+               }, 200
 
     def post(self):
         audio_order_req = self.audio_order_post_parser.parse_args()
@@ -96,7 +115,7 @@ class AudioOrderResource(Resource):
         if audio_order.cloned:
             cx_queue.append((audio_order.id, audio_order.text))
         else:
-            tts_queue.append((audio_order.id, None, None, audio_order.text)) #scripts, chars_audio, list_pargraphes
+            tts_queue.append((audio_order.id, None, None, audio_order.text))  # scripts, chars_audio, list_pargraphes
         return {RES_MESSAGE_KEY_NAME: 'Your request has been recorded'}, 200
 
     def put(self):
@@ -117,7 +136,7 @@ class AudioOrderResource(Resource):
             os.rename(file_name, pre + '.ogg')
             chars[char_name] = pre + '.ogg'
         audio_order = get_audio_order(id)
-        tts_queue.append((id, audio_order.scripts, chars, audio_order.text)) #scripts, chars_names, senteces
+        tts_queue.append((id, audio_order.scripts, chars, audio_order.text))  # scripts, chars_names, senteces
         return {RES_MESSAGE_KEY_NAME: "Your request will be processed"}, 200,  # bad reques
 
 
@@ -125,6 +144,7 @@ api.add_resource(AudioOrderResource, AUDIO_ORDER_ABS_ENDPOINT_NAME)
 
 ######
 from .queue_handlers import QueuesHandlers
+
 QueuesHandlers.run_queue_handlers()
 # thread
 #####

@@ -19,15 +19,15 @@ class QueuesHandlers:
         def cx_queue_handler():
             while True:
                 if cx_queue:
-                    QueuesHandlers.__lock.acquire()
+                    #QueuesHandlers.__lock.acquire()
                     order_id, sentences = cx_queue[0]
-                    cx_queue.popleft()
-                    QueuesHandlers.__lock.release()
+                    #QueuesHandlers.__lock.release()
                     sentences = " ".join(sentences)
                     sentences, chars_names, scripts = parse_book(sentences)
                     sentences = ' '.join([' '.join(st) for st in sentences])
                     sentences = ''.join([' ', sentences, ' '])
                     update_audio_order(id=order_id, audio_link=None, chars_names=chars_names, scripts=scripts, sentences=sentences)
+                    cx_queue.popleft()
                     ###
                 else:
                     time.sleep(10)  #  sec
@@ -35,10 +35,9 @@ class QueuesHandlers:
         def tts_queue_handler():
             while True:
                 if tts_queue:
-                    QueuesHandlers.__lock.acquire()
+                    #QueuesHandlers.__lock.acquire()
                     id, scripts, chars_audios, sentences = tts_queue[0]
-                    tts_queue.popleft()
-                    QueuesHandlers.__lock.release()
+                    #QueuesHandlers.__lock.release()
                     if chars_audios is None and scripts is None:
                         sentences = ' '.join(sentences)
                         with requests.get(url=MOZILLA_ABS_ENDPOINT,
@@ -85,6 +84,7 @@ class QueuesHandlers:
                             audio_files.append(chars_audios[char])
                         for path in audio_files:
                             os.remove(path)
+                    tts_queue.popleft()
                 else:
                     time.sleep(10) # sec
         thread = threading.Thread(target=cx_queue_handler, daemon=True)
@@ -127,7 +127,9 @@ def getList(sentence, script):
                 end = sentence.find("'\n", i + 1)
             if start <= end:
                 cur_sentence = sentence[start:end]
-                char, prev = getChar(cur_sentence, script, prev)
+                char, tmp = getChar(cur_sentence, script, prev)
+                if tmp is not None:
+                    prev = tmp
                 res.append((cur_sentence, char))
                 i = end + 1
         else:

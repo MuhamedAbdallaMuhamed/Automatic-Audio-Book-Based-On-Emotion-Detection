@@ -10,13 +10,14 @@ class AudioOrderDb:
     @staticmethod
     def insert_audio_order(audioOrder: AudioOrder) -> bool:
         print(AudioOrderDb.audio_order_to_dict(audioOrder))
-        db.collection(AUDIO_ORDER_COLLECTION_NAME).document(audioOrder.id).set(AudioOrderDb.audio_order_to_dict(audioOrder))
+        db.collection(AUDIO_ORDER_COLLECTION_NAME).document(audioOrder.id).set(
+            AudioOrderDb.audio_order_to_dict(audioOrder))
         return audioOrder
 
     @staticmethod
     def add_audio_file(id, file_path):
         blob = bucket.blob('audios/' + id + '.wav')
-        blob.upload_from_filename(file_path)
+        blob.upload_from_filename(filename=file_path, timeout=300)
         blob.make_public()
         os.remove(file_path)
         AudioOrderDb.update_audio_order(id, audio_link=blob.public_url, chars_names=None, scripts=None)
@@ -34,7 +35,7 @@ class AudioOrderDb:
             cloned=a[AUDIO_ORDER_CLONED_ENTITY_NAME],
             audio_link=a[AUDIO_ORDER_AUDIO_LINK_ENTITY_NAME],
             chars_names=a[AUDIO_ORDER_CHARACTERS_NAMES_ENTITY_NAME],
-            scripts= AudioOrderDb.from_dict_to_scripts(a)
+            scripts=AudioOrderDb.from_dict_to_scripts(a)
         )
         return audio_order
 
@@ -45,20 +46,19 @@ class AudioOrderDb:
         for audio_order in res:
             a = audio_order.to_dict()
             audio_order = AudioOrder(
-              id=a[AUDIO_ORDER_ID_ENTITY_NAME],
-              title=a[AUDIO_ORDER_TITLE_ENTITY_NAME],
-              user_id=a[AUDIO_ORDER_USER_ID_ENTITY_NAME],
-              text=a[AUDIO_ORDER_TEXT_ENTITY_NAME],
-              start_page=a[AUDIO_ORDER_START_PAGE_ENTITY_NAME],
-              end_page=a[AUDIO_ORDER_END_PAGE_ENTITY_NAME],
-              cloned=a[AUDIO_ORDER_CLONED_ENTITY_NAME],
-              audio_link=a[AUDIO_ORDER_AUDIO_LINK_ENTITY_NAME],
-              chars_names=a[AUDIO_ORDER_CHARACTERS_NAMES_ENTITY_NAME],
-              scripts= AudioOrderDb.from_dict_to_scripts(a)
+                id=a[AUDIO_ORDER_ID_ENTITY_NAME],
+                title=a[AUDIO_ORDER_TITLE_ENTITY_NAME],
+                user_id=a[AUDIO_ORDER_USER_ID_ENTITY_NAME],
+                text=a[AUDIO_ORDER_TEXT_ENTITY_NAME],
+                start_page=a[AUDIO_ORDER_START_PAGE_ENTITY_NAME],
+                end_page=a[AUDIO_ORDER_END_PAGE_ENTITY_NAME],
+                cloned=a[AUDIO_ORDER_CLONED_ENTITY_NAME],
+                audio_link=a[AUDIO_ORDER_AUDIO_LINK_ENTITY_NAME],
+                chars_names=a[AUDIO_ORDER_CHARACTERS_NAMES_ENTITY_NAME],
+                scripts=AudioOrderDb.from_dict_to_scripts(a)
             )
             audio_orders.append(audio_order)
         return audio_orders
-
 
     @staticmethod
     def update_audio_order(id, audio_link, chars_names, scripts, sentences=None) -> bool:
@@ -107,11 +107,13 @@ class AudioOrderDb:
 
     @staticmethod
     def to_scripts(scripts):
-        return None if scripts is None else {char_name: [ {'0': t[0], '1': t[1]} for t in scripts[char_name]] for char_name in scripts}
+        return None if scripts is None else {char_name: [{'0': t[0], '1': t[1]} for t in scripts[char_name]] for
+                                             char_name in scripts}
 
     @staticmethod
     def from_dict_to_scripts(a):
         if not a or AUDIO_ORDER_AUDIO_SCRIPTS_ENTITY_NAME not in a or a[AUDIO_ORDER_AUDIO_SCRIPTS_ENTITY_NAME] is None:
             return None
-        x = {char_name: [(dic['0'], dic['1']) for dic in a[AUDIO_ORDER_AUDIO_SCRIPTS_ENTITY_NAME][char_name]] for char_name in a[AUDIO_ORDER_AUDIO_SCRIPTS_ENTITY_NAME]}
+        x = {char_name: [(dic['0'], dic['1']) for dic in a[AUDIO_ORDER_AUDIO_SCRIPTS_ENTITY_NAME][char_name]] for
+             char_name in a[AUDIO_ORDER_AUDIO_SCRIPTS_ENTITY_NAME]}
         return x
