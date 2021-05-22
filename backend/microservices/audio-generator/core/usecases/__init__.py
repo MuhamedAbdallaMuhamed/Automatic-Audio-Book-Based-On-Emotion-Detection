@@ -1,6 +1,6 @@
 from core.usecases.audio_order import *
-
-from ..data_access import *
+from core.usecases.book import *
+from core.data_access import *
 
 
 def insert_audio_order(audio_order) -> bool:
@@ -13,6 +13,22 @@ def get_user_orders(user_id) -> AudioOrder:
 
 def update_audio_order(id, audio_link, chars_names, scripts, sentences=None) -> bool:
     return AudioOrderDb.update_audio_order(id, audio_link, chars_names, scripts, sentences)
+
+
+def insert_sentences(hashing, sentences):
+    return BookDb.insert_book(hashing, sentences)
+
+
+def get_sentences(hashing):
+    return BookDb.get_book(hashing)
+
+
+def insert_sentences(hashing, sentences):
+    return BookDb.insert_book(hashing, sentences)
+
+
+def get_sentences(hashing) -> [Sentence]:
+    return BookDb.get_book(hashing)
 
 
 add_audio_order = build_add_audio_orders(insert_audio_order=insert_audio_order)

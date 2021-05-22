@@ -1,7 +1,7 @@
 from config import *
 from .audio_order import cx_queue, tts_queue
-from core.entities import parse_book
-from core.usecases import update_audio_order, add_audio_file
+from core.entities import parse_book, Sentence
+from core.usecases import update_audio_order, add_audio_file, get_audio_order, insert_sentences, get_sentences
 
 import time
 import threading
@@ -11,6 +11,7 @@ from pydub import AudioSegment
 
 FRAGMENT_AUDIO_PATH = "fragment.wav"
 
+
 class QueuesHandlers:
     __lock = threading.Lock()
 
@@ -19,27 +20,30 @@ class QueuesHandlers:
         def cx_queue_handler():
             while True:
                 if cx_queue:
-                    #QueuesHandlers.__lock.acquire()
+                    QueuesHandlers.__lock.acquire()
                     order_id, sentences = cx_queue[0]
-                    #QueuesHandlers.__lock.release()
+                    QueuesHandlers.__lock.release()
                     sentences = " ".join(sentences)
                     sentences, chars_names, scripts = parse_book(sentences)
                     sentences = ' '.join([' '.join(st) for st in sentences])
                     sentences = ''.join([' ', sentences, ' '])
                     update_audio_order(id=order_id, audio_link=None, chars_names=chars_names, scripts=scripts, sentences=sentences)
+                    QueuesHandlers.__lock.acquire()
                     cx_queue.popleft()
-                    ###
+                    QueuesHandlers.__lock.release()
                 else:
                     time.sleep(10)  #  sec
 
         def tts_queue_handler():
             while True:
                 if tts_queue:
-                    #QueuesHandlers.__lock.acquire()
-                    id, scripts, chars_audios, sentences = tts_queue[0]
-                    #QueuesHandlers.__lock.release()
-                    if chars_audios is None and scripts is None:
-                        sentences = ' '.join(sentences)
+                    QueuesHandlers.__lock.acquire()
+                    id, chars_audios = tts_queue[0]
+                    QueuesHandlers.__lock.release()
+                    sentences_list = get_sentences_list(id)
+
+                    if chars_audios is None:
+                        sentences = ' '.join([sentence.text for sentence in sentences_list])
                         with requests.get(url=MOZILLA_ABS_ENDPOINT,
                                          data={REQ_MOZILLA_TSS_TEXT_KEY_NAME: sentences}) as r:
                             r.raise_for_status()
@@ -48,35 +52,30 @@ class QueuesHandlers:
                                 for chunk in r.iter_content(chunk_size=8192):
                                     f.write(chunk)
                             add_audio_file(id, local_filename)
-
                     else:
-                        req_list = getList(sentences, scripts)
-                        req_list = [x for x in req_list if len(x[0].strip()) != 0]
-                        i = 0
                         audio_files = []
-                        for sentences, char_name in req_list:
-                            if char_name is None or char_name not in chars_audios:
+                        for sentence in sentences_list:
+                            if sentence.character_name is None or sentence.character_name not in chars_audios:
                                 with requests.get(url=MOZILLA_ABS_ENDPOINT,
-                                                  data={REQ_MOZILLA_TSS_TEXT_KEY_NAME: sentences}) as r:
+                                                  data={REQ_MOZILLA_TSS_TEXT_KEY_NAME: sentence.text}) as r:
                                     r.raise_for_status()
-                                    local_filename = str(id) + str(i) + '.wav'
+                                    local_filename = str(id) + str(sentence.pos) + '.wav'
                                     audio_files.append(local_filename)
                                     with open(local_filename, 'wb') as f:
                                         for chunk in r.iter_content(chunk_size=8192):
                                             f.write(chunk)
                             else:
                                 with requests.get(url=TTS_ABS_ENDPOINT,
-                                                  files={REQ_TSS_FILE_KEY_NAME: open(chars_audios[char_name], "rb")},
+                                                  files={REQ_TSS_FILE_KEY_NAME: open(chars_audios[sentence.character_name], "rb")},
                                                   data={
-                                                      REQ_TSS_TEXT_KEY_NAME: sentences,
-                                                      REQ_TSS_FILE_SIZE_KEY_NAME: os.path.getsize(chars_audios[char_name])
+                                                      REQ_TSS_TEXT_KEY_NAME: sentence.text,
+                                                      REQ_TSS_FILE_SIZE_KEY_NAME: os.path.getsize(chars_audios[sentence.character_name])
                                                   }) as r:
-                                    local_filename = str(id) + str(i) + '.wav'
+                                    local_filename = str(id) + str(sentence.pos) + '.wav'
                                     audio_files.append(local_filename)
                                     with open(local_filename, 'wb') as f:
                                         for chunk in r.iter_content(chunk_size=8192):
                                             f.write(chunk)
-                            i += 1
 
                         file_path = merge_audios(audio_files, id)
                         add_audio_file(id, file_path)
@@ -84,13 +83,22 @@ class QueuesHandlers:
                             audio_files.append(chars_audios[char])
                         for path in audio_files:
                             os.remove(path)
+                    QueuesHandlers.__lock.acquire()
                     tts_queue.popleft()
+                    QueuesHandlers.__lock.release()
                 else:
-                    time.sleep(10) # sec
+                    time.sleep(10)  # sec
+
         thread = threading.Thread(target=cx_queue_handler, daemon=True)
         thread.start()
         thread = threading.Thread(target=tts_queue_handler, daemon=True)
         thread.start()
+
+
+def get_sentences_list(req_id):
+    audio_req = get_audio_order(req_id)
+    sentences_list = getList(audio_req.text, audio_req.scripts)
+    return sentences_list
 
 
 def isValid(char, prev):
@@ -112,15 +120,17 @@ def getChar(text, script, prev):
 
 
 def getList(sentence, script):
-    res = list()
+    res: [Sentence] = []
     cur_text = str()
     i = 0
+    sent_pos = 0
     prev = -1
     while i < len(sentence):
         if sentence[i] == "'" and isValid(sentence[i + 1], sentence[i - 1]):
-            if len(cur_text) > 0:
-                res.append((cur_text, None))
+            if len(cur_text.strip()) > 0:
+                res.append(Sentence(text=cur_text, char_name=None, pos=sent_pos))
                 cur_text = ""
+                sent_pos += 1
             start = i + 1
             end = sentence.find("' ", i + 1)
             if end == -1:
@@ -130,13 +140,16 @@ def getList(sentence, script):
                 char, tmp = getChar(cur_sentence, script, prev)
                 if tmp is not None:
                     prev = tmp
-                res.append((cur_sentence, char))
+                if len(cur_text.strip()) > 0:
+                    res.append(Sentence(text=cur_text, char_name=char, pos=sent_pos))
+                    sent_pos += 1
                 i = end + 1
         else:
             cur_text += sentence[i]
         i += 1
-    if len(cur_text) > 0:
-        res.append((cur_text, None))
+    if len(cur_text.strip()) > 0:
+        res.append(Sentence(text=cur_text, char_name=None, pos=sent_pos))
+        sent_pos += 1
     return res
 
 

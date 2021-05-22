@@ -7,6 +7,7 @@ from .make_audio_order import build_make_audio_order
 from .audio_order import *
 from .exception import *
 from .book_parsing import *
+from .sentence import *
 
 
 def title_validator(title: str):

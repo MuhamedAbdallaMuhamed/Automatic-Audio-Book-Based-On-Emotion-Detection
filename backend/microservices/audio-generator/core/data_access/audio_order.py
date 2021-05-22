@@ -35,6 +35,7 @@ class AudioOrderDb:
             cloned=a[AUDIO_ORDER_CLONED_ENTITY_NAME],
             audio_link=a[AUDIO_ORDER_AUDIO_LINK_ENTITY_NAME],
             chars_names=a[AUDIO_ORDER_CHARACTERS_NAMES_ENTITY_NAME],
+            hashing=a[AUDIO_ORDER_HASHING_ENTITY_NAME],
             scripts=AudioOrderDb.from_dict_to_scripts(a)
         )
         return audio_order
@@ -55,6 +56,7 @@ class AudioOrderDb:
                 cloned=a[AUDIO_ORDER_CLONED_ENTITY_NAME],
                 audio_link=a[AUDIO_ORDER_AUDIO_LINK_ENTITY_NAME],
                 chars_names=a[AUDIO_ORDER_CHARACTERS_NAMES_ENTITY_NAME],
+                hashing=a[AUDIO_ORDER_HASHING_ENTITY_NAME],
                 scripts=AudioOrderDb.from_dict_to_scripts(a)
             )
             audio_orders.append(audio_order)
@@ -102,6 +104,7 @@ class AudioOrderDb:
             AUDIO_ORDER_USER_ID_ENTITY_NAME: audio_order.user_id,
             AUDIO_ORDER_AUDIO_LINK_ENTITY_NAME: audio_order.audio_link,
             AUDIO_ORDER_CHARACTERS_NAMES_ENTITY_NAME: audio_order.chars_names,
+            AUDIO_ORDER_HASHING_ENTITY_NAME: audio_order.hashing,
             AUDIO_ORDER_AUDIO_SCRIPTS_ENTITY_NAME: AudioOrderDb.to_scripts(audio_order.scripts)
         }
 

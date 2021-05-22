@@ -2,7 +2,7 @@ from .audio_order import AudioOrder
 
 
 def build_make_audio_order(id_generator, title_validator, page_number_validator):
-    def make_audio_order(user_id, title, text, start_page, end_page, cloned):
+    def make_audio_order(user_id, title, text, start_page, end_page, cloned, hashing):
         # validate title
         title_validator(title)
         # validate start_page
@@ -20,7 +20,8 @@ def build_make_audio_order(id_generator, title_validator, page_number_validator)
                     cloned=cloned,
                     audio_link=None,
                     chars_names=None,
-                    scripts=None
+                    scripts=None,
+                    hashing=hashing
                 )
         return user
     return make_audio_order

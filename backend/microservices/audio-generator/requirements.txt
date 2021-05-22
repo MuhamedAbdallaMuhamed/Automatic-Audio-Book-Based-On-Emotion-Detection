@@ -88,3 +88,4 @@ urllib3
 validate-email
 wasabi
 Werkzeug
+pymupdf
