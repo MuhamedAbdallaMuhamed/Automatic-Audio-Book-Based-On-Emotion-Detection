@@ -7,7 +7,7 @@ def insert_audio_order(audio_order) -> bool:
     return AudioOrderDb.insert_audio_order(audio_order)
 
 
-def get_user_orders(user_id) -> AudioOrder:
+def get_user_orders(user_id -)> AudioOrder:
     return AudioOrderDb.get_user_audio_orders(user_id)
 
 
