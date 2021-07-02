@@ -9,8 +9,14 @@ AUDIO_ORDER_CLONED_ENTITY_NAME = 'cloned'
 AUDIO_ORDER_AUDIO_LINK_ENTITY_NAME = 'audioLink'
 AUDIO_ORDER_CHARACTERS_NAMES_ENTITY_NAME = 'charactersNames'
 AUDIO_ORDER_AUDIO_SCRIPTS_ENTITY_NAME = 'scripts'
-AUDIO_ORDER_HASHING_ENTITY_NAME = 'hashing'
-
 
 BOOK_TITLE_MIN_LENGTH = 1
 BOOK_TITLE_MAX_LENGTH = 256
+
+EMOTION_MAPPING = {
+    "Happy": "backend/microservices/audio-generator/emotions_builtin/happy.wav",
+    "Angry": "backend/microservices/audio-generator/emotions_builtin/angry.wav",
+    "Surprise": "backend/microservices/audio-generator/emotions_builtin/surprise.wav",
+    "Sad": "backend/microservices/audio-generator/emotions_builtin/sad.wav",
+    "Fear": "backend/microservices/audio-generator/emotions_builtin/fear.wav",
+}

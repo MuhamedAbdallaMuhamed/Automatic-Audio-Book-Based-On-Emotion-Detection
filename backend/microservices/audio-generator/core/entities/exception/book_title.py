@@ -1,3 +1,6 @@
+from config import BOOK_TITLE_MAX_LENGTH, BOOK_TITLE_MIN_LENGTH
+
+
 class BookTItleException(Exception):
     """Exception raised when title's length exceeds the allowed length"""
 
