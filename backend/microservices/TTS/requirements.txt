@@ -1,0 +1,25 @@
+umap-learn
+visdom~=0.1.8.9
+librosa>=0.8.0
+matplotlib>=3.3.0
+numpy==1.19.3; platform_system == "Windows"
+numpy==1.19.4; platform_system != "Windows"
+scipy>=1.0.0
+tqdm~=4.60.0
+sounddevice~=0.4.1
+SoundFile~=0.10.3.post1
+Unidecode~=1.2.0
+inflect~=5.3.0
+PyQt5~=5.15.4
+multiprocess~=0.70.11.1
+numba
+webrtcvad; platform_system != "Windows"
+
+torch~=1.8.1
+scikit-learn~=0.24.1
+umap~=0.1.1
+audioread~=2.1.9
+utils~=1.0.1
+Flask~=1.1.2
+Werkzeug~=1.0.1
+pydub~=0.25.1
