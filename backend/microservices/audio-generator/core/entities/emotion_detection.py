@@ -5,7 +5,7 @@ def get_highest_emotion(emotions):
     highest_emotion = ""
     max_val = 0
     for e in emotions:
-        if emotions[e] > max_val:
+        if emotions[e] >= max_val:
             max_val = emotions[e]
             highest_emotion = e
     return highest_emotion

@@ -59,7 +59,7 @@ class AudioOrderResource(Resource):
     audio_order_post_parser.add_argument(REQ_AUDIO_ORDER_STARTING_PAGE_NUMBER_KEY_NAME, type=int, required=True)
     audio_order_post_parser.add_argument(REQ_AUDIO_ORDER_ENDING_PAGE_NUMBER_KEY_NAME, type=int, required=True)
     audio_order_post_parser.add_argument(REQ_AUDIO_ORDER_TEXT_KEY_NAME, type=str, action='append', required=True)
-    audio_order_post_parser.add_argument(REQ_AUDIO_ORDER_CLONED_KEY_NAME, type=bool, required=True)
+    audio_order_post_parser.add_argument(REQ_AUDIO_ORDER_CLONED_KEY_NAME, type=int, required=True)
 
     audio_order_put_parser = reqparse.RequestParser()
     audio_order_put_parser.add_argument(REQ_AUDIO_ORDER_ID_KEY_NAME, type=str, required=True, location='form')

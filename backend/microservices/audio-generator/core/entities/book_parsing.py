@@ -280,14 +280,14 @@ def parse_book(text):
     def discoverLeftCharacter(characters, text, index):
         word_count = 0
         while word_count < DISTANCE_LIMIT:
-            start = getLeftSpace(index, text)
+            start = getLeftSpace(index - 1, text)
             if start == -1:
                 return None
             word = text[start + 1:index]
             for i in characters:
                 if word.startswith(i):
                     return i
-            index = start - 1
+            index = start
             word_count += 1
         return None
 
@@ -362,6 +362,8 @@ def parse_book(text):
         cleaned_paragraphs = tmp.split("$@$")
         for i in range(len(cleaned_paragraphs)):
             cleaned_paragraphs[i] = coref_resolution(cleaned_paragraphs[i])
+            if cleaned_paragraphs[i][0] != ' ':
+                cleaned_paragraphs[i] = " " + cleaned_paragraphs[i]
             cleaned_paragraphs[i] += '\n'
         scripts = defaultdict(list)
         global dialogue_index

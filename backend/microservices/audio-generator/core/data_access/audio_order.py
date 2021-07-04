@@ -106,13 +106,13 @@ class AudioOrderDb:
 
     @staticmethod
     def to_scripts(scripts):
-        return None if scripts is None else {char_name: [{'0': t[0], '1': t[1]} for t in scripts[char_name]] for
+        return None if scripts is None else {char_name: [{'0': t[0], '1': t[1], '2': t[2]} for t in scripts[char_name]] for
                                              char_name in scripts}
 
     @staticmethod
     def from_dict_to_scripts(a):
         if not a or AUDIO_ORDER_AUDIO_SCRIPTS_ENTITY_NAME not in a or a[AUDIO_ORDER_AUDIO_SCRIPTS_ENTITY_NAME] is None:
             return None
-        x = {char_name: [(dic['0'], dic['1']) for dic in a[AUDIO_ORDER_AUDIO_SCRIPTS_ENTITY_NAME][char_name]] for
+        x = {char_name: [(dic['0'], dic['1'], dic['2']) for dic in a[AUDIO_ORDER_AUDIO_SCRIPTS_ENTITY_NAME][char_name]] for
              char_name in a[AUDIO_ORDER_AUDIO_SCRIPTS_ENTITY_NAME]}
         return x

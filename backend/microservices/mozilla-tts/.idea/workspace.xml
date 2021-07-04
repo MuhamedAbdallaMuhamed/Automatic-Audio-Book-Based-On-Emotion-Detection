@@ -2,57 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9a62b88d-6395-4f3f-bbf2-d5358ffd43cc" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../TTS/VC/synthesizer/saved_models/pretrained/pretrained.pt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../audio-generator/core/entities/emotion_detection.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../audio-generator/emotions_builtin/angry.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../audio-generator/emotions_builtin/fear.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../audio-generator/emotions_builtin/happy.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../audio-generator/emotions_builtin/sad.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../audio-generator/emotions_builtin/surprise.wav" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../TTS/demo_output_00.wavslower.wav" beforeDir="false" afterPath="$PROJECT_DIR$/../TTS/demo_output_00.wavslower.wav" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TTS/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/../TTS/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../audio-generator/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../audio-generator/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../audio-generator/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../audio-generator/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../audio-generator/config/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../audio-generator/config/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../audio-generator/config/audio_order_db.py" beforeDir="false" afterPath="$PROJECT_DIR$/../audio-generator/config/audio_order_db.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../audio-generator/config/book_db.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../audio-generator/config/server.py" beforeDir="false" afterPath="$PROJECT_DIR$/../audio-generator/config/server.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../audio-generator/controller/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/../audio-generator/controller/config.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../audio-generator/controller/routes/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../audio-generator/controller/routes/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../audio-generator/config/routes/audio_order.py" beforeDir="false" afterPath="$PROJECT_DIR$/../audio-generator/config/routes/audio_order.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../audio-generator/controller/routes/audio_order.py" beforeDir="false" afterPath="$PROJECT_DIR$/../audio-generator/controller/routes/audio_order.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../audio-generator/controller/routes/helpers.py" beforeDir="false" afterPath="$PROJECT_DIR$/../audio-generator/controller/routes/helpers.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../audio-generator/controller/routes/queue_handlers.py" beforeDir="false" afterPath="$PROJECT_DIR$/../audio-generator/controller/routes/queue_handlers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../audio-generator/core/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../audio-generator/core/data_access/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../audio-generator/core/data_access/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../audio-generator/core/data_access/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/../audio-generator/core/data_access/admin.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../audio-generator/core/data_access/audio_order.py" beforeDir="false" afterPath="$PROJECT_DIR$/../audio-generator/core/data_access/audio_order.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../audio-generator/core/data_access/book.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../audio-generator/core/entities/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../audio-generator/core/entities/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../audio-generator/core/entities/audio_order.py" beforeDir="false" afterPath="$PROJECT_DIR$/../audio-generator/core/entities/audio_order.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../audio-generator/core/entities/book_parsing.py" beforeDir="false" afterPath="$PROJECT_DIR$/../audio-generator/core/entities/book_parsing.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../audio-generator/core/entities/character.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../audio-generator/core/entities/exception/book_title.py" beforeDir="false" afterPath="$PROJECT_DIR$/../audio-generator/core/entities/exception/book_title.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../audio-generator/core/entities/make_audio_order.py" beforeDir="false" afterPath="$PROJECT_DIR$/../audio-generator/core/entities/make_audio_order.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../audio-generator/core/entities/sentence.py" beforeDir="false" afterPath="$PROJECT_DIR$/../audio-generator/core/entities/sentence.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../audio-generator/core/usecases/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../audio-generator/core/usecases/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../audio-generator/core/usecases/audio_order/add_audio_order.py" beforeDir="false" afterPath="$PROJECT_DIR$/../audio-generator/core/usecases/audio_order/add_audio_order.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../audio-generator/core/usecases/book/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../audio-generator/neuralcoref" beforeDir="false" afterPath="$PROJECT_DIR$/../audio-generator/neuralcoref" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../audio-generator/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../audio-generator/requirements.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../book/.idea/workspace.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../book/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../emotion detection/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../emotion detection/controller/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../emotion-detection/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../emotion-detection/config/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../emotion-detection/config/backend_constant.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../emotion-detection/controller/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../emotion-detection/controller/emotionManager.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../emotion-detection/core/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../emotion-detection/core/emotion_detection.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../emotion-detection/core/emotion_detection_factory.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../audio-generator/emotions_builtin/happy.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../audio-generator/neuralcoref" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../auth/core/entities/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../auth/core/entities/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controller/routes/tts.py" beforeDir="false" afterPath="$PROJECT_DIR$/controller/routes/tts.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirments.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirments.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/temp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tts_output.wav" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,6 +38,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="add_unversioned_files" value="$PROJECT_DIR$/venv/lib/python3.8/site-packages/flask/app.py" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>

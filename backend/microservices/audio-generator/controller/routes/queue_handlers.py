@@ -49,7 +49,7 @@ class QueuesHandlers:
                     if chars_audios is None:
                         sentences = ' '.join([sentence.text for sentence in sentences_list])
                         with requests.get(url=MOZILLA_ABS_ENDPOINT,
-                                          data={REQ_MOZILLA_TSS_TEXT_KEY_NAME: sentences}) as r:
+                                           data={REQ_MOZILLA_TSS_TEXT_KEY_NAME: sentences}) as r:
                             r.raise_for_status()
                             local_filename = 'temp_audio.wav'
                             with open(local_filename, 'wb') as f:
@@ -61,7 +61,7 @@ class QueuesHandlers:
                         for sentence in sentences_list:
                             if sentence.character_name is None or sentence.character_name not in chars_audios:
                                 with requests.get(url=MOZILLA_ABS_ENDPOINT,
-                                                  data={REQ_MOZILLA_TSS_TEXT_KEY_NAME: sentence.text}) as r:
+                                                   data={REQ_MOZILLA_TSS_TEXT_KEY_NAME: sentence.text}) as r:
                                     r.raise_for_status()
                                     local_filename = str(id) + str(sentence.pos) + '.wav'
                                     audio_files.append(local_filename)
@@ -89,21 +89,22 @@ class QueuesHandlers:
                                         for chunk in r.iter_content(chunk_size=8192):
                                             f.write(chunk)
 
-                                if sentence.direction:
+                                if sentence.direction is None:
+                                    audio_files.append(local_filename)
+                                elif sentence.direction:
                                     audio_files.append(evc_voice_fragment)
                                     audio_files.append(local_filename)
-                                elif not sentence.direction:
-                                    audio_files.append(local_filename)
-                                    audio_files.append(evc_voice_fragment)
                                 else:
                                     audio_files.append(local_filename)
+                                    audio_files.append(evc_voice_fragment)
 
                         file_path = merge_audios(audio_files, id)
                         add_audio_file(id, file_path)
                         for char in chars_audios:
                             audio_files.append(chars_audios[char])
                         for path in audio_files:
-                            os.remove(path)
+                            if isValidFilePath(path):
+                                os.remove(path)
                     QueuesHandlers.__lock.acquire()
                     tts_queue.popleft()
                     QueuesHandlers.__lock.release()
@@ -118,7 +119,7 @@ class QueuesHandlers:
 
 def get_sentences_list(req_id, has_author):
     audio_req = get_audio_order(req_id)
-    sentences_list = getList(audio_req.text, audio_req.scripts, has_author)
+    sentences_list = getList(''.join(audio_req.text), audio_req.scripts, has_author)
     return sentences_list
 
 
@@ -126,10 +127,18 @@ def isValid(char, prev):
     return 'A' <= char <= 'Z' and not ('a' <= prev <= 'z' or 'A' <= prev <= 'Z')
 
 
+def isValidFilePath(path):
+    if path in EMOTION_SET:
+        return False
+    return True
+
+
 def getChar(text, script, prev):
     mn = 2 * 10 ** 18
     char = None
     direction = None
+    if script is None:
+        return None, None, None
     for i in script:
         for j in script[i]:
             if j[1] < mn and j[0] == text and mn > prev:
@@ -166,8 +175,9 @@ def getList(sentence, script, has_author):
                 char, tmp, direction = getChar(cur_sentence, script, prev)
                 if tmp is not None:
                     prev = tmp
-                if len(cur_text.strip()) > 0:
-                    res.append(Sentence(text=cur_text, char_name=char, pos=sent_pos, direction=direction))
+                if len(cur_sentence.strip()) > 0:
+                    res.append(Sentence(text=cur_sentence, char_name=(author_name if char is None else char),
+                                        pos=sent_pos, direction=direction))
                     sent_pos += 1
                 i = end + 1
         else:

@@ -14,9 +14,16 @@ BOOK_TITLE_MIN_LENGTH = 1
 BOOK_TITLE_MAX_LENGTH = 256
 
 EMOTION_MAPPING = {
-    "Happy": "backend/microservices/audio-generator/emotions_builtin/happy.wav",
-    "Angry": "backend/microservices/audio-generator/emotions_builtin/angry.wav",
-    "Surprise": "backend/microservices/audio-generator/emotions_builtin/surprise.wav",
-    "Sad": "backend/microservices/audio-generator/emotions_builtin/sad.wav",
-    "Fear": "backend/microservices/audio-generator/emotions_builtin/fear.wav",
+    "Happy": "emotions_builtin/happy.wav",
+    "Angry": "emotions_builtin/angry.wav",
+    "Surprise": "emotions_builtin/surprise.wav",
+    "Sad": "emotions_builtin/sad.wav",
+    "Fear": "emotions_builtin/fear.wav",
 }
+
+EMOTION_SET = ["emotions_builtin/happy.wav",
+               "emotions_builtin/angry.wav",
+               "emotions_builtin/surprise.wav",
+               "emotions_builtin/sad.wav",
+               "emotions_builtin/fear.wav"
+               ]
