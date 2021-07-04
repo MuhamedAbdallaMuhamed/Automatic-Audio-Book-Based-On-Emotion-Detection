@@ -108,7 +108,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       cloned: orders[index].cloned,
                       status: orders[index].status,
                       onPressed: () async {
-                        if (orders[index].status == "Finished")
+                        if (orders[index].status == "finished")
                           await Get.to(
                             AudioPlayerScreen(
                               audioOrder: orders[index],
@@ -156,7 +156,7 @@ class BookCard extends StatelessWidget {
   final String title;
   final int startPage;
   final int endPage;
-  final bool cloned;
+  final int cloned;
   final String status;
   final Function onPressed;
 
@@ -252,7 +252,7 @@ class BookCard extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    cloned ? "Custom Sound" : "Default Sound",
+                    getType(cloned),
                     style: TextStyle(
                       fontSize: 20.sp(context),
                       fontFamily: Keys.Araboto,
@@ -272,7 +272,7 @@ class BookCard extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    status ?? "Finished",
+                    status ?? "finished",
                     style: TextStyle(
                       fontSize: 20.sp(context),
                       fontFamily: Keys.Araboto,
@@ -281,7 +281,7 @@ class BookCard extends StatelessWidget {
                   ),
                 ],
               ),
-              if (this.status != "Waiting")
+              if (this.status != "waiting")
                 RoundedButton(
                   buttoncolor: CustomColors.color2,
                   onPreesed: onPressed,
@@ -297,10 +297,20 @@ class BookCard extends StatelessWidget {
   }
 
   String getButtonTitle() {
-    if (this.status == 'Finished')
+    if (this.status == 'finished')
       return "Play";
     else
       return "Select Voices";
+  }
+
+  String getType(int cloned) {
+    switch (cloned) {
+      case 0:
+        return "Default Sound";
+      case 1:
+        return "Custom Sound";
+    }
+    return null;
   }
 }
 
@@ -324,24 +334,6 @@ class Menu extends StatelessWidget {
             children: [
               SizedBox(
                 height: 4.heightPercentage(context),
-              ),
-              MenuItem(
-                ontap: () {
-                  SimpleHiddenDrawerController.of(context).toggle();
-                },
-                text: 'Requests',
-              ),
-              SizedBox(
-                height: 1.heightPercentage(context),
-              ),
-              MenuItem(
-                ontap: () {
-                  SimpleHiddenDrawerController.of(context).toggle();
-                },
-                text: 'Books',
-              ),
-              SizedBox(
-                height: 1.heightPercentage(context),
               ),
               MenuItem(
                 ontap: () {

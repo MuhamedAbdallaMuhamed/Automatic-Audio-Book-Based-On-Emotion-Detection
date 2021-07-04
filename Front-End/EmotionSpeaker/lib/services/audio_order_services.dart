@@ -74,11 +74,17 @@ class AudioOrderServices {
     try {
       print(accessToken);
       FormData formData = FormData();
-      audioOrder.charactersVoices.forEach((character, voice) async {
+      print(audioOrder.charactersVoices);
+      /*audioOrder.charactersVoices.forEach((character, voice) async {
         MultipartFile file = await MultipartFile.fromFile(voice);
         formData.files.add(MapEntry(character, file));
-      });
-      formData.fields.add(MapEntry("id", audioOrder.id));
+      });*/
+      for (var k in audioOrder.charactersVoices.keys) {
+        MultipartFile file =
+            await MultipartFile.fromFile(audioOrder.charactersVoices[k]);
+        formData.files.add(MapEntry(k, file));
+      }
+      formData.fields.add(MapEntry("audio_id", audioOrder.id));
       response = await dio.put(
         uri: UserBase.Url + UserBase.AudioOrder,
         data: formData,

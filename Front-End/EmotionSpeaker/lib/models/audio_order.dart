@@ -8,7 +8,7 @@ class AudioOrder {
   List<String> text;
   int startPage;
   int endPage;
-  bool cloned;
+  int cloned;
   String audioLink;
   List<String> charactersNames;
   Map<String, dynamic> charactersVoices = {};
@@ -31,7 +31,7 @@ class AudioOrder {
     List<String> text,
     int startPage,
     int endPage,
-    bool cloned,
+    int cloned,
     String audioLink,
     List<String> charactersNames,
   }) {
@@ -49,29 +49,28 @@ class AudioOrder {
 
   Map<String, dynamic> toMap() {
     return {
-      'id': id,
+      'audio_id': id,
       'title': title,
       'text': text,
-      'startPage': startPage,
-      'endPage': endPage,
+      'start_page': startPage,
+      'end_page': endPage,
       'cloned': cloned,
-      'audioLink': audioLink,
-      'charactersNames': charactersNames,
+      'audio_link': audioLink,
+      'characters_names': charactersNames,
     };
   }
 
   factory AudioOrder.fromMap(Map<String, dynamic> map) {
     return AudioOrder(
-      id: map['id'],
+      id: map['audio_id'],
       title: map['title'],
-      text: List<String>.from(map['text']),
-      startPage: map['startPage'],
-      endPage: map['endPage'],
+      startPage: map['start_page'],
+      endPage: map['end_page'],
       cloned: map['cloned'],
-      audioLink: map['audioLink'],
-      charactersNames: map['charactersNames'] == null
+      audioLink: map['audio_link'],
+      charactersNames: map['characters_names'] == null
           ? []
-          : List<String>.from(map['charactersNames']),
+          : List<String>.from(map['characters_names']),
       status: map["status"] == null ? "Finished" : map["status"],
     );
   }
@@ -83,7 +82,7 @@ class AudioOrder {
 
   @override
   String toString() {
-    return 'AudioOrder(id: $id, title: $title, text: $text, startPage: $startPage, endPage: $endPage, cloned: $cloned, audioLink: $audioLink, charactersNames: $charactersNames)';
+    return 'AudioOrder(audio_id: $id, title: $title, text: $text, start_page: $startPage, end_page: $endPage, cloned: $cloned, audio_link: $audioLink, characters_names: $charactersNames)';
   }
 
   @override

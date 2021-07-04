@@ -146,7 +146,7 @@ class _NewRequestScreenState extends State<NewRequestScreen> {
                         _soundType = value;
                       });
                     },
-                    text: 'Defult Sound',
+                    text: 'Default Sound',
                     soundType: SoundType.defultSound,
                   ),
                   soundTypeRadio(
@@ -191,7 +191,7 @@ class _NewRequestScreenState extends State<NewRequestScreen> {
     });
     AudioOrder audioOrder = AudioOrder();
     audioOrder.title = titleTextEditingController.text;
-    audioOrder.cloned = _soundType == SoundType.defultSound ? false : true;
+    audioOrder.cloned = _soundType == SoundType.defultSound ? 0 : 1;
     audioOrder.startPage = values.start.toInt();
     audioOrder.endPage = values.end.toInt();
     audioOrder.text = [];

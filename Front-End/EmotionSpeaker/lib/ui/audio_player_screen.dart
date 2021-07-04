@@ -15,15 +15,30 @@ class AudioPlayerScreen extends StatefulWidget {
 
 class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
   bool voiceOn = true;
-  double value = 5.5;
-  Duration curDuration;
-  RangeValues values = RangeValues(1, 50);
+  double value = 0;
+  Duration curDuration = Duration();
+  RangeValues values = RangeValues(0, 10000000000000000000000);
   AudioPlayer audioPlayer = AudioPlayer();
 
   @override
   void initState() {
     super.initState();
-    audioPlayer.play(widget.audioOrder.audioLink);
+    play();
+  }
+
+  void play() async {
+    await audioPlayer.play(widget.audioOrder.audioLink);
+
+    audioPlayer.onAudioPositionChanged.listen((p) => setState(() {
+          values = RangeValues(0, audioPlayer.duration.inSeconds.toDouble());
+          value = p.inSeconds.toDouble();
+          print(value);
+          print(audioPlayer.duration.inSeconds.toDouble());
+          print(values);
+          if (p.inSeconds >= audioPlayer.duration.inSeconds) voiceOn = false;
+
+          return curDuration = p;
+        }));
   }
 
   @override
@@ -57,7 +72,66 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
             ),
           ),
           SizedBox(
-            height: 50.hp(context),
+            height: 10.hp(context),
+          ),
+          Text(
+            "From Page ${widget.audioOrder.startPage} to Page ${widget.audioOrder.endPage}",
+            style: TextStyle(
+              fontFamily: Keys.Araboto,
+              fontSize: 25.sp(context),
+              color: CustomColors.backgroundColor,
+            ),
+          ),
+          SizedBox(
+            height: 100.hp(context),
+          ),
+          Slider(
+            min: values.start,
+            max: values.end,
+            value: value,
+            onChanged: (newvalue) {
+              setState(() async {
+                value = newvalue;
+                await audioPlayer.seek(value);
+                voiceOn = true;
+              });
+            },
+            activeColor: CustomColors.color1,
+            inactiveColor: CustomColors.backgroundColor,
+          ),
+          Padding(
+            padding: EdgeInsets.symmetric(
+              horizontal: 6.widthPercentage(context),
+              vertical: 0,
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  (curDuration.inMinutes.toString() +
+                          ':' +
+                          curDuration.inSeconds.toString()) ??
+                      "00:00",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 20.sp(context),
+                  ),
+                ),
+                Text(
+                  (audioPlayer.duration.inMinutes.toString() +
+                          ':' +
+                          audioPlayer.duration.inSeconds.toString()) ??
+                      "00:00",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 20.sp(context),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          SizedBox(
+            height: 10.hp(context),
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -68,10 +142,10 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
                 onPressed: () {
                   setState(() {
                     if (voiceOn) {
-                      curDuration = audioPlayer.duration;
                       audioPlayer.pause();
                     } else {
                       audioPlayer.play(widget.audioOrder.audioLink);
+                      audioPlayer.seek(value % audioPlayer.duration.inSeconds);
                     }
                     voiceOn = !voiceOn;
                   });
@@ -93,46 +167,6 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
               ),
             ],
           ),
-          SizedBox(
-            height: 10.hp(context),
-          ),
-          /*Slider(
-            min: 1,
-            max: values.end,
-            value: value,
-            onChanged: (newvalue) {
-              setState(() {
-                value = newvalue;
-              });
-            },
-            activeColor: CustomColors.color1,
-            inactiveColor: CustomColors.backgroundColor,
-          ),
-          Padding(
-            padding: EdgeInsets.symmetric(
-              horizontal: 6.widthPercentage(context),
-              vertical: 0,
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  (value / 4.53).toStringAsFixed(2),
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 20.sp(context),
-                  ),
-                ),
-                Text(
-                  "4:53",
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 20.sp(context),
-                  ),
-                ),
-              ],
-            ),
-          ),*/
         ],
       ),
     );
