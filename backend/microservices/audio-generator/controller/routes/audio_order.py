@@ -2,10 +2,10 @@ from flask import request
 from flask_restful import Resource, reqparse
 from collections import deque
 from werkzeug.utils import secure_filename
-from .helpers import valid_access_token, pdf_to_text_list
-import os
-import hashlib
 
+from config import AUTHOR_NAME
+from .helpers import valid_access_token
+import os
 from . import api
 from config.routes import *
 from core.usecases import *
@@ -59,7 +59,7 @@ class AudioOrderResource(Resource):
     audio_order_post_parser.add_argument(REQ_AUDIO_ORDER_STARTING_PAGE_NUMBER_KEY_NAME, type=int, required=True)
     audio_order_post_parser.add_argument(REQ_AUDIO_ORDER_ENDING_PAGE_NUMBER_KEY_NAME, type=int, required=True)
     audio_order_post_parser.add_argument(REQ_AUDIO_ORDER_TEXT_KEY_NAME, type=str, action='append', required=True)
-    audio_order_post_parser.add_argument(REQ_AUDIO_ORDER_CLONED_KEY_NAME, type=bool, required=True)
+    audio_order_post_parser.add_argument(REQ_AUDIO_ORDER_CLONED_KEY_NAME, type=int, required=True)
 
     audio_order_put_parser = reqparse.RequestParser()
     audio_order_put_parser.add_argument(REQ_AUDIO_ORDER_ID_KEY_NAME, type=str, required=True, location='form')
@@ -86,12 +86,13 @@ class AudioOrderResource(Resource):
             start_page=audio_order_req[REQ_AUDIO_ORDER_STARTING_PAGE_NUMBER_KEY_NAME],
             end_page=audio_order_req[REQ_AUDIO_ORDER_ENDING_PAGE_NUMBER_KEY_NAME],
             cloned=audio_order_req[REQ_AUDIO_ORDER_CLONED_KEY_NAME],
-            hashing=''
         )
-        if audio_order.cloned:
-            cx_queue.append((audio_order.id, audio_order.text))
+        if audio_order.cloned == 1:
+            cx_queue.append((audio_order.id, audio_order.text, False))
+        elif audio_order.cloned == 2:
+            cx_queue.append((audio_order.id, audio_order.text, True))
         else:
-            tts_queue.append((audio_order.id, None))  # scripts, chars_audio, list_pargraphes
+            tts_queue.append((audio_order.id, None, False))  # scripts, chars_audio, list_pargraphes
         return {RES_MESSAGE_KEY_NAME: 'Your request has been recorded'}, 200
 
     @valid_access_token
@@ -100,14 +101,16 @@ class AudioOrderResource(Resource):
         id = req[REQ_AUDIO_ORDER_ID_KEY_NAME]
         update_audio_order(audio_link=None, chars_names=None, id=id, scripts=None)
         chars = {}
+        has_author = False
         for char_name in request.files:
             file_name = secure_filename(str(id) + char_name + request.files[char_name].filename)
             request.files[char_name].save(file_name)
             pre, ext = os.path.splitext(file_name)
+            has_author = (char_name == AUTHOR_NAME)
             os.rename(file_name, pre + '.ogg')
             chars[char_name] = pre + '.ogg'
 
-        tts_queue.append((id, chars))  # scripts, chars_names, senteces
+        tts_queue.append((id, chars, has_author))  # scripts, chars_names, senteces
         return {RES_MESSAGE_KEY_NAME: "Your request will be processed"}, 200,  # bad reques
 
 

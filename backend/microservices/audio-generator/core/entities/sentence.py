@@ -1,9 +1,11 @@
+
 class Sentence:
-    def __init__(self, text, pos, char_name: str = None):
+    def __init__(self, text, pos, direction, char_name: str = None):
         self.__text = text
         self.__pos = pos
         self.__sound_file_path = None
         self.__char_name = char_name
+        self.__direction = direction
 
     def set_sound_file_path(self, path):
         self.__sound_file_path = path
@@ -26,3 +28,7 @@ class Sentence:
     @property
     def character_name(self):
         return self.__char_name
+
+    @property
+    def direction(self):
+        return self.__direction

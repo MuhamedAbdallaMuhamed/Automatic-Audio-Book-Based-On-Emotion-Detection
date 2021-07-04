@@ -1,5 +1,5 @@
 class AudioOrder:
-    def __init__(self, id, user_id, title, text, start_page, end_page, cloned, audio_link, chars_names, scripts, hashing):
+    def __init__(self, id, user_id, title, text, start_page, end_page, cloned, audio_link, chars_names, scripts):
         self.__id = id
         self.__user_id = user_id
         self.__title = title
@@ -10,7 +10,6 @@ class AudioOrder:
         self.__cloned = cloned
         self.__scripts = scripts
         self.__chars_names = chars_names
-        self.__hashing = hashing
 
     @property
     def id(self):
@@ -51,7 +50,3 @@ class AudioOrder:
     @property
     def chars_names(self):
         return self.__chars_names
-
-    @property
-    def hashing(self):
-        return self.__hashing

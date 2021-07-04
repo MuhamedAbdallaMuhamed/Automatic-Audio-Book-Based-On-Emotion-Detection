@@ -1,5 +1,4 @@
 from typing import Optional
-
 from core.data_access.admin import db
 from core.entities import AudioOrder
 from config import *
@@ -35,7 +34,6 @@ class AudioOrderDb:
             cloned=a[AUDIO_ORDER_CLONED_ENTITY_NAME],
             audio_link=a[AUDIO_ORDER_AUDIO_LINK_ENTITY_NAME],
             chars_names=a[AUDIO_ORDER_CHARACTERS_NAMES_ENTITY_NAME],
-            hashing=a[AUDIO_ORDER_HASHING_ENTITY_NAME],
             scripts=AudioOrderDb.from_dict_to_scripts(a)
         )
         return audio_order
@@ -56,7 +54,6 @@ class AudioOrderDb:
                 cloned=a[AUDIO_ORDER_CLONED_ENTITY_NAME],
                 audio_link=a[AUDIO_ORDER_AUDIO_LINK_ENTITY_NAME],
                 chars_names=a[AUDIO_ORDER_CHARACTERS_NAMES_ENTITY_NAME],
-                hashing=a[AUDIO_ORDER_HASHING_ENTITY_NAME],
                 scripts=AudioOrderDb.from_dict_to_scripts(a)
             )
             audio_orders.append(audio_order)
@@ -104,19 +101,18 @@ class AudioOrderDb:
             AUDIO_ORDER_USER_ID_ENTITY_NAME: audio_order.user_id,
             AUDIO_ORDER_AUDIO_LINK_ENTITY_NAME: audio_order.audio_link,
             AUDIO_ORDER_CHARACTERS_NAMES_ENTITY_NAME: audio_order.chars_names,
-            AUDIO_ORDER_HASHING_ENTITY_NAME: audio_order.hashing,
             AUDIO_ORDER_AUDIO_SCRIPTS_ENTITY_NAME: AudioOrderDb.to_scripts(audio_order.scripts)
         }
 
     @staticmethod
     def to_scripts(scripts):
-        return None if scripts is None else {char_name: [{'0': t[0], '1': t[1]} for t in scripts[char_name]] for
+        return None if scripts is None else {char_name: [{'0': t[0], '1': t[1], '2': t[2]} for t in scripts[char_name]] for
                                              char_name in scripts}
 
     @staticmethod
     def from_dict_to_scripts(a):
         if not a or AUDIO_ORDER_AUDIO_SCRIPTS_ENTITY_NAME not in a or a[AUDIO_ORDER_AUDIO_SCRIPTS_ENTITY_NAME] is None:
             return None
-        x = {char_name: [(dic['0'], dic['1']) for dic in a[AUDIO_ORDER_AUDIO_SCRIPTS_ENTITY_NAME][char_name]] for
+        x = {char_name: [(dic['0'], dic['1'], dic['2']) for dic in a[AUDIO_ORDER_AUDIO_SCRIPTS_ENTITY_NAME][char_name]] for
              char_name in a[AUDIO_ORDER_AUDIO_SCRIPTS_ENTITY_NAME]}
         return x

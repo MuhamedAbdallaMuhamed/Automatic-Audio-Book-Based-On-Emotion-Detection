@@ -5,6 +5,7 @@ import neuralcoref
 from nltk.corpus import stopwords
 from collections import defaultdict
 
+
 def parse_book(text):
     DELIMITER = " $@$ "
     DISTANCE_LIMIT = 20
@@ -192,7 +193,7 @@ def parse_book(text):
             for i in range(len(entityNames[j])):
                 if i + 1 < len(entityNames[j]) and i - 1 >= 0 and \
                         entityNames[j][i] == "'" and not isValid(entityNames[j][i + 1], entityNames[j][i - 1]) \
-                            and str(entityNames[j][i + 1]).isalpha():
+                        and str(entityNames[j][i + 1]).isalpha():
                     continue
                 else:
                     tmp_str += entityNames[j][i]
@@ -279,14 +280,14 @@ def parse_book(text):
     def discoverLeftCharacter(characters, text, index):
         word_count = 0
         while word_count < DISTANCE_LIMIT:
-            start = getLeftSpace(index, text)
+            start = getLeftSpace(index - 1, text)
             if start == -1:
                 return None
             word = text[start + 1:index]
             for i in characters:
                 if word.startswith(i):
                     return i
-            index = start - 1
+            index = start
             word_count += 1
         return None
 
@@ -316,20 +317,20 @@ def parse_book(text):
                 left_character = discoverLeftCharacter(characters, text, i - 1)
                 if right_character and left_character:
                     if hasKeyWord(text, i + 2):
-                        scripts[right_character].append((dialogues[dialogue_index], dialogue_index))
+                        scripts[right_character].append((dialogues[dialogue_index], dialogue_index, False))
                         prev_character = right_character
                     else:
-                        scripts[left_character].append((dialogues[dialogue_index], dialogue_index))
+                        scripts[left_character].append((dialogues[dialogue_index], dialogue_index, True))
                         prev_character = left_character
                 elif right_character:
-                    scripts[right_character].append((dialogues[dialogue_index], dialogue_index))
+                    scripts[right_character].append((dialogues[dialogue_index], dialogue_index, False))
                     prev_character = right_character
                 elif left_character:
-                    scripts[left_character].append((dialogues[dialogue_index], dialogue_index))
+                    scripts[left_character].append((dialogues[dialogue_index], dialogue_index, True))
                     prev_character = left_character
                 else:
                     if prev_character is not None:
-                        scripts[prev_character].append((dialogues[dialogue_index], dialogue_index))
+                        scripts[prev_character].append((dialogues[dialogue_index], dialogue_index, True))
                 dialogue_index += 1
                 i += 1
             i += 1
@@ -361,6 +362,8 @@ def parse_book(text):
         cleaned_paragraphs = tmp.split("$@$")
         for i in range(len(cleaned_paragraphs)):
             cleaned_paragraphs[i] = coref_resolution(cleaned_paragraphs[i])
+            if cleaned_paragraphs[i][0] != ' ':
+                cleaned_paragraphs[i] = " " + cleaned_paragraphs[i]
             cleaned_paragraphs[i] += '\n'
         scripts = defaultdict(list)
         global dialogue_index

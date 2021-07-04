@@ -1,13 +1,11 @@
 import sys
 from os import path
-sys.path.append(path.realpath(path.join(path.dirname(__file__), '../..')))
-
-
 from .make_audio_order import build_make_audio_order
 from .audio_order import *
 from .exception import *
 from .book_parsing import *
-from .sentence import *
+
+sys.path.append(path.realpath(path.join(path.dirname(__file__), '../..')))
 
 
 def title_validator(title: str):

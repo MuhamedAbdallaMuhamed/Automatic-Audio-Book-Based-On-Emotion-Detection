@@ -6,7 +6,7 @@ from pydub import AudioSegment
 
 app = Flask(__name__)
 app.config["FILE_UPLOADS"] = os.path.dirname(os.path.realpath(__file__))
-app.config["ALLOWED_FILE_EXTENSIONS"] = ["WAV", "OGG"]
+app.config["ALLOWED_FILE_EXTENSIONS"] = ["WAV", "OGG", "MP3"]
 app.config["SENTENCE"] = "text"
 app.config["FILE"] = "file"
 app.config["FILE_SIZE"] = "file_size"

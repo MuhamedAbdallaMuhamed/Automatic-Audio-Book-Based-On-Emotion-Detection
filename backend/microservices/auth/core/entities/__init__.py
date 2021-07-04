@@ -23,11 +23,6 @@ def email_validator(email: str):
     if '.' not in email[-USER_NAME_MIN_LENGTH + 1:]:
         raise EmailNotValid
 
-    from validate_email import validate_email
-    is_valid = validate_email(email, check_mx=False)
-    if not is_valid:
-        raise EmailNotValid
-
     return True
 
 
